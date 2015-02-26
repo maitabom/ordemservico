@@ -13,51 +13,222 @@
  * @since         CakePHP(tm) v 0.10.0.1076
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 ?>
 <!DOCTYPE html>
 <html>
-<head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $this->fetch('title'); ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
+    <head>
+        <?php echo $this->Html->charset(); ?>
 
-		echo $this->Html->css('cake.generic');
+        <title>
+            Sistema de Ordem de Serviço :: <?php echo $this->fetch('title'); ?>
+        </title>
 
-		echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
-</head>
-<body>
-	<div id="container">
-		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
-		</div>
-		<div id="content">
+        <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+        <!-- Bootstrap 3.3.2 -->
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <!-- FontAwesome 4.3.0 -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons 2.0.0 -->
+        <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link href="css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+        <!-- iCheck -->
+        <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+        <!-- Morris chart -->
+        <link href="plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <!-- jvectormap -->
+        <link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <!-- Date Picker -->
+        <link href="plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+        <!-- Daterange picker -->
+        <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
 
-			<?php echo $this->Session->flash(); ?>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body class="skin-black">
+        <div id="container">
+            <div class="wrapper">
+                <header class="main-header">
+                    <?= $this->Html->link("Moreth e Lopes", array("controller" => "pages", "action" => "display", "home"), array("class" => "logo")) ?>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false, 'id' => 'cake-powered')
-				);
-			?>
-			<p>
-				<?php echo $cakeVersion; ?>
-			</p>
-		</div>
-	</div>
-	<?php echo $this->element('sql_dump'); ?>
-</body>
+                    <nav class="navbar navbar-static-top" role="navigation">
+                        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle navigation</span>
+                        </a>
+                        <div class="navbar-custom-menu">
+                            <ul class="nav navbar-nav">
+
+                                <!-- Notifications: style can be found in dropdown.less -->
+                                <li class="dropdown notifications-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-bell-o"></i>
+                                        <span class="label label-warning">10</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="header">You have 10 notifications</li>
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the page and may cause design problems
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-users text-red"></i> 5 new members joined
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">
+                                                        <i class="fa fa-user text-red"></i> You changed your username
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="footer"><a href="#">View all</a></li>
+                                    </ul>
+                                </li>
+                                <!-- Tasks: style can be found in dropdown.less -->
+                                <li class="dropdown tasks-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-flag-o"></i>
+                                        <span class="label label-danger">9</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li class="header">You have 9 tasks</li>
+                                        <li>
+                                            <!-- inner menu: contains the actual data -->
+                                            <ul class="menu">
+                                                <li><!-- Task item -->
+                                                    <a href="#">
+                                                        <h3>
+                                                            Design some buttons
+                                                            <small class="pull-right">20%</small>
+                                                        </h3>
+                                                        <div class="progress xs">
+                                                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                                <span class="sr-only">20% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li><!-- end task item -->
+                                                <li><!-- Task item -->
+                                                    <a href="#">
+                                                        <h3>
+                                                            Create a nice theme
+                                                            <small class="pull-right">40%</small>
+                                                        </h3>
+                                                        <div class="progress xs">
+                                                            <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                                <span class="sr-only">40% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li><!-- end task item -->
+                                                <li><!-- Task item -->
+                                                    <a href="#">
+                                                        <h3>
+                                                            Some task I need to do
+                                                            <small class="pull-right">60%</small>
+                                                        </h3>
+                                                        <div class="progress xs">
+                                                            <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                                <span class="sr-only">60% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li><!-- end task item -->
+                                                <li><!-- Task item -->
+                                                    <a href="#">
+                                                        <h3>
+                                                            Make beautiful transitions
+                                                            <small class="pull-right">80%</small>
+                                                        </h3>
+                                                        <div class="progress xs">
+                                                            <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                                <span class="sr-only">80% Complete</span>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li><!-- end task item -->
+                                            </ul>
+                                        </li>
+                                        <li class="footer">
+                                            <a href="#">View all tasks</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- User Account: style can be found in dropdown.less -->
+                                <li class="dropdown user user-menu">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <img src="img/user4-128x128.jpg" class="user-image" alt="User Image"/>
+                                        <span class="hidden-xs">Samara Morgan</span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- User image -->
+                                        <li class="user-header">
+                                            <img src="img/user4-128x128.jpg" class="img-circle" alt="User Image" />
+                                            <p>
+                                                Samara Morgan - Web Designer
+                                                <small>Member since Nov. 2012</small>
+                                            </p>
+                                        </li>
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <div class="pull-left">
+                                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            </div>
+                                            <div class="pull-right">
+                                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </header>
+                <?= $this->fetch('content'); ?>
+                <footer class="main-footer">
+                    <div class="pull-right hidden-xs">
+                        <b>Version</b> 2.0
+                    </div>
+                    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+                </footer>
+            </div>
+            <!-- jQuery 2.1.3 -->
+            <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+            <!-- Bootstrap 3.3.2 JS -->
+            <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <!-- SlimScroll -->
+            <script src="plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>
+            <!-- FastClick -->
+            <script src='plugins/fastclick/fastclick.min.js'></script>
+            <!-- AdminLTE App -->
+            <script src="js/app.min.js" type="text/javascript"></script>
+    </body>
 </html>
