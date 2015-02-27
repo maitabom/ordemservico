@@ -15,11 +15,16 @@ class SystemController extends AppController {
     }
 
     public function logon() {
-
+        $this->redirect(array("action" => "board"));
     }
 
     public function logoff() {
-        
+        $this->redirect(array("action" => "login"));
+    }
+
+    public function board() {
+        $title = "Painel";
+        $this->set("title_for_layout", $title);
     }
 
 }
