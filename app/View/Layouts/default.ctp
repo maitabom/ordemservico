@@ -49,6 +49,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <link href="<?= $this->Url->relative('plugins/daterangepicker/daterangepicker-bs3.css') ?>" rel="stylesheet" type="text/css" />
         <!-- bootstrap wysihtml5 - text editor -->
         <link href="<?= $this->Url->relative('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') ?>" rel="stylesheet" type="text/css" />
+        <!-- DATA TABLES -->
+        <link href="<?= $this->Url->relative('plugins/datatables/dataTables.bootstrap.css') ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -231,5 +233,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
             <!-- AdminLTE App -->
             <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
+            <!-- DATA TABES SCRIPT -->
+            <script src="<?= $this->Url->relative('plugins/datatables/jquery.dataTables.js') ?>" type="text/javascript"></script>
+            <script src="<?= $this->Url->relative('plugins/datatables/dataTables.bootstrap.js') ?>" type="text/javascript"></script>
     </body>
 </html>
