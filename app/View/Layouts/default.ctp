@@ -27,28 +27,28 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- Bootstrap 3.3.2 -->
-        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet" type="text/css" />
         <!-- FontAwesome 4.3.0 -->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Ionicons 2.0.0 -->
         <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
-        <link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('css/AdminLTE.min.css') ?>" rel="stylesheet" type="text/css" />
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
-        <link href="css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('css/skins/_all-skins.min.css') ?>" rel="stylesheet" type="text/css" />
         <!-- iCheck -->
-        <link href="plugins/iCheck/flat/blue.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('plugins/iCheck/flat/blue.css') ?>" rel="stylesheet" type="text/css" />
         <!-- Morris chart -->
-        <link href="plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('plugins/morris/morris.css') ?>" rel="stylesheet" type="text/css" />
         <!-- jvectormap -->
-        <link href="plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('plugins/jvectormap/jquery-jvectormap-1.2.2.css') ?>" rel="stylesheet" type="text/css" />
         <!-- Date Picker -->
-        <link href="plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('plugins/datepicker/datepicker3.css') ?>" rel="stylesheet" type="text/css" />
         <!-- Daterange picker -->
-        <link href="plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('plugins/daterangepicker/daterangepicker-bs3.css') ?>" rel="stylesheet" type="text/css" />
         <!-- bootstrap wysihtml5 - text editor -->
-        <link href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,7 +61,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <div id="container">
             <div class="wrapper">
                 <header class="main-header">
-                    <?= $this->Html->link("Moreth e Lopes", array("controller" => "pages", "action" => "display", "home"), array("class" => "logo")) ?>
+
+                    <?= $this->Html->link("Moreth e Lopes", array("controller" => "system", "action" => "board"), array("class" => "logo")) ?>
 
                     <nav class="navbar navbar-static-top" role="navigation">
                         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
@@ -185,13 +186,13 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 <!-- User Account: style can be found in dropdown.less -->
                                 <li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <img src="img/user4-128x128.jpg" class="user-image" alt="User Image"/>
+                                        <img src="<?= $this->Url->relative('img/user4-128x128.jpg') ?>" class="user-image" alt="User Image"/>
                                         <span class="hidden-xs">Samara Morgan</span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!-- User image -->
                                         <li class="user-header">
-                                            <img src="img/user4-128x128.jpg" class="img-circle" alt="User Image" />
+                                            <img src="<?= $this->Url->relative('img/user4-128x128.jpg') ?>" class="img-circle" alt="User Image" />
                                             <p>
                                                 Samara Morgan - Web Designer
                                                 <small>Member since Nov. 2012</small>
@@ -200,10 +201,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                         <!-- Menu Footer-->
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                                <?= $this->Html->link("Perfil", "/perfil/samara", array("class" => "btn btn-default btn-flat")) ?>
                                             </div>
                                             <div class="pull-right">
-                                                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                                <?= $this->Html->link("Sair", array("controller" => "system", "action" => "logoff"), array("class" => "btn btn-default btn-flat")) ?>
                                             </div>
                                         </li>
                                     </ul>
@@ -215,20 +216,20 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <?= $this->fetch('content'); ?>
                 <footer class="main-footer">
                     <div class="pull-right hidden-xs">
-                        <b>Version</b> 2.0
+                        <b>Version</b> 1.0
                     </div>
-                    <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
+                    <strong>Copyright &copy; 2015 Moreth e Lopes</strong> Todos os direitos reservados.
                 </footer>
             </div>
             <!-- jQuery 2.1.3 -->
-            <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+            <script src="<?= $this->Url->relative('plugins/jQuery/jQuery-2.1.3.min.js') ?>"></script>
             <!-- Bootstrap 3.3.2 JS -->
-            <script src="bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+            <script src="<?= $this->Url->relative('bootstrap/js/bootstrap.min.js') ?>" type="text/javascript"></script>
             <!-- SlimScroll -->
-            <script src="plugins/slimScroll/jquery.slimScroll.min.js" type="text/javascript"></script>
+            <script src="<?= $this->Url->relative('plugins/slimScroll/jquery.slimScroll.min.js') ?>" type="text/javascript"></script>
             <!-- FastClick -->
-            <script src='plugins/fastclick/fastclick.min.js'></script>
+            <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
             <!-- AdminLTE App -->
-            <script src="js/app.min.js" type="text/javascript"></script>
+            <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
     </body>
 </html>
