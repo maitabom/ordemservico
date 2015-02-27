@@ -15,7 +15,7 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="../../index.html"><i class="fa fa-user"></i>Cadastro de Usuários</a></li>
+                    <li><a href="<?= $this->Url->make('usuario', '') ?>"><i class="fa fa-user"></i>Cadastro de Usuários</a></li>
                     <li><a href="../../index2.html"><i class="fa fa-shield"></i>Permissões</a></li>
                 </ul>
             </li>
