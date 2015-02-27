@@ -8,7 +8,7 @@ App::uses('AppController', 'Controller');
  */
 class UsuarioController extends AppController {
 
-    public function index($id) {
+    public function index() {
 
     }
 
