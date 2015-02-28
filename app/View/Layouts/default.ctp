@@ -196,9 +196,10 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                         <li class="user-header">
                                             <img src="<?= $this->Url->relative('img/user4-128x128.jpg') ?>" class="img-circle" alt="User Image" />
                                             <p>
-                                                Samara Morgan - Web Designer
+                                                <b>Samara Morgan</b><br/> Web Designer
                                                 <small>Member since Nov. 2012</small>
                                             </p>
+                                            <div style="width: 10px"></div>
                                         </li>
                                         <!-- Menu Footer-->
                                         <li class="user-footer">
