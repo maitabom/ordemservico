@@ -39,8 +39,12 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="btn-group">
+                            <div style="min-height: 15px">
 
+                            </div>
+                            <div style="text-align: right;">
+                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('usuario', 'add') . '\'' ?>">Novo</button>
+                                <button class="btn btn-primary">Buscar</button>
                             </div>
                             <div style="min-height: 30px">
 
