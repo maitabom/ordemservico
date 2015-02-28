@@ -108,12 +108,21 @@
                                 <input type="password" class="form-control" id="exampleInputEmail1">
                             </div>
                             <div class="form-group col-xs-12">
-
+                                <label for="exampleInputEmail1">Grupo de Usuários</label>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option>Administrativo</option>
+                                    <option>Gerente</option>
+                                    <option>Operacional</option>
+                                    <option>Financeiro</option>
+                                </select>
+                            </div>
+                            <div style="text-align: right;">
+                                <button type="submit" class="btn btn-primary" onclick="history.go(-1)">Voltar</button>
+                                <button type="submit" class="btn btn-primary">Limpar</button>
+                                <button type="submit" class="btn btn-success">Salvar</button>
                             </div>
                         </div><!-- /.box-body -->
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
                     </form>
                 </div>
             </div>

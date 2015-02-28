@@ -42,7 +42,7 @@ class UrlHelper extends AppHelper {
      */
     public function make($controller, $action) {
 
-        $nurl = DS . $controller . DS . $action;
+        $nurl = ($action == "") ? DS . $controller : DS . $controller . DS . $action;
         return $this->assetUrl($nurl);
     }
 
