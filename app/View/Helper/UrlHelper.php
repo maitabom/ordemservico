@@ -40,7 +40,7 @@ class UrlHelper extends AppHelper {
      * @param String $action Ação relacionada ao controlller
      * @return Object Url gerada a partir das informações dadas.
      */
-    public function make($controller, $action) {
+    public function make($controller, $action = "") {
 
         $nurl = ($action == "") ? DS . $controller : DS . $controller . DS . $action;
         return $this->assetUrl($nurl);
@@ -52,9 +52,9 @@ class UrlHelper extends AppHelper {
      * @param String $action Ação relacionada ao controlller
      * @return Object Url absoluto gerada a partir das informações dadas.
      */
-    public function makeAbsolute($controller, $action) {
+    public function makeAbsolute($controller, $action = "") {
 
-        $nurl = DS . $controller . DS . $action;
+        $nurl = ($action == "") ? DS . $controller : DS . $controller . DS . $action;
         return $this->protocol . $this->base . $this->assetUrl($nurl);
     }
 
