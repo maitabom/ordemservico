@@ -52,101 +52,205 @@
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Nome</th>
-                                        <th>Nick</th>
-                                        <th>E-mail</th>
+                                        <th style="width: 40%">Nome</th>
+                                        <th style="width: 20%">Nick</th>
+                                        <th style="width: 25%">E-mail</th>
                                         <th>Ativo</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 4.0</td>
-                                        <td>Win 95+</td>
-                                        <td> 4</td>
-                                        <td>X</td>
+                                        <td>Magno Alves</td>
+                                        <td>malves</td>
+                                        <td>magno.alves@gmail.com</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.0</td>
-                                        <td>Win 95+</td>
-                                        <td>5</td>
-                                        <td>C</td>
+                                        <td>Roberto Justus</td>
+                                        <td>roberto_justus</td>
+                                        <td>rjustus@hilton.com</td>
+                                        <td>Não</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 5.5</td>
-                                        <td>Win 95+</td>
-                                        <td>5.5</td>
-                                        <td>A</td>
+                                        <td>Samara Morgan</td>
+                                        <td>samara</td>
+                                        <td>samarasevendays@yahoo.com.br</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Internet
-                                            Explorer 6</td>
-                                        <td>Win 98+</td>
-                                        <td>6</td>
-                                        <td>A</td>
+                                        <td>Patrícia Coelho</td>
+                                        <td>paty</td>
+                                        <td>patricia.coelho@globo.com</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>Internet Explorer 7</td>
-                                        <td>Win XP SP2+</td>
-                                        <td>7</td>
-                                        <td>A</td>
+                                        <td>Aline Ferreira</td>
+                                        <td>aferreira</td>
+                                        <td>aferreira@yahoo.com</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Trident</td>
-                                        <td>AOL browser (AOL desktop)</td>
-                                        <td>Win XP</td>
-                                        <td>6</td>
-                                        <td>A</td>
+                                        <td>Flávia Botelho</td>
+                                        <td>fbotelho</td>
+                                        <td>flavinha@gmail.com</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.7</td>
-                                        <td>A</td>
+                                        <td>Gabriel Batista</td>
+                                        <td>biel.batista</td>
+                                        <td>bielbatista@gmail.com</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Gecko</td>
-                                        <td>Firefox 1.5</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
+                                        <td>Hugo Ramos</td>
+                                        <td>hramos</td>
+                                        <td>hugoramos@gmail.com</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Gecko</td>
-                                        <td>Firefox 2.0</td>
-                                        <td>Win 98+ / OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
+                                        <td>Cíntia Cavalcante</td>
+                                        <td>cintia</td>
+                                        <td>cinta@into.gov.br</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Gecko</td>
-                                        <td>Firefox 3.0</td>
-                                        <td>Win 2k+ / OSX.3+</td>
-                                        <td>1.9</td>
-                                        <td>A</td>
+                                        <td>Silas Fernando</td>
+                                        <td>mestresilas</td>
+                                        <td>silas@hospitalbalbino.com.br</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Gecko</td>
-                                        <td>Camino 1.0</td>
-                                        <td>OSX.2+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
+                                        <td>Antônio Bernardo</td>
+                                        <td>abernardo</td>
+                                        <td>abernardo@ig.com.br</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Gecko</td>
-                                        <td>Camino 1.5</td>
-                                        <td>OSX.3+</td>
-                                        <td>1.8</td>
-                                        <td>A</td>
+                                        <td>Fernanda Carvalho</td>
+                                        <td>fecarvalho</td>
+                                        <td>fecarvalho@gmail.com</td>
+                                        <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('usuario/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
