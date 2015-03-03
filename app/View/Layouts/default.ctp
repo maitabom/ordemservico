@@ -34,6 +34,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="<?= $this->Url->relative('css/AdminLTE.min.css') ?>" rel="stylesheet" type="text/css" />
+        <link href="<?= $this->Url->relative('css/complementar.css') ?>" rel="stylesheet" type="text/css" />
         <!-- AdminLTE Skins. Choose a skin from the css/skins
              folder instead of downloading all of them to reduce the load. -->
         <link href="<?= $this->Url->relative('css/skins/_all-skins.min.css') ?>" rel="stylesheet" type="text/css" />
