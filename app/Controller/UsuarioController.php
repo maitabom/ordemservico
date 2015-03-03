@@ -21,6 +21,10 @@ class UsuarioController extends AppController {
         $this->redirect(array("action" => "cadastro", 0));
     }
 
+    public function edit($id) {
+        $this->redirect(array("action" => "cadastro", $id));
+    }
+
     public function cadastro($id) {
         $title = ($id > 0) ? "Edição do Usuário" : "Novo Usuário";
         $this->set("title_for_layout", $title);
