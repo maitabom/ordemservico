@@ -19,7 +19,7 @@
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="box">
-                    <form role="form">
+                    <form action="#" role="form">
                         <div class="box-body">
                             <div class="form-group col-xs-12">
                                 <label for="exampleInputEmail1">Nome</label>
@@ -118,8 +118,8 @@
                                 </select>
                             </div>
                             <div style="text-align: right;">
-                                <button type="submit" class="btn btn-primary" onclick="history.go(-1)">Voltar</button>
-                                <button type="submit" class="btn btn-primary">Limpar</button>
+                                <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('usuario') ?>'" type="button" class="btn btn-primary">Voltar</button>
+                                <button type="reset" class="btn btn-primary">Limpar</button>
                                 <button type="submit" class="btn btn-success">Salvar</button>
                             </div>
                         </div><!-- /.box-body -->
