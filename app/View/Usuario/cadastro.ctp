@@ -109,13 +109,17 @@
                             </div>
                             <div class="form-group col-xs-12">
                                 <label for="exampleInputEmail1">Grupo de Usuários</label>
-                                <select class="form-control">
+                                <select class="form-control" style="width: 30%">
                                     <option></option>
                                     <option>Administrativo</option>
                                     <option>Gerente</option>
                                     <option>Operacional</option>
                                     <option>Financeiro</option>
                                 </select>
+                            </div>
+                            <div class="form-group col-xs-12">
+                                <label>Outras Opções</label><br/>
+                                <input type="checkbox" class="checkbox-inline"/>Ativo
                             </div>
                             <div style="text-align: right;">
                                 <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('usuario') ?>'" type="button" class="btn btn-primary">Voltar</button>
