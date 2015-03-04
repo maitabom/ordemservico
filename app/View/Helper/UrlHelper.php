@@ -37,7 +37,7 @@ class UrlHelper extends AppHelper {
     /**
      * Cria um link a partir de controller e ação.
      * @param String $controller Controller do sistema
-     * @param String $action Ação relacionada ao controlller
+     * @param String $action Ação relacionada ao controller
      * @return Object Url gerada a partir das informações dadas.
      */
     public function make($controller, $action = "") {
@@ -49,7 +49,7 @@ class UrlHelper extends AppHelper {
     /**
      * Cria um link absoluto a partir de controller e ação
      * @param String $controller Controller do sistema
-     * @param String $action Ação relacionada ao controlller
+     * @param String $action Ação relacionada ao controller
      * @return Object Url absoluto gerada a partir das informações dadas.
      */
     public function makeAbsolute($controller, $action = "") {
