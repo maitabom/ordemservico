@@ -17,7 +17,7 @@
                         <div id="wrapper" class="dataTables_wrapper form-inline" role="grid">
 
                             <div style="text-align: right;">
-                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('usuario', 'add') . '\'' ?>">Novo</button>
+                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('permissao', 'add') . '\'' ?>">Novo</button>
                             </div>
                             <div style="min-height: 30px">
 
