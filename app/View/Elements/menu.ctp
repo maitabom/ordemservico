@@ -21,7 +21,7 @@
             </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-star"></i>
+                    <i class="fa fa-briefcase"></i>
                     <span>Clientes</span>
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>

@@ -9,7 +9,7 @@
             <?php if ($id_usuario > 0): ?>
                 <li class="active"><a href="#"><i class="fa fa-edit"></i>Editar Permissão</a></li>
             <?php else: ?>
-                <li class="active"><a href="#"><i class="fa fa-star"></i>Novo Grupo de Permissão</a></li>
+                <li class="active"><a href="#"><i class="fa fa-plus-circle"></i>Novo Grupo de Permissão</a></li>
             <?php endif; ?>
         </ol>
     </section>
