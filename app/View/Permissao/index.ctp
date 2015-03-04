@@ -25,28 +25,67 @@
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th style="width: 75%">Nome</th>
+                                        <th style="width: 85%">Nome</th>
                                         <th>Ativo</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Administrador</td>
                                         <td>Sim</td>
-
+                                        <td>
+                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Gerente</td>
                                         <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     <tr>
                                         <td>Operacional</td>
                                         <td>Sim</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>RH</td>
                                         <td>Não</td>
+                                        <td>
+                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                                <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a class="btn btn-google-plus" title="Excluir">
+                                                <i class="fa fa-trash">
+                                                </i>
+                                            </a>
+                                        </td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
