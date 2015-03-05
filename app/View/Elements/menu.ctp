@@ -37,10 +37,10 @@
                     <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="<?= $this->Url->make('ordemservico', 'add') ?>"><i class="fa fa-plus-circle"></i> Gerar Ordem de Serviço</a></li>
-                    <li><a href="<?= $this->Url->make('ordemservico') ?>"><i class="fa fa-search"></i> Buscar</a></li>
-                    <li><a href="<?= $this->Url->make('ordemservico', 'templates') ?>"><i class="fa fa-bookmark"></i> Templates</a></li>
-                    <li><a href="<?= $this->Url->make('ordemservico', 'prioridades') ?>"><i class="fa fa-bars"></i> Lista de Prioridades</a></li>
+                    <li><a href="<?= $this->Url->make('ordem_servico', 'add') ?>"><i class="fa fa-plus-circle"></i> Gerar Ordem de Serviço</a></li>
+                    <li><a href="<?= $this->Url->make('ordem_servico') ?>"><i class="fa fa-search"></i> Buscar</a></li>
+                    <li><a href="<?= $this->Url->make('ordem_servico', 'templates') ?>"><i class="fa fa-bookmark"></i> Templates</a></li>
+                    <li><a href="<?= $this->Url->make('ordem_servico', 'prioridades') ?>"><i class="fa fa-bars"></i> Lista de Prioridades</a></li>
                 </ul>
             </li>
         </ul>
