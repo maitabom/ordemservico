@@ -4,7 +4,7 @@
         <h1>Pesquisa de Ordem de Serviço</h1>
         <ol class="breadcrumb">
             <li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#"><i class="fa fa-briefcase"></i>Ordem de Serviço</a></li>
+            <li><a href="#"><i class="fa fa-files-o"></i>Ordem de Serviço</a></li>
             <li class="active"><a href="#"><i class="fa fa-search"></i>Busca</a></li>
         </ol>
     </section>

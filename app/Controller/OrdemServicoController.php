@@ -12,4 +12,20 @@ class OrdemServicoController extends AppController {
 
     }
 
+    public function add() {
+
+    }
+
+    public function templates() {
+
+    }
+
+    public function prioridades() {
+
+    }
+
+    public function documento() {
+        
+    }
+
 }
