@@ -12,12 +12,20 @@ class OrdemServicoController extends AppController {
 
     }
 
-    public function add() {
+    public function add($id = NULL) {
 
+    }
+
+    public function edit($id) {
+        $this->set("id", $id);
     }
 
     public function templates() {
 
+    }
+
+    public function template_edit($id) {
+        $this->set("id", $id);
     }
 
     public function prioridades() {
