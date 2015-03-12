@@ -40,7 +40,7 @@
                     <li><a href="<?= $this->Url->make('ordem_servico', 'add') ?>"><i class="fa fa-plus-circle"></i> Gerar Ordem de Serviço</a></li>
                     <li><a href="<?= $this->Url->make('ordem_servico') ?>"><i class="fa fa-search"></i> Buscar</a></li>
                     <li><a href="<?= $this->Url->make('ordem_servico', 'templates') ?>"><i class="fa fa-bookmark"></i> Templates</a></li>
-                    <li><a href="<?= $this->Url->make('ordem_servico', 'prioridades') ?>"><i class="fa fa-bars"></i> Lista de Prioridades</a></li>
+                    <li><a href="<?= $this->Url->make('ordem_servico', 'prioridades') ?>"><i class="fa fa-bars"></i> Lista de Tarefas</a></li>
                 </ul>
             </li>
         </ul>
