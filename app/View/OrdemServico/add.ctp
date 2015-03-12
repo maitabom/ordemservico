@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="box">
-                    <form action="documento" role="form">
+                    <form action="<?= $this->Url->makeParams('ordem_servico', 'documento', 4) ?>" role="form">
                         <div class="box-body">
                             <div class="form-group col-xs-12">
                                 <label for="exampleInputEmail1">Cliente</label>
@@ -87,6 +87,7 @@
                             <div style="text-align: right;">
                                 <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('ordem_servico') ?>'" type="button" class="btn btn-primary">Voltar</button>
                                 <button type="reset" class="btn btn-primary">Limpar</button>
+                                <button type="button" class="btn btn-warning">Criar Template</button>
                                 <button type="submit" class="btn btn-success">Salvar</button>
                             </div>
                         </div><!-- /.box-body -->
