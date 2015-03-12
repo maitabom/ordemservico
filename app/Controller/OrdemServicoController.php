@@ -24,8 +24,13 @@ class OrdemServicoController extends AppController {
 
     }
 
-    public function documento() {
-        
+    public function documento($id) {
+        $this->set("id", $id);
+    }
+
+    public function imprimir($id) {
+        $this->layout = "print";
+        $this->set("id", $id);
     }
 
 }
