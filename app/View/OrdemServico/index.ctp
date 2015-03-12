@@ -19,23 +19,33 @@
                         <div id="wrapper" class="dataTables_wrapper form-inline" role="grid">
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <label for="exampleInputEmail1">Nome</label><br/>
+                                    <label for="exampleInputEmail1">Número</label><br/>
                                     <input type="text" class="form-control" id="exampleInputEmail1">
                                 </div>
                                 <div class="col-xs-4">
-                                    <label for="exampleInputEmail1">E-mail</label><br/>
+                                    <label for="exampleInputEmail1">Cliente</label><br/>
                                     <input type="text" class="form-control" id="exampleInputEmail1">
                                 </div>
                                 <div class=" col-xs-4">
-                                    <label for="exampleInputEmail1">Cidade</label><br/>
+                                    <label for="exampleInputEmail1">Serviço</label><br/>
                                     <input type="text" class="form-control" id="exampleInputEmail1">
+                                </div>
+                                <div class=" col-xs-6">
+                                    <label for="exampleInputEmail1">Data de Emissão</label><br/>
+                                    de <input type="text" class="form-control" id="exampleInputEmail1">
+                                    à <input type="text" class="form-control" id="exampleInputEmail1">
+                                </div>
+                                <div class=" col-xs-6">
+                                    <label for="exampleInputEmail1">Prazo de Entrega</label><br/>
+                                    de <input type="text" class="form-control" id="exampleInputEmail1">
+                                    à <input type="text" class="form-control" id="exampleInputEmail1">
                                 </div>
                             </div>
                             <div style="min-height: 15px">
 
                             </div>
                             <div style="text-align: right;">
-                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('cliente', 'add') . '\'' ?>">Novo</button>
+                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('ordem_servico', 'add') . '\'' ?>">Novo</button>
                                 <button class="btn btn-primary">Buscar</button>
                             </div>
                             <div style="min-height: 30px">
@@ -44,26 +54,28 @@
                             <table id="example1" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Nome</th>
-                                        <th>Documento Fiscal</th>
-                                        <th>Tipo</th>
-                                        <th>E-mail</th>
-                                        <th>Localidade</th>
-                                        <th>Ativo</th>
-                                        <th></th>
+                                        <th>Número</th>
+                                        <th>Cliente</th>
+                                        <th>Serviço</th>
+                                        <th>Data Emissão</th>
+                                        <th>Prazo de Entrega</th>
+                                        <th style="width: 14%"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -73,15 +85,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Colégio Santa Maria</td>
-                                        <td>71.491.384/0001-30</td>
-                                        <td>PJ</td>
-                                        <td>direcao@colegiosantamaria.com.br</td>
-                                        <td>São João de Meriti - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007782</td>
+                                        <td>Restaurante Super Lanche</td>
+                                        <td>Adesivo - Preços para cardápio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -91,15 +106,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Mariana Carvaho Lima</td>
-                                        <td>388.307.969-30</td>
-                                        <td>PF</td>
-                                        <td>marianalima@gmail.com</td>
-                                        <td>Santa Rita da Sapucaí - MG</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -109,15 +127,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Silvana Lopes</td>
-                                        <td>827.241.876-28</td>
-                                        <td>PF</td>
-                                        <td>silopes@yahoo.com.br</td>
-                                        <td>Niterói - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -127,15 +148,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -145,15 +169,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -163,15 +190,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -181,15 +211,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -199,15 +232,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -217,15 +253,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -235,15 +274,18 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
+                                        <td>007781</td>
+                                        <td>Pizzaria Flamengo</td>
+                                        <td>Faixa Promocional - Anuncio</td>
+                                        <td>21/02/2015</td>
+                                        <td>25/02/2015</td>
                                         <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
                                                 <i class="fa fa-edit">
+                                                </i>
+                                            </a>
+                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
+                                                <i class="fa fa-eye">
                                                 </i>
                                             </a>
                                             <a class="btn btn-google-plus" title="Excluir">
@@ -252,25 +294,6 @@
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
