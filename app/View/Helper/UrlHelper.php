@@ -58,4 +58,16 @@ class UrlHelper extends AppHelper {
         return $this->protocol . $this->base . $this->assetUrl($nurl);
     }
 
+    /**
+     * Cria um link a partir de controller, ação e parâmetro
+     * @param String $controller Controller do sistema
+     * @param String $action Ação relacionada ao controller
+     * @return Object Url gerada a partir das informações dadas.
+     */
+    public function makeParams($controller, $action, $param) {
+
+        $nurl = DS . $controller . DS . $action . DS . $param;
+        return $this->assetUrl($nurl);
+    }
+
 }
