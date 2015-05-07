@@ -14,8 +14,7 @@ class GeoComponent extends Component {
      */
     public function listaUf() {
 
-        $estados = array(
-            "AC" => "Acre",
+        $estados = ["AC" => "Acre",
             "AL" => "Alagoas",
             "AM" => "Amazonas",
             "AP" => "Amapá",
@@ -42,7 +41,7 @@ class GeoComponent extends Component {
             "SP" => "São Paulo",
             "SE" => "Sergipe",
             "TO" => "Tocantins"
-        );
+        ];
 
         return $estados;
     }
