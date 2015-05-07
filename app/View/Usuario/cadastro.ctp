@@ -19,115 +19,88 @@
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="box">
-                    <form action="#" role="form">
-                        <div class="box-body">
-                            <div class="form-group col-xs-12">
-                                <label for="exampleInputEmail1">Nome</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label for="exampleInputPassword1">Endereço</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">Bairro</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">Cidade</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">Estado</label>
-                                <select class="form-control">
-                                    <option value=""></option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
-                                </select>
+                    <?php
+                    echo $this->Form->create("Usuario", array(
+                        "url" => array(
+                            "controller" => "usuario",
+                            "action" => "save"),
+                        "role" => "form"));
 
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">CEP</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Telefone</label>
-                                <input type="tel" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Celular</label>
-                                <input type="tel" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Cargo</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Setor</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">E-mail</label>
-                                <input type="email" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Nickname</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Senha</label>
-                                <input type="password" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Confirme a Senha</label>
-                                <input type="password" class="form-control" id="exampleInputEmail1">
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label for="exampleInputEmail1">Grupo de Usuários</label>
-                                <select class="form-control" style="width: 30%">
-                                    <option></option>
-                                    <option>Administrativo</option>
-                                    <option>Gerente</option>
-                                    <option>Operacional</option>
-                                    <option>Financeiro</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label>Outras Opções</label><br/>
-                                <input type="checkbox" class="checkbox-inline"/>Ativo
-                            </div>
-                            <div style="text-align: right;">
-                                <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('usuario') ?>'" type="button" class="btn btn-primary">Voltar</button>
-                                <button type="reset" class="btn btn-primary">Limpar</button>
-                                <button type="submit" class="btn btn-success">Salvar</button>
-                            </div>
-                        </div><!-- /.box-body -->
-                    </form>
+                    echo $this->Form->hidden("id", array("value" => $id_usuario));
+                    ?>
+                    <div class="box-body">
+                        <div class="form-group col-xs-12">
+                            <?= $this->Form->label("nome", "Nome") ?>
+                            <?= $this->Form->text("nome", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <?= $this->Form->label("endereco", "Endereço") ?>
+                            <?= $this->Form->text("endereco", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("bairro", "Bairro") ?>
+                            <?= $this->Form->text("bairro", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("cidade", "Cidade") ?>
+                            <?= $this->Form->text("cidade", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("uf", "Estado") ?>
+                            <?= $this->Form->select("uf", $estados, array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("cep", "CEP") ?>
+                            <?= $this->Form->text("cep", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("telefone", "Telefone") ?>
+                            <?= $this->Form->text("telefone", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("celular", "Celular") ?>
+                            <?= $this->Form->text("celular", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("cargo", "Cargo") ?>
+                            <?= $this->Form->text("cidade", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("setor", "Setor") ?>
+                            <?= $this->Form->text("setor", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("email", "Setor") ?>
+                            <?= $this->Form->text("email", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("nickname", "Usuário") ?>
+                            <?= $this->Form->text("nickname", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("senha", "Senha") ?>
+                            <?= $this->Form->text("senha", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("senha-confirma", "Confirme a Senha") ?>
+                            <?= $this->Form->text("senha-confirma", array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <?= $this->Form->label("grupo", "Grupo de Usuários") ?>
+                            <?= $this->Form->select("grupo", $permissoes, array("class" => "form-control", "style" => "width: 30%")) ?>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Outras Opções</label><br/>
+                            <?= $this->Form->checkbox("ativo") ?>Ativo &nbsp;&nbsp;&nbsp;
+                            <?= $this->Form->checkbox("verificar") ?>Obrigar o usuário a trocar senha.
+                        </div>
+                        <div style="text-align: right;">
+                            <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('usuario') ?>'" type="button" class="btn btn-primary">Voltar</button>
+                            <button type="reset" class="btn btn-primary">Limpar</button>
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <?= $this->Form->end() ?>
                 </div>
             </div>
         </div>
