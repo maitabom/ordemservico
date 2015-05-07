@@ -27,8 +27,11 @@ class UsuarioController extends AppController {
 
     public function cadastro($id) {
         $title = ($id > 0) ? "Edição do Usuário" : "Novo Usuário";
+        $estados = $this->Geo->listaUf();
+
         $this->set("title_for_layout", $title);
         $this->set("id_usuario", $id);
+        $this->set("estados", $estados);
     }
 
 }
