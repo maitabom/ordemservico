@@ -29,9 +29,13 @@ class UsuarioController extends AppController {
         $title = ($id > 0) ? "Edição do Usuário" : "Novo Usuário";
         $estados = $this->Geo->listaUf();
 
+        //TODO: Implementar o cadastro de permissões
+        $permissoes = ["1" => "Administrador", "2" => "Gerente", "3" => "Operacional"];
+
         $this->set("title_for_layout", $title);
         $this->set("id_usuario", $id);
         $this->set("estados", $estados);
+        $this->set("permissoes", $permissoes);
     }
 
 }
