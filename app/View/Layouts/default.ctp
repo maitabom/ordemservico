@@ -56,7 +56,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <!-- jQuery 2.1.3 -->
         <script src="<?= $this->Url->relative('plugins/jQuery/jQuery-2.1.3.min.js') ?>"></script>
         <!-- jQuery UI -->
-        <script src="<?= $this->Url->relative('plugins/jQueryUI/jquery-ui-1.10.3.min.js') ?>"></script>
+        <script src="<?= $this->Url->relative('plugins/jQueryUI/jquery-ui.js') ?>"></script>
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
