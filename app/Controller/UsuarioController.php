@@ -15,8 +15,40 @@ class UsuarioController extends AppController {
     }
 
     public function index() {
+        $usuarios = null;
+
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $mostrar = $data["Usuario"]["mostra"];
+
+            if ($mostrar == "T") {
+                $usuarios = $this->Usuario->find('all', array(
+                    'conditions' => array(
+                        "Usuario.nome LIKE" => "%" . $data["Usuario"]["nome"] . "%",
+                        "Usuario.nickname LIKE" => "%" . $data["Usuario"]["nickname"] . "%",
+                        "Usuario.email LIKE" => "%" . $data["Usuario"]["email"] . "%"
+                    )
+                ));
+            } else {
+                $usuarios = $this->Usuario->find('all', array(
+                    'conditions' => array(
+                        "Usuario.nome LIKE" => "%" . $data["Usuario"]["nome"] . "%",
+                        "Usuario.nickname LIKE" => "%" . $data["Usuario"]["nickname"] . "%",
+                        "Usuario.email LIKE" => "%" . $data["Usuario"]["email"] . "%",
+                        "Usuario.ativo" => ($mostrar == "A") ? "1" : "0"
+                    )
+                ));
+            }
+        } else {
+            $usuarios = $this->Usuario->find('all');
+        }
+
+        $combo_mostra = ["T" => "Todos", "A" => "Somente ativos", "I" => "Somente inativos"];
+
         $title = "Lista de Usuários";
         $this->set("title_for_layout", $title);
+        $this->set("combo_mostra", $combo_mostra);
+        $this->set("usuarios", $usuarios);
     }
 
     public function perfil($user) {
@@ -32,7 +64,6 @@ class UsuarioController extends AppController {
     }
 
     public function save() {
-
         if ($this->request->is('post')) {
 
             $data = $this->request->data;
@@ -55,8 +86,6 @@ class UsuarioController extends AppController {
     public function cadastro($id) {
         $title = ($id > 0) ? "Edição do Usuário" : "Novo Usuário";
         $estados = $this->Geo->listaUf();
-
-        //TODO: Implementar o cadastro de permissões
         $permissoes = $this->Permissao->find('list', array('fields' => array('id', 'nome')));
 
         $this->set("title_for_layout", $title);
