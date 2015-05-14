@@ -8,6 +8,12 @@ App::uses('AppController', 'Controller');
  */
 class UsuarioController extends AppController {
 
+    public function beforeFilter() {
+        $this->loadModel('Usuario');
+        $this->loadModel('Permissao');
+        parent::beforeFilter();
+    }
+
     public function index() {
         $title = "Lista de Usuários";
         $this->set("title_for_layout", $title);
@@ -25,12 +31,33 @@ class UsuarioController extends AppController {
         $this->redirect(array("action" => "cadastro", $id));
     }
 
+    public function save() {
+
+        if ($this->request->is('post')) {
+
+            $data = $this->request->data;
+            $mensagem = "";
+
+            try {
+                $this->Usuario->save($data);
+                $this->Dialog->alert("O usuário foi salvo com sucesso.");
+                $id = $this->Usuario->id;
+
+                $this->redirect(array("action" => "cadastro", $id));
+            } catch (Exception $ex) {
+                $mensagem = "Ocorreu um erro no sistema ao salvar o usuário.";
+                $this->Dialog->error($mensagem, $ex->getMessage());
+                $this->redirect(array("action" => "cadastro", $data["Usuario"]["id"]));
+            }
+        }
+    }
+
     public function cadastro($id) {
         $title = ($id > 0) ? "Edição do Usuário" : "Novo Usuário";
         $estados = $this->Geo->listaUf();
 
         //TODO: Implementar o cadastro de permissões
-        $permissoes = ["1" => "Administrador", "2" => "Gerente", "3" => "Operacional"];
+        $permissoes = $this->Permissao->find('list', array('fields' => array('id', 'nome')));
 
         $this->set("title_for_layout", $title);
         $this->set("id_usuario", $id);

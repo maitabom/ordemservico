@@ -1,4 +1,5 @@
-<?= $this->element('menu'); ?>
+<?= $this->Session->flash() ?>
+<?= $this->element('menu') ?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1><?= $title_for_layout ?></h1>
@@ -70,7 +71,7 @@
                             <?= $this->Form->text("setor", array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-3">
-                            <?= $this->Form->label("email", "Setor") ?>
+                            <?= $this->Form->label("email", "E-mail") ?>
                             <?= $this->Form->text("email", array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-3">
@@ -79,11 +80,11 @@
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("senha", "Senha") ?>
-                            <?= $this->Form->text("senha", array("class" => "form-control")) ?>
+                            <?= $this->Form->password("senha", array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("senha-confirma", "Confirme a Senha") ?>
-                            <?= $this->Form->text("senha-confirma", array("class" => "form-control")) ?>
+                            <?= $this->Form->password("senha-confirma", array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-12">
                             <?= $this->Form->label("grupo", "Grupo de Usuários") ?>
