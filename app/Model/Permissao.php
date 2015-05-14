@@ -9,6 +9,6 @@ App::uses('AppModel', 'Model');
 class Permissao extends AppModel {
 
     public $name = "Permissao";
-    public $useTable = false;
+    public $useTable = "grupos";
 
 }

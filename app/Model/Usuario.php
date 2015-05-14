@@ -9,6 +9,6 @@ App::uses('AppModel', 'Model');
 class Usuario extends AppModel {
 
     public $name = "Usuario";
-    public $useTable = false;
+    public $useTable = "usuarios";
 
 }
