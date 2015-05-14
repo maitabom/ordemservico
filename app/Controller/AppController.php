@@ -33,6 +33,6 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
     protected $nameSystem = "Ordem de Serviço";
-    public $components = array("Geo");
+    public $components = array("Geo", "Session", "Dialog");
 
 }
