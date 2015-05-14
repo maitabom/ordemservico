@@ -58,7 +58,7 @@ switch ($type) {
                 <?php endif; ?>
             </div>
             <div class="modal-footer">
-                <button id="btn-default-modal" type="button" class="btn btn-block <?= $style_button ?>">Save changes</button>
+                <button id="btn-default-modal" type="button" class="btn btn-block <?= $style_button ?>">OK</button>
             </div>
         </div>
     </div>
