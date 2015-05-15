@@ -1,5 +1,25 @@
+<script type="text/javascript">
+    function excluir(id) {
+        $("#usuario_excluir").dialog("open");
+        $("#questionParameter").val(id);
+    }
+</script>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
+<?=
+$this->element("question", array(
+    "name" => "usuario_excluir",
+    "form_name" => "frm_usuario_excluir",
+    "message" => "Deseja excluir o usuário?",
+    "action" => array(
+        "controller" => "usuario",
+        "action" => "delete"),
+    "buttons" => array(
+        "ok" => "Sim",
+        "cancel" => "Não"
+    )
+))
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>Lista de Usuários</h1>
@@ -82,7 +102,7 @@
                                                         <i class="fa fa-edit">
                                                         </i>
                                                     </a>
-                                                    <a class="btn btn-google-plus" title="Excluir">
+                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $usuario["Usuario"]["id"] ?>)" title="Excluir">
                                                         <i class="fa fa-trash">
                                                         </i>
                                                     </a>

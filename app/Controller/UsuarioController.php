@@ -63,8 +63,30 @@ class UsuarioController extends AppController {
         $this->redirect(array("action" => "cadastro", $id));
     }
 
-    public function save() {
+    public function delete() {
         if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $id = $data["question"]["parameter"];
+
+            $marcado = $this->Usuario->read(null, $id);
+            $nome = $marcado["Usuario"]["nome"];
+
+            try {
+                $this->Usuario->id = $id;
+                $this->Usuario->delete();
+
+                $this->Dialog->alert("O usuário $nome foi excluido do sucesso!");
+                $this->redirect(array("action" => "index"));
+            } catch (Exception $ex) {
+                $mensagem = "Ocorreu um erro no sistema ao excluir o usuário.";
+                $this->Dialog->error($mensagem, $ex->getMessage());
+                $this->redirect(array("action" => "index"));
+            }
+        }
+    }
+
+    public function save() {
+        if ($this->request->is('post') || $this->request->is('put')) {
 
             $data = $this->request->data;
             $mensagem = "";
@@ -87,6 +109,10 @@ class UsuarioController extends AppController {
         $title = ($id > 0) ? "Edição do Usuário" : "Novo Usuário";
         $estados = $this->Geo->listaUf();
         $permissoes = $this->Permissao->find('list', array('fields' => array('id', 'nome')));
+
+        if ($id > 0) {
+            $this->request->data = $this->Usuario->read(null, $id);
+        }
 
         $this->set("title_for_layout", $title);
         $this->set("id_usuario", $id);
