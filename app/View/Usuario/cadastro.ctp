@@ -3,91 +3,91 @@
         var mensagem = "";
 
         if ($("#UsuarioNome").val() === "") {
-            mensagem += "<li>O nome do usuário é obrigatório.</li>";
+            mensagem += "- O nome do usuário é obrigatório.\n";
             $("#UsuarioNome").css("border-color", "red");
         } else {
             $("#UsuarioNome").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioEndereco").val() === "") {
-            mensagem += "<li>O endereço do usuário é obrigatório.</li>";
+            mensagem += "- O endereço do usuário é obrigatório.\n";
             $("#UsuarioEndereco").css("border-color", "red");
         } else {
             $("#UsuarioEndereco").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioCidade").val() === "") {
-            mensagem += "<li>A cidade de residência do usuário é obrigatória.</li>";
+            mensagem += "- A cidade de residência do usuário é obrigatória.\n";
             $("#UsuarioCidade").css("border-color", "red");
         } else {
             $("#UsuarioCidade").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioUf").val() === "") {
-            mensagem += "<li>O estado de residência do usuário é obrigatório.</li>";
+            mensagem += "- O estado de residência do usuário é obrigatório.\n";
             $("#UsuarioUf").css("border-color", "red");
         } else {
             $("#UsuarioUf").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioCep").val() === "") {
-            mensagem += "<li>O CEP de residência do usuário é obrigatório.</li>";
+            mensagem += "- O CEP de residência do usuário é obrigatório.\n";
             $("#UsuarioCep").css("border-color", "red");
         } else {
             $("#UsuarioCep").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioCelular").val() === "") {
-            mensagem += "<li>O telefone celular do usuário é obrigatório.</li>";
+            mensagem += "- O telefone celular do usuário é obrigatório.\n";
             $("#UsuarioCelular").css("border-color", "red");
         } else {
             $("#UsuarioCelular").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioCargo").val() === "") {
-            mensagem += "<li>O cargo do usuário é obrigatório.</li>";
+            mensagem += "- O cargo do usuário é obrigatório.\n";
             $("#UsuarioCargo").css("border-color", "red");
         } else {
             $("#UsuarioCargo").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioSetor").val() === "") {
-            mensagem += "<li>O setor do usuário é obrigatório.</li>";
+            mensagem += "- O setor do usuário é obrigatório.\n";
             $("#UsuarioSetor").css("border-color", "red");
         } else {
             $("#UsuarioSetor").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioEmail").val() === "") {
-            mensagem += "<li>O e-mail do usuário é obrigatório.</li>";
+            mensagem += "- O e-mail do usuário é obrigatório.\n";
             $("#UsuarioEmail").css("border-color", "red");
         } else {
             $("#UsuarioEmail").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioNickname").val() === "") {
-            mensagem += "<li>O nickname do usuário é obrigatório.</li>";
+            mensagem += "- O nickname do usuário é obrigatório.\n";
             $("#UsuarioNickname").css("border-color", "red");
         } else {
             $("#UsuarioNickname").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioSenha").val() === "") {
-            mensagem += "<li>A senha do usuário é obrigatória.</li>";
+            mensagem += "- A senha do usuário é obrigatória.\n";
             $("#UsuarioSenha").css("border-color", "red");
         } else {
             $("#UsuarioSenha").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioSenha-confirma").val() === "") {
-            mensagem += "<li>É necesário que você confirme a sua senha criada.</li>";
+            mensagem += "- É necesário que você confirme a sua senha criada.\n";
             $("#UsuarioSenha-confirma").css("border-color", "red");
         } else {
             $("#UsuarioSenha-confirma").css("border-color", "#D2D6DE");
         }
 
         if ($("#UsuarioGrupo").val() === "") {
-            mensagem += "<li>O grupo de usuário é obbrigatório.</li>";
+            mensagem += "- O grupo de usuário é obbrigatório.\n";
             $("#UsuarioGrupo").css("border-color", "red");
         } else {
             $("#UsuarioGrupo").css("border-color", "#D2D6DE");
@@ -95,7 +95,7 @@
 
         if ($("#UsuarioSenha").val() != "" && $("#UsuarioSenha-confirma").val() != "") {
             if ($("#UsuarioSenha").val() !== $("#UsuarioSenha-confirma").val()) {
-                mensagem += "<li>A senha e a confirmação estão diferentes.</li>";
+                mensagem += "- A senha e a confirmação estão diferentes.\n";
                 $("#UsuarioSenha").css("border-color", "red");
                 $("#UsuarioSenha").css("background-color", "khaki");
                 $("#UsuarioSenha-confirma").css("border-color", "red");
@@ -108,12 +108,33 @@
             }
         }
 
-        return (mensagem == "");
+        if (mensagem == "") {
+            return true;
+        } else {
+            $("#cadastro_erro").dialog("open");
+            $("#txtmaisdetalhes").val(mensagem);
+            return false;
+        }
     }
 
+    $(function () {
+        VMasker(document.querySelector("#UsuarioCep")).maskPattern("99999-999");
+        VMasker(document.querySelector("#UsuarioTelefone")).maskPattern("(99)9999-9999");
+        VMasker(document.querySelector("#UsuarioCelular")).maskPattern("(99)99999-9999");
 
+        //Mantenha a senha e a de confirmaçao ativa
+        $("#UsuarioSenha-confirma").val($("#UsuarioSenha").val());
+    });
 </script>
 <?= $this->Session->flash() ?>
+<?=
+$this->element('message', array(
+    'name' => 'cadastro_erro',
+    'type' => 'error',
+    'message' => 'Ocorreu um erro ao efetuar o cadastro.',
+    'details' => ''
+))
+?>
 <?= $this->element('menu') ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -167,15 +188,15 @@
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("cep", "CEP") ?>
-                            <?= $this->Form->text("cep", array("class" => "form-control", "maxlength" => 8)) ?>
+                            <?= $this->Form->text("cep", array("class" => "form-control", "maxlength" => 9)) ?>
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("telefone", "Telefone") ?>
-                            <?= $this->Form->text("telefone", array("class" => "form-control", "maxlength" => 11)) ?>
+                            <?= $this->Form->text("telefone", array("class" => "form-control", "maxlength" => 13)) ?>
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("celular", "Celular") ?>
-                            <?= $this->Form->text("celular", array("class" => "form-control", "maxlength" => 11)) ?>
+                            <?= $this->Form->text("celular", array("class" => "form-control", "maxlength" => 14)) ?>
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("cargo", "Cargo") ?>

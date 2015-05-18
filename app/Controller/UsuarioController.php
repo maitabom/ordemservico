@@ -91,6 +91,10 @@ class UsuarioController extends AppController {
             $data = $this->request->data;
             $mensagem = "";
 
+            $data["Usuario"]["cep"] = str_replace($this->charMask, "", $data["Usuario"]["cep"]);
+            $data["Usuario"]["telefone"] = str_replace($this->charMask, "", $data["Usuario"]["telefone"]);
+            $data["Usuario"]["celular"] = str_replace($this->charMask, "", $data["Usuario"]["celular"]);
+
             try {
                 $this->Usuario->save($data);
                 $this->Dialog->alert("O usuário foi salvo com sucesso.");
