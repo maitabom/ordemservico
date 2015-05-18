@@ -239,6 +239,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
             <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
             <!-- AdminLTE App -->
             <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
+            <script src="<?= $this->Url->relative('js/vanilla-masker.js') ?>" type="text/javascript"></script>
             <!-- DATA TABES SCRIPT -->
             <script src="<?= $this->Url->relative('plugins/datatables/jquery.dataTables.js') ?>" type="text/javascript"></script>
             <script src="<?= $this->Url->relative('plugins/datatables/dataTables.bootstrap.js') ?>" type="text/javascript"></script>
