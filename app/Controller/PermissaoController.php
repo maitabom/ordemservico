@@ -8,6 +8,12 @@ App::uses('AppController', 'Controller');
  */
 class PermissaoController extends AppController {
 
+    public function beforeFilter() {
+        $this->loadModel('Usuario');
+        $this->loadModel('Permissao');
+        parent::beforeFilter();
+    }
+
     public function index() {
 
     }
