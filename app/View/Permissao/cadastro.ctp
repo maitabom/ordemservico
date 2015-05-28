@@ -27,11 +27,13 @@
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Permissões</label><br/>
-                                <input type="checkbox" class="checkbox-inline"/>Usuarios
-                                <input type="checkbox" class="checkbox-inline"/>Permissões
-                                <input type="checkbox" class="checkbox-inline"/>Gerar Nova Ordem
-                                <input type="checkbox" class="checkbox-inline"/>Cadastro de Clientes
-                                <input type="checkbox" class="checkbox-inline"/>Buscar Ordem de Serviço
+                                <?php
+                                foreach ($funcoes as $funcao) {
+                                    echo $this->Form->checkbox($funcao["Funcao"]["chave"], array("class" => "checkbox-inline"));
+                                    echo ' ' . $funcao["Funcao"]["nome"];
+                                    echo '<br/>';
+                                }
+                                ?>
                             </div>
                             <div class="form-group col-xs-12">
                                 <label>Outras Opções</label><br/>
