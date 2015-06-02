@@ -33,7 +33,16 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
     protected $nameSystem = "Ordem de Serviço";
-    protected $charMask = array('.', '(', ')', '-', '/');
+    protected $charMask = ['.', '(', ')', '-', '/'];
     public $components = array("Geo", "Session", "Dialog");
+
+    /**
+     * Limpa a máscara de uma String
+     * @param String $masked String com máscara.
+     * @return String String sem máscara.
+     */
+    protected function clearMask($masked) {
+        return str_replace($this->charMask, "", $masked);
+    }
 
 }
