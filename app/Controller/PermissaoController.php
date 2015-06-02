@@ -27,12 +27,20 @@ class PermissaoController extends AppController {
         $this->redirect(array("action" => "cadastro", $id));
     }
 
+    public function save() {
+        if ($this->request->is('post') || $this->request->is('put')) {
+
+            $data = $this->request->data;
+            $mensagem = "";
+        }
+    }
+
     public function cadastro($id) {
         $title = ($id > 0) ? "Editar Permissão" : "Nova Permissão";
         $funcoes = $this->Funcao->find('all', array('fields' => array('nome', 'chave')));
 
         $this->set("title_for_layout", $title);
-        $this->set("id_usuario", $id);
+        $this->set("id_permissao", $id);
         $this->set("funcoes", $funcoes);
     }
 
