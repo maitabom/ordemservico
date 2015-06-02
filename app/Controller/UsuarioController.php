@@ -91,9 +91,9 @@ class UsuarioController extends AppController {
             $data = $this->request->data;
             $mensagem = "";
 
-            $data["Usuario"]["cep"] = str_replace($this->charMask, "", $data["Usuario"]["cep"]);
-            $data["Usuario"]["telefone"] = str_replace($this->charMask, "", $data["Usuario"]["telefone"]);
-            $data["Usuario"]["celular"] = str_replace($this->charMask, "", $data["Usuario"]["celular"]);
+            $data["Usuario"]["cep"] = $this->clearMask($data["Usuario"]["cep"]);
+            $data["Usuario"]["telefone"] = $this->clearMask($data["Usuario"]["telefone"]);
+            $data["Usuario"]["celular"] = $this->clearMask($data["Usuario"]["celular"]);
 
             try {
                 $this->Usuario->save($data);
