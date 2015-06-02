@@ -32,6 +32,23 @@ class PermissaoController extends AppController {
 
             $data = $this->request->data;
             $mensagem = "";
+
+            try {
+                $this->Permissao->save($data);
+
+                //Limpando toda as permissões antes de salvar
+                $query = "delete from funcoes_grupos where grupos_id = " . $data['Permissao']['id'];
+                $this->Permissao->query($query);
+
+                //Adicionando as permissões a salvar
+
+
+                $query = "insert into funcoes_grupos (funcoes_id, grupos_id) values ()";
+            } catch (Exception $ex) {
+                $mensagem = "Ocorreu um erro no sistema ao salvar a permissão.";
+                $this->Dialog->error($mensagem, $ex->getMessage());
+                $this->redirect(array("action" => "cadastro", $data["Permissao"]["id"]));
+            }
         }
     }
 
