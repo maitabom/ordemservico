@@ -1,3 +1,4 @@
+<?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -20,7 +21,7 @@
                 <!-- general form elements -->
                 <div class="box">
                     <?php
-                    echo $this->Form->create("Permissoes", array(
+                    echo $this->Form->create("Permissao", array(
                         "url" => array(
                             "controller" => "permissao",
                             "action" => "save"),

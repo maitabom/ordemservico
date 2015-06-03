@@ -16,7 +16,10 @@ class PermissaoController extends AppController {
     }
 
     public function index() {
-
+        $permissoes = $this->Permissao->find("all");
+        $title = "Lista de Permissões";
+        $this->set("title_for_layout", $title);
+        $this->set("permissoes", $permissoes);
     }
 
     public function add() {
@@ -28,6 +31,8 @@ class PermissaoController extends AppController {
     }
 
     public function save() {
+        $this->autoRender = false;
+
         if ($this->request->is('post') || $this->request->is('put')) {
 
             $data = $this->request->data;
@@ -35,15 +40,27 @@ class PermissaoController extends AppController {
 
             try {
                 $this->Permissao->save($data);
+                $id_permissao = $this->Permissao->id;
 
-                //Limpando toda as permissões antes de salvar
-                $query = "delete from funcoes_grupos where grupos_id = " . $data['Permissao']['id'];
+                //Limpando todas as permissões antes de salvar
+                $query = "delete from funcoes_grupos where grupos_id = " . $id_permissao;
                 $this->Permissao->query($query);
 
                 //Adicionando as permissões a salvar
+                foreach ($data["Permissao"] as $key => $value) {
+                    //Insere os valores na tabela de funções_grupos
+                    if ((strpos($key, "CHK_") !== false) && ($value == 1)) {
+                        $chave = str_replace("CHK_", "", $key);
+                        $funcao = $this->Funcao->findByChave($chave);
+                        $id_funcao = $funcao["Funcao"]["id"];
 
+                        $query = "insert into funcoes_grupos (funcoes_id, grupos_id) values ($id_funcao, $id_permissao)";
+                        $this->Permissao->query($query);
+                    }
+                }
 
-                $query = "insert into funcoes_grupos (funcoes_id, grupos_id) values ()";
+                $this->Dialog->alert("A permissão foi salva com sucesso.");
+                $this->redirect(array("action" => "cadastro", $id_permissao));
             } catch (Exception $ex) {
                 $mensagem = "Ocorreu um erro no sistema ao salvar a permissão.";
                 $this->Dialog->error($mensagem, $ex->getMessage());
