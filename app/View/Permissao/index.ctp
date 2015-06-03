@@ -31,61 +31,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Administrador</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Gerente</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    <tr>
-                                        <td>Operacional</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>RH</td>
-                                        <td>Não</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('permissao/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    <?php foreach ($permissoes as $permissao): ?>
+                                        <tr>
+                                            <td><?= $permissao["Permissao"]["nome"] ?></td>
+                                            <td><?= $permissao["Permissao"]["ativo"] ? "Sim" : "Não" ?></td>
+                                            <td>
+                                                <a href="<?= $this->Url->relative('permissao/edit/' . $permissao["Permissao"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                    <i class="fa fa-edit">
+                                                    </i>
+                                                </a>
+                                                <a class="btn btn-google-plus" title="Excluir">
+                                                    <i class="fa fa-trash">
+                                                    </i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
