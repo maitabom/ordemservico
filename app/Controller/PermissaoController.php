@@ -16,6 +16,7 @@ class PermissaoController extends AppController {
     }
 
     public function index() {
+
         $permissoes = $this->Permissao->find("all");
         $title = "Lista de Permissões";
         $this->set("title_for_layout", $title);
