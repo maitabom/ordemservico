@@ -31,6 +31,47 @@ class PermissaoController extends AppController {
         $this->redirect(array("action" => "cadastro", $id));
     }
 
+    public function delete() {
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $id = $data["question"]["parameter"];
+
+            $marcado = $this->Permissao->read(null, $id);
+            $usuarios = $this->Usuario->find("count", array(
+                "conditions" => array(
+                    "Usuario.grupo" => $id
+                )
+            ));
+            $nome = $marcado["Permissao"]["nome"];
+
+            if ($usuarios > 0) {
+                $mensagem = "Ocorreu um erro no sistema ao excluir uma permissão.";
+                $detalhe = ($usuarios == 1) ? "Existe $usuarios usuário associado ao grupo de permissão $nome." : "Existem $usuarios usuários associados ao grupo de permissão $nome.";
+                $this->Dialog->error($mensagem, $detalhe);
+                $this->redirect(array("action" => "index"));
+            } else {
+                try {
+                    //Exclui as associações entre grupo selecionado e as funções
+                    $query = "delete from funcoes_grupos ";
+                    $query.= "where grupos_id = $id; ";
+
+                    $this->Permissao->query($query);
+
+                    //Exclui a permissão
+                    $this->Permissao->id = $id;
+                    $this->Permissao->delete();
+
+                    $this->Dialog->alert("O grupo de permissões $nome foi excluido do sucesso!");
+                    $this->redirect(array("action" => "index"));
+                } catch (Exception $ex) {
+                    $mensagem = "Ocorreu um erro no sistema ao excluir o grupo de permissões.";
+                    $this->Dialog->error($mensagem, $ex->getMessage());
+                    $this->redirect(array("action" => "index"));
+                }
+            }
+        }
+    }
+
     public function save() {
         $this->autoRender = false;
 
