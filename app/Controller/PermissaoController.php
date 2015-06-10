@@ -87,8 +87,6 @@ class PermissaoController extends AppController {
             $fs = $this->Permissao->query($query);
         }
 
-
-
         $this->set("title_for_layout", $title);
         $this->set("id_permissao", $id);
         $this->set("funcoes", $funcoes);
