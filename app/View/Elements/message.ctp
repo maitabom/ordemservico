@@ -24,11 +24,11 @@ switch ($type) {
 
         $("#dialog-modal").draggable();
 
-        $("#btn-default-modal").click(function () {
+        $("#btn-message-modal").click(function () {
             $("<?= '#' . $name ?>").dialog("close");
         });
 
-        $("#btn-modal-close").click(function () {
+        $("#btn-message-close").click(function () {
             $("<?= '#' . $name ?>").dialog("close");
         });
 
@@ -42,7 +42,7 @@ switch ($type) {
     <div id="dialog-modal" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="cursor: move">
-                <button id="btn-modal-close"     type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button id="btn-message-close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"><i class="fa fa-bell"></i>&nbsp;&nbsp;Sistema de Ordem de Serviço</h4>
             </div>
             <div class="modal-body">
@@ -59,7 +59,7 @@ switch ($type) {
                 <?php endif; ?>
             </div>
             <div class="modal-footer">
-                <button id="btn-default-modal" type="button" class="btn <?= $style_button ?>">OK</button>
+                <button id="btn-message-modal" type="button" class="btn <?= $style_button ?>">OK</button>
             </div>
         </div>
     </div>

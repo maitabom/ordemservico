@@ -41,7 +41,7 @@ switch ($type) {
     <div id="dialog-modal" class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="cursor: move">
-                <button id="btn-modal-close"     type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button id="btn-modal-close" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title"><i class="fa fa-bell"></i>&nbsp;&nbsp;Sistema de Ordem de Serviço</h4>
             </div>
             <div class="modal-body">
