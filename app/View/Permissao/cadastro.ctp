@@ -1,3 +1,28 @@
+<script type="text/javascript">
+    function validar() {
+        var mensagem = "";
+
+        if ($("#PermissaoNome").val() === "") {
+            mensagem += "- O nome do grupo de permissões é obrigatório.\n";
+            $("#PermissaoNome").css("border-color", "red");
+        } else {
+            $("#PermissaoNome").css("border-color", "#D2D6DE");
+        }
+
+        if ($('#funcoes input:checked').length === 0) {
+            mensagem += "- É obrigatório selecionar pelo menos uma função para este grupo de permissões.\n";
+        }
+
+        if (mensagem == "") {
+            return true;
+        } else {
+            $("#cadastro_erro").dialog("open");
+            $("#txtmaisdetalhes").val(mensagem);
+            return false;
+        }
+    }
+</script>
+
 <?php
 
 function funcao_selecionada($chave, $funcoes_selecionadas) {
@@ -11,6 +36,14 @@ function funcao_selecionada($chave, $funcoes_selecionadas) {
 }
 ?>
 <?= $this->Session->flash() ?>
+<?=
+$this->element('message', array(
+    'name' => 'cadastro_erro',
+    'type' => 'error',
+    'message' => 'Ocorreu um erro ao efetuar o cadastro.',
+    'details' => ''
+))
+?>
 <?= $this->element('menu'); ?>
 <?php ?>
 <div class="content-wrapper">
@@ -47,7 +80,7 @@ function funcao_selecionada($chave, $funcoes_selecionadas) {
                             <label>Nome</label>
                             <?= $this->Form->text("nome", array("class" => "form-control", "maxlength" => 50)) ?>
                         </div>
-                        <div class="form-group col-xs-12">
+                        <div id="funcoes" class="form-group col-xs-12">
                             <label>Permissões</label><br/>
                             <?php
                             foreach ($funcoes as $funcao) {
@@ -64,7 +97,7 @@ function funcao_selecionada($chave, $funcoes_selecionadas) {
                         <div style="text-align: right;">
                             <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('permissao') ?>'" type="button" class="btn btn-primary">Voltar</button>
                             <button type="reset" class="btn btn-primary">Limpar</button>
-                            <button type="submit" class="btn btn-success">Salvar</button>
+                            <button type="submit" onclick="return validar()" class="btn btn-success">Salvar</button>
                         </div>
                     </div>
                     <?= $this->Form->end() ?>
