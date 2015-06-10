@@ -1,5 +1,18 @@
+<?php
+
+function funcao_selecionada($chave, $funcoes_selecionadas) {
+    foreach ($funcoes_selecionadas as $fn) {
+        if ($fn["fn"]["chave"] === $chave) {
+            return true;
+        }
+    }
+
+    return false;
+}
+?>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
+<?php ?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1><?= $title_for_layout ?></h1>
@@ -38,7 +51,7 @@
                             <label>Permissões</label><br/>
                             <?php
                             foreach ($funcoes as $funcao) {
-                                echo $this->Form->checkbox("CHK_" . $funcao["Funcao"]["chave"], array("class" => "checkbox-inline"));
+                                echo $this->Form->checkbox("CHK_" . $funcao["Funcao"]["chave"], array("class" => "checkbox-inline", "checked" => funcao_selecionada($funcao["Funcao"]["chave"], $funcoes_selecionadas)));
                                 echo ' ' . $funcao["Funcao"]["nome"];
                                 echo '<br/>';
                             }

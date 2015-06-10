@@ -73,20 +73,26 @@ class PermissaoController extends AppController {
     public function cadastro($id) {
         $title = ($id > 0) ? "Editar Permissão" : "Nova Permissão";
         $funcoes = $this->Funcao->find('all', array('fields' => array('nome', 'chave')));
+        $fs = array();
 
         if ($id > 0) {
             $this->request->data = $this->Permissao->read(null, $id);
 
-            $query = "select fn.funcoes, fn.nome, fn.chave";
+            $query = "select fn.nome, fn.chave ";
             $query.= "from funcoes fn ";
             $query.= "inner join funcoes_grupos fg ";
             $query.= "on fn.id = fg.funcoes_id ";
-            $query.= "where fg.grupos_id = $id ";
+            $query.= "where fg.grupos_id = $id; ";
+
+            $fs = $this->Permissao->query($query);
         }
+
+
 
         $this->set("title_for_layout", $title);
         $this->set("id_permissao", $id);
         $this->set("funcoes", $funcoes);
+        $this->set("funcoes_selecionadas", $fs);
     }
 
 }
