@@ -4,6 +4,7 @@
     </div><!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">Sistema de Ordem de Serviço</p>
+        <?= $this->Session->flash() ?>
         <?php
         echo $this->Form->create("Usuario", array(
             "url" => array(
@@ -16,7 +17,7 @@
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
-            <?= $this->Form->text("Senha", array("class" => "form-control", "placeholder" => "Senha")) ?>
+            <?= $this->Form->password("Senha", array("class" => "form-control", "placeholder" => "Senha")) ?>
             <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
         <div class="row">
