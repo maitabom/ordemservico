@@ -19,6 +19,7 @@ class SystemController extends AppController {
         } else {
             $nick = $this->Cookie->read("Usuario.nickname");
             $title = "Controle de Acesso";
+
             $this->layout = "empty";
             $this->set("title_for_layout", $title);
             $this->set("login", $nick);
@@ -32,7 +33,7 @@ class SystemController extends AppController {
             $lembrar = $this->request->data["Usuario"]["Lembrar"];
 
             if ($login == "" || $senha == "") {
-                $this->redirectLoginError("É obrigatório informar os dados de acesso.");
+                $this->redirectLogin("É obrigatório informar os dados de acesso.");
             } else {
 
                 $retorno = $this->Usuario->find("first", array(
@@ -43,10 +44,10 @@ class SystemController extends AppController {
 
                 if (!empty($retorno)) {
                     if ($retorno["Usuario"]["ativo"] == false) {
-                        $this->redirectLoginError("O usuário encontra-se inativo para o sistema.");
+                        $this->redirectLogin("O usuário encontra-se inativo para o sistema.");
                     }
 
-                    $this->Session->write("UsuarioID", $retorno["Usuario"]["ID"]);
+                    $this->Session->write("UsuarioID", $retorno["Usuario"]["id"]);
                     $this->Session->write("UsuarioUsuario", $login);
                     $this->Session->write("UsuarioEmail", $retorno["Usuario"]["email"]);
                     $this->Session->write("UsuarioNome", $retorno["Usuario"]["nome"]);
@@ -63,7 +64,7 @@ class SystemController extends AppController {
                         $this->redirect(array("action" => "board"));
                     }
                 } else {
-                    $this->redirectLoginError("Os dados de acesso estão invalidos.");
+                    $this->redirectLogin("Os dados de acesso estão invalidos.");
                 }
             }
         }
@@ -75,7 +76,52 @@ class SystemController extends AppController {
     }
 
     public function password() {
+        $title = "Mudar a Senha";
 
+        $this->layout = "empty";
+        $this->set("title_for_layout", $title);
+    }
+
+    public function confirmy() {
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $senha = $data["Usuario"]["senha"];
+            $senha_confirma = $data["Usuario"]["senha-confirma"];
+
+            if ($senha == "" || $senha_confirma == "") {
+                $this->Session->setFlash("É obrigatório informar a senha.");
+                $this->redirect(array("action" => "password"));
+            } else {
+
+                $id_usuario = $this->Session->read("UsuarioID");
+                $pivot = $this->Usuario->read(null, $id_usuario);
+
+                if ($pivot["Usuario"]["senha"] == $senha) {
+                    $this->Session->setFlash("A nova senha deve ser diferente da senha atual.");
+                    $this->redirect(array("action" => "password"));
+                } else {
+
+                    $query = "";
+
+                    try {
+                        $query = "update usuarios set ";
+                        $query.= "senha = '$senha', ";
+                        $query.= "verificar = 0 ";
+                        $query.= "where id = $id_usuario; ";
+
+                        $this->Usuario->query($query);
+                        $this->Session->destroy();
+                        $this->Session->setFlash("A senha foi alterada com sucesso.");
+
+                        $this->redirect(array("action" => "login"));
+                    } catch (Exception $ex) {
+                        $mensagem = "Ocorreu um erro no sistema ao salvar o usuário.<br/>" . $ex->getMessage() . "<br/>" . $query;
+                        $this->Session->setFlash($mensagem);
+                        $this->redirect(array("action" => "password"));
+                    }
+                }
+            }
+        }
     }
 
     public function board() {
