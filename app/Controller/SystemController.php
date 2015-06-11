@@ -123,7 +123,7 @@ class SystemController extends AppController {
 
                         $this->redirect(array("action" => "login"));
                     } catch (Exception $ex) {
-                        $mensagem = "Ocorreu um erro no sistema ao salvar o usuário.<br/>" . $ex->getMessage() . "<br/>" . $query;
+                        $mensagem = "Ocorreu um erro no sistema ao salvar o usuário.";
                         $this->Session->setFlash($mensagem);
                         $this->redirect(array("action" => "password"));
                     }
