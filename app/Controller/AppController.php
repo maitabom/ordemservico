@@ -34,7 +34,11 @@ class AppController extends Controller {
 
     protected $nameSystem = "Ordem de Serviço";
     protected $charMask = ['.', '(', ')', '-', '/'];
-    public $components = array("Geo", "Session", "Dialog");
+    public $components = array(
+        "Geo",
+        "Session",
+        "Dialog"
+    );
 
     /**
      * Limpa a máscara de uma String
@@ -43,6 +47,32 @@ class AppController extends Controller {
      */
     protected function clearMask($masked) {
         return str_replace($this->charMask, "", $masked);
+    }
+
+    /**
+     * Verifica se a sessão do usuário foi criada e ativa, ou seja, se o mesmo efetuou o login.
+     * @return boolean Se o usuário está logado no sistema e com acesso
+     */
+    protected function isAuthorized() {
+        return $this->Session->check("Usuario");
+    }
+
+    /**
+     * Controle simplificado de autenticação do usuário
+     */
+    protected function controlAuth() {
+        if (!$this->isAuthorized()) {
+            $this->redirect(array("controller" => "system", "action" => "login"));
+        }
+    }
+
+    /**
+     * Redireciona para a tela de login com a mensagem de erro.
+     * @param string $mensagem Mensagem de erro.
+     */
+    protected function redirectLoginError($mensagem) {
+        $this->Session->setFlash($mensagem);
+        $this->redirect(array("controller" => "system", "action" => "login"));
     }
 
 }
