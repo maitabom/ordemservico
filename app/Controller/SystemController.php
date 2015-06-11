@@ -17,9 +17,11 @@ class SystemController extends AppController {
         if ($this->isAuthorized()) {
             $this->redirect(array("action" => "board"));
         } else {
+            $nick = $this->Cookie->read("Usuario.nickname");
             $title = "Controle de Acesso";
             $this->layout = "empty";
             $this->set("title_for_layout", $title);
+            $this->set("login", $nick);
         }
     }
 
@@ -27,6 +29,7 @@ class SystemController extends AppController {
         if ($this->request->is('post')) {
             $login = $this->request->data["Usuario"]["Usuario"];
             $senha = $this->request->data["Usuario"]["Senha"];
+            $lembrar = $this->request->data["Usuario"]["Lembrar"];
 
             if ($login == "" || $senha == "") {
                 $this->redirectLoginError("É obrigatório informar os dados de acesso.");
@@ -49,6 +52,10 @@ class SystemController extends AppController {
                     $this->Session->write("UsuarioNome", $retorno["Usuario"]["nome"]);
                     $this->Session->write("UsuarioCargo", $retorno["Usuario"]["cargo"]);
                     $this->Session->write("Usuario", $retorno);
+
+                    if ($lembrar) {
+                        $this->Cookie->write("Usuario.nickname", $retorno["Usuario"]["nickname"], false, "5 days");
+                    }
 
                     if ($retorno["Usuario"]["verificar"] == true) {
                         $this->redirect(array("action" => "password"));

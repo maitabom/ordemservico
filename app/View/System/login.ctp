@@ -13,7 +13,7 @@
         )));
         ?>
         <div class="form-group has-feedback">
-            <?= $this->Form->text("Usuario", array("class" => "form-control", "placeholder" => "Usuário")) ?>
+            <?= $this->Form->text("Usuario", array("class" => "form-control", "placeholder" => "Usuário", "value" => $login)) ?>
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
