@@ -63,10 +63,10 @@ class AppController extends Controller {
     }
 
     /**
-     * Redireciona para a tela de login com a mensagem de erro.
+     * Redireciona para a tela de login com uma mensagem.
      * @param string $mensagem Mensagem de erro.
      */
-    protected function redirectLoginError($mensagem) {
+    protected function redirectLogin($mensagem) {
         $this->Session->setFlash($mensagem);
         $this->redirect(array("controller" => "system", "action" => "login"));
     }
