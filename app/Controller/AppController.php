@@ -34,11 +34,7 @@ class AppController extends Controller {
 
     protected $nameSystem = "Ordem de Serviço";
     protected $charMask = ['.', '(', ')', '-', '/'];
-    public $components = array(
-        "Geo",
-        "Session",
-        "Dialog"
-    );
+    public $components = array("Geo", "Session", "Cookie", "Dialog");
 
     /**
      * Limpa a máscara de uma String
