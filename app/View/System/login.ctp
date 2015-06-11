@@ -3,8 +3,7 @@
         <a href="#"><b>Moreth e Lopes</b></a>
     </div><!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Sistema de Ordem de Serviço</p>
-        <?= $this->Session->flash() ?>
+        <p class="login-box-msg"><?= $this->Session->flash() ?></p>
         <?php
         echo $this->Form->create("Usuario", array(
             "url" => array(
