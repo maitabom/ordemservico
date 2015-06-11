@@ -15,7 +15,15 @@ class SystemController extends AppController {
 
     public function login() {
         if ($this->isAuthorized()) {
-            $this->redirect(array("action" => "board"));
+
+            $usuario = $this->Session->read("Usuario");
+
+            if ($usuario["Usuario"]["verificar"] == true) {
+                $this->Session->destroy();
+                $this->redirect(array("action" => "login"));
+            } else {
+                $this->redirect(array("action" => "board"));
+            }
         } else {
             $nick = $this->Cookie->read("Usuario.nickname");
             $title = "Controle de Acesso";
@@ -125,8 +133,13 @@ class SystemController extends AppController {
     }
 
     public function board() {
-        $title = "Painel";
-        $this->set("title_for_layout", $title);
+
+        if ($this->isAuthorized()) {
+            $title = "Painel";
+            $this->set("title_for_layout", $title);
+        } else {
+            $this->redirect(array("action" => "login"));
+        }
     }
 
 }
