@@ -32,8 +32,7 @@
             </div><!-- /.col -->
         </div>
         <?php echo $this->Form->end(); ?>
-
-        <a href="#">Esqueci minha senha</a><br>
+        <?= $this->Html->link("Esqueci minha senha", array("controller" => "system", "action" => "forget")) ?>
 
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
