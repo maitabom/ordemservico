@@ -90,6 +90,60 @@ class SystemController extends AppController {
         $this->set("title_for_layout", $title);
     }
 
+    public function forget() {
+        $title = "Esqueci Minha Senha";
+
+        $this->layout = "empty";
+        $this->set("title_for_layout", $title);
+    }
+
+    public function remember($id) {
+        if ($this->request->is('post')) {
+            $email = $this->request->data["Usuario"]["email"];
+            $retorno = $this->Usuario->find("first", array("conditions" => array("Usuario.email" => $email)));
+
+            if (empty($retorno)) {
+                $this->Session->setFlash("Não existe usuário com e-mail cadastrado.");
+            } else {
+                $idUsuario = $retorno["Usuario"]["id"];
+                $token = $this->Tokin->createToken($idUsuario, "lembrarsenha");
+
+                $header = array(
+                    "name" => $this->nameSystem,
+                    "from" => "noreply@mthlopes.com.br",
+                    "to" => $email,
+                    "subject" => "Ordem de Serviço - Lembrete de Senha"
+                );
+
+                $params = array(
+                    "nome" => $retorno["Usuario"]["nome"],
+                    "token" => $token
+                );
+
+                if ($this->sendEmailTemplate($header, "lembrarsenha", $params)) {
+                    $this->Session->setFlash("A mensagem foi enviada com sucesso!");
+                } else {
+                    $this->Session->setFlash("Ocorreu um erro ao enviar a mensagem");
+                }
+            }
+
+            $this->redirect(array("action" => "forget"));
+        } else {
+            $idUsuario = base64_decode($id);
+            $usuario = $this->Usuario->find("first", array("conditions" => array("Usuario.id" => $idUsuario)));
+
+            $this->Session->write("UsuarioID", $usuario["Usuario"]["id"]);
+            $this->Session->write("UsuarioUsuario", $usuario["Usuario"]["nickname"]);
+            $this->Session->write("UsuarioEmail", $usuario["Usuario"]["email"]);
+            $this->Session->write("UsuarioNome", $usuario["Usuario"]["nome"]);
+            $this->Session->write("UsuarioCargo", $usuario["Usuario"]["cargo"]);
+            $this->Session->write("Usuario", $usuario);
+
+            $this->Session->setFlash("Favor, troque sua senha");
+            $this->redirect(array("action" => "password"));
+        }
+    }
+
     public function confirmy() {
         if ($this->request->is('post')) {
             $data = $this->request->data;
