@@ -20,6 +20,7 @@
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
 App::uses('Controller', 'Controller');
+App::uses('CakeEmail', 'Network/Email');
 
 /**
  * Application Controller
@@ -34,12 +35,12 @@ class AppController extends Controller {
 
     protected $nameSystem = "Ordem de Serviço";
     protected $charMask = ['.', '(', ')', '-', '/'];
-    public $components = array("Geo", "Session", "Cookie", "Dialog");
+    public $components = array("Geo", "Session", "Cookie", "Dialog", "Tokin");
 
     /**
      * Limpa a máscara de uma String
-     * @param String $masked String com máscara.
-     * @return String String sem máscara.
+     * @param string $masked String com máscara.
+     * @return string String sem máscara.
      */
     protected function clearMask($masked) {
         return str_replace($this->charMask, "", $masked);
@@ -69,6 +70,44 @@ class AppController extends Controller {
     protected function redirectLogin($mensagem) {
         $this->Session->setFlash($mensagem);
         $this->redirect(array("controller" => "system", "action" => "login"));
+    }
+
+    /**
+     * Envia um e-mail simples
+     * @param string $name Nome do remetente
+     * @param string $from Endereço de e-mail do remetente
+     * @param string $to Endereço de e-mail do destinatário
+     * @param string $subject Assunto da mensagem
+     * @param string $message Mensagem
+     * @return array Resultado do envio
+     */
+    protected function sendEmail($name, $from, $to, $subject, $message) {
+        $email = new CakeEmail("smtp");
+        $email->from(array($from => $name));
+        $email->to($to);
+        $email->subject($subject);
+
+        return $email->send($message);
+    }
+
+    /**
+     * Envia um e-mail baseado num template
+     * @param array $headMail Cabeçalho do e-mail
+     * @param string $template Nome do template do envio do e-mail
+     * @param array $params Parâmetros para serem usados no template do e-mail
+     * @return array Resultado do envio de e-mail
+     */
+    protected function sendEmailTemplate($headMail, $template, $params) {
+        $email = new CakeEmail("smtp");
+        $email->template($template);
+        $email->emailFormat("html");
+        $email->helpers(array('Html', 'Url'));
+        $email->from(array($headMail["from"] => $headMail["name"]));
+        $email->to($headMail["to"]);
+        $email->subject($headMail["subject"]);
+        $email->viewVars($params);
+
+        return $email->send();
     }
 
 }
