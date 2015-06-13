@@ -20,7 +20,8 @@
 ## Instruções de Configuração do Sistema
 
 É preciso antes de execução, efetuar modificações em seguintes arquivos para melhor funcionamento do sistema. Todos encontra-se no diretório _app/Config_
-1. **database.php:** Configuração do banco de dados.
-2. **email.php:** Configuração do envio de e-mail. O sistema está usando o modo SMTP.
+
+- **database.php:** Configuração do banco de dados.
+- **email.php:** Configuração do envio de e-mail. O sistema está usando o modo SMTP.
 
 Para maiores dúvidas e informações, contate o desenvolvedor.
