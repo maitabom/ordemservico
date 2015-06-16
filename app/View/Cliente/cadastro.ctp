@@ -1,3 +1,9 @@
+<style>
+    #radio_tipo_cliente label{
+        font-weight: normal;
+    }
+</style>
+<?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -18,98 +24,78 @@
             <div class="col-md-12">
                 <!-- general form elements -->
                 <div class="box">
-                    <form action="#" role="form">
-                        <div class="box-body">
-                            <div class="form-group col-xs-12">
-                                <label for="exampleInputEmail1">Razão Social</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label for="exampleInputEmail1">Nome Fantasia</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label for="exampleInputPassword1">Endereço</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">Bairro</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">Cidade</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">Estado</label>
-                                <select class="form-control">
-                                    <option value=""></option>
-                                    <option value="AC">Acre</option>
-                                    <option value="AL">Alagoas</option>
-                                    <option value="AM">Amazonas</option>
-                                    <option value="AP">Amapá</option>
-                                    <option value="BA">Bahia</option>
-                                    <option value="CE">Ceará</option>
-                                    <option value="DF">Distrito Federal</option>
-                                    <option value="ES">Espírito Santo</option>
-                                    <option value="GO">Goiás</option>
-                                    <option value="MA">Maranhão</option>
-                                    <option value="MT">Mato Grosso</option>
-                                    <option value="MS">Mato Grosso do Sul</option>
-                                    <option value="MG">Minas Gerais</option>
-                                    <option value="PA">Pará</option>
-                                    <option value="PB">Paraíba</option>
-                                    <option value="PR">Paraná</option>
-                                    <option value="PE">Pernambuco</option>
-                                    <option value="PI">Piauí</option>
-                                    <option value="RJ">Rio de Janeiro</option>
-                                    <option value="RN">Rio Grande do Norte</option>
-                                    <option value="RS">Rio Grande do Sul</option>
-                                    <option value="RO">Rondônia</option>
-                                    <option value="RR">Roraima</option>
-                                    <option value="SC">Santa Catarina</option>
-                                    <option value="SP">São Paulo</option>
-                                    <option value="SE">Sergipe</option>
-                                    <option value="TO">Tocantins</option>
-                                </select>
+                    <?php
+                    echo $this->Form->create("Cliente", array(
+                        "url" => array(
+                            "controller" => "cliente",
+                            "action" => "save"),
+                        "role" => "form"
+                    ));
 
+                    echo $this->Form->hidden("id", array("value" => $id_cliente));
+                    ?>
+                    <div class="box-body">
+                        <div class="form-group col-xs-12">
+                            <?= $this->Form->label("razao_social", "Razão Social") ?>
+                            <?= $this->Form->text("razao_social", array("class" => "form-control", "maxlength" => 255)) ?>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <?= $this->Form->label("nome_fantasia", "Nome Fantasia") ?>
+                            <?= $this->Form->text("nome_fantasia", array("class" => "form-control", "maxlength" => 255)) ?>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <?= $this->Form->label("endereco", "Endereço") ?>
+                            <?= $this->Form->text("endereco", array("class" => "form-control", "maxlength" => 255)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("bairro", "Bairro") ?>
+                            <?= $this->Form->text("bairro", array("class" => "form-control", "maxlength" => 80)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("cidade", "Cidade") ?>
+                            <?= $this->Form->text("cidade", array("class" => "form-control", "maxlength" => 80)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("uf", "Estado") ?>
+                            <?= $this->Form->select("uf", $estados, array("class" => "form-control")) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("cep", "CEP") ?>
+                            <?= $this->Form->text("cep", array("class" => "form-control", "maxlength" => 9)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("telefone", "Telefone") ?>
+                            <?= $this->Form->text("telefone", array("class" => "form-control", "maxlength" => 13)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("celular", "Celular") ?>
+                            <?= $this->Form->text("celular", array("class" => "form-control", "maxlength" => 14)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("documento_fiscal", "Documento Fiscal (CPF/CNPJ)") ?>
+                            <?= $this->Form->text("documento_fiscal", array("class" => "form-control", "maxlength" => 18)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("email", "E-mail") ?>
+                            <?= $this->Form->text("email", array("class" => "form-control", "maxlength" => 50)) ?>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <?= $this->Form->label("tipo_cliente", "Tipo de Cliente") ?>
+                            <div id="radio_tipo_cliente">
+                                <?= $this->Form->radio("tipo_cliente", $tipos_cliente, array("class" => "checkbox-inline", "separator" => "&nbsp;&nbsp;&nbsp;&nbsp;", "legend" => false)) ?>
                             </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputPassword1">CEP</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Telefone</label>
-                                <input type="tel" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Celular</label>
-                                <input type="tel" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">Documento Fiscal (CPF/CNPJ)</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-3">
-                                <label for="exampleInputEmail1">E-mail</label>
-                                <input type="email" class="form-control">
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label>Tipo de Cliente</label><br/>
-                                <input type="radio" class="checkbox-inline"/>Pessoa Física
-                                <input type="radio" class="checkbox-inline"/>Pessoa Jurídica
-                            </div>
-                            <div class="form-group col-xs-12">
-                                <label>Outras Opções</label><br/>
-                                <input type="checkbox" class="checkbox-inline"/>Ativo
-                            </div>
-                            <div style="text-align: right;">
-                                <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('cliente') ?>'" type="button" class="btn btn-primary">Voltar</button>
-                                <button type="reset" class="btn btn-primary">Limpar</button>
-                                <button type="submit" class="btn btn-success">Salvar</button>
-                            </div>
-                        </div><!-- /.box-body -->
-                    </form>
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <label>Outras Opções</label><br/>
+                            <?= $this->Form->checkbox("ativo") ?>Ativo
+                        </div>
+                        <div style="text-align: right;">
+                            <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('cliente') ?>'" type="button" class="btn btn-primary">Voltar</button>
+                            <button type="reset" class="btn btn-primary">Limpar</button>
+                            <button type="submit" class="btn btn-success">Salvar</button>
+                        </div>
+                    </div><!-- /.box-body -->
+                    <?= $this->Form->end() ?>
                 </div>
             </div>
         </div>
