@@ -95,16 +95,6 @@
                                 <input type="email" class="form-control">
                             </div>
                             <div class="form-group col-xs-12">
-                                <label for="exampleInputEmail1">Grupo de Usuários</label>
-                                <select class="form-control" style="width: 30%">
-                                    <option></option>
-                                    <option>Administrativo</option>
-                                    <option>Gerente</option>
-                                    <option>Operacional</option>
-                                    <option>Financeiro</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-xs-12">
                                 <label>Tipo de Cliente</label><br/>
                                 <input type="radio" class="checkbox-inline"/>Pessoa Física
                                 <input type="radio" class="checkbox-inline"/>Pessoa Jurídica
