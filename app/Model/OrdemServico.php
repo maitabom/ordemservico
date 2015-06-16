@@ -8,7 +8,7 @@ App::uses('AppModel', 'Model');
  */
 class OrdemServico extends AppModel {
 
-    public $name = "Cliente";
-    public $useTable = false;
+    public $name = "OrdemServico";
+    public $useTable = "ordens_servico";
 
 }
