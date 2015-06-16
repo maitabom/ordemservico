@@ -1,4 +1,25 @@
+<script type="text/javascript">
+    function excluir(id) {
+        $("#cliente_excluir").dialog("open");
+        $("#questionParameter").val(id);
+    }
+</script>
+<?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
+<?=
+$this->element("question", array(
+    "name" => "cliente_excluir",
+    "form_name" => "frm_cliente_excluir",
+    "message" => "Deseja excluir o cliente? Certifique que não haja nenhum serviço associado a este cliente. Você pode deixar inativo, se desejar.",
+    "action" => array(
+        "controller" => "cliente",
+        "action" => "delete"),
+    "buttons" => array(
+        "ok" => "Sim",
+        "cancel" => "Não"
+    )
+))
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>Lista de Clientes</h1>
@@ -41,237 +62,47 @@
                             <div style="min-height: 30px">
 
                             </div>
-                            <table id="example1" class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Documento Fiscal</th>
-                                        <th>Tipo</th>
-                                        <th>E-mail</th>
-                                        <th>Localidade</th>
-                                        <th>Ativo</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Colégio Santa Maria</td>
-                                        <td>71.491.384/0001-30</td>
-                                        <td>PJ</td>
-                                        <td>direcao@colegiosantamaria.com.br</td>
-                                        <td>São João de Meriti - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Mariana Carvaho Lima</td>
-                                        <td>388.307.969-30</td>
-                                        <td>PF</td>
-                                        <td>marianalima@gmail.com</td>
-                                        <td>Santa Rita da Sapucaí - MG</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Silvana Lopes</td>
-                                        <td>827.241.876-28</td>
-                                        <td>PF</td>
-                                        <td>silopes@yahoo.com.br</td>
-                                        <td>Niterói - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Globex Utilidades S/A</td>
-                                        <td>97.248.628/0001-42</td>
-                                        <td>PJ</td>
-                                        <td>edgar_romero@pontofrio.com.br</td>
-                                        <td>Rio de Janeiro - RJ</td>
-                                        <td>Sim</td>
-                                        <td>
-                                            <a href="<?= $this->Url->relative('cliente/edit/1') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <?php if (count($clientes) == 0): ?>
+                                <div>
+                                    <h2>Nenhum cliente cadastrado encontrado. Para cadastrar seu primeiro cliente, <?= $this->Html->link("clique aqui", array("controller" => "cliente", "action" => "add")) ?>.</h2>
+                                </div>
+                            <?php else: ?>
+                                <table id="example1" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Documento Fiscal</th>
+                                            <th>Tipo</th>
+                                            <th>E-mail</th>
+                                            <th>Localidade</th>
+                                            <th>Ativo</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($clientes as $cliente): ?>
+                                            <tr>
+                                                <td><?= $cliente["Cliente"]["razao_social"] ?></td>
+                                                <td><?= $cliente["Cliente"]["documento_fiscal"] ?></td>
+                                                <td><?= "P" . $cliente["Cliente"]["tipo_cliente"] ?></td>
+                                                <td><?= $cliente["Cliente"]["email"] ?></td>
+                                                <td><?= $cliente["Cliente"]["cidade"] . " - " . $cliente["Cliente"]["uf"] ?></td>
+                                                <td>Sim</td>
+                                                <td>
+                                                    <a href="<?= $this->Url->relative('cliente/edit/' . $cliente["Cliente"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                        <i class="fa fa-edit">
+                                                        </i>
+                                                    </a>
+                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $cliente["Cliente"]["id"] ?>)" title="Excluir">
+                                                        <i class="fa fa-trash">
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

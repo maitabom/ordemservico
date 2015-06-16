@@ -68,4 +68,26 @@ class ClienteController extends AppController {
         }
     }
 
+    public function delete() {
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $id = $data["question"]["parameter"];
+
+            $marcado = $this->Cliente->read(null, $id);
+            $nome = $marcado["Cliente"]["razao_social"];
+
+            try {
+                $this->Cliente->id = $id;
+                $this->Cliente->delete();
+
+                $this->Dialog->alert("O cliente $nome foi excluido do sucesso!");
+                $this->redirect(array("action" => "index"));
+            } catch (Exception $ex) {
+                $mensagem = "Ocorreu um erro no sistema ao excluir o cliente.";
+                $this->Dialog->error($mensagem, $ex->getMessage());
+                $this->redirect(array("action" => "index"));
+            }
+        }
+    }
+
 }
