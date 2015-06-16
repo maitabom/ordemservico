@@ -10,6 +10,7 @@ class ClienteController extends AppController {
 
     public function beforeFilter() {
         $this->loadModel('Cliente');
+        $this->loadModel('OrdemServico');
         parent::beforeFilter();
     }
 
@@ -76,16 +77,30 @@ class ClienteController extends AppController {
             $marcado = $this->Cliente->read(null, $id);
             $nome = $marcado["Cliente"]["razao_social"];
 
-            try {
-                $this->Cliente->id = $id;
-                $this->Cliente->delete();
+            $servicos = $this->OrdemServico->find('count', array(
+                "conditions" => array(
+                    "OrdemServico.id_cliente" => $id
+                )
+            ));
 
-                $this->Dialog->alert("O cliente $nome foi excluido do sucesso!");
+            if ($servicos > 0) {
+                $mensagem = "Ocorreu um erro no sistema ao excluir um cliente.";
+                $detalhe = ($servicos == 1) ? "Existe $servicos serviço associado ao cliente $nome." : "Existem $servicos serviços associados ao cliente $nome.";
+
+                $this->Dialog->error($mensagem, $detalhe);
                 $this->redirect(array("action" => "index"));
-            } catch (Exception $ex) {
-                $mensagem = "Ocorreu um erro no sistema ao excluir o cliente.";
-                $this->Dialog->error($mensagem, $ex->getMessage());
-                $this->redirect(array("action" => "index"));
+            } else {
+                try {
+                    $this->Cliente->id = $id;
+                    $this->Cliente->delete();
+
+                    $this->Dialog->alert("O cliente $nome foi excluido do sucesso!");
+                    $this->redirect(array("action" => "index"));
+                } catch (Exception $ex) {
+                    $mensagem = "Ocorreu um erro no sistema ao excluir o cliente.";
+                    $this->Dialog->error($mensagem, $ex->getMessage());
+                    $this->redirect(array("action" => "index"));
+                }
             }
         }
     }
