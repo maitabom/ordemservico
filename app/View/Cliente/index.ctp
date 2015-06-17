@@ -1,3 +1,7 @@
+<?php
+$opcao_paginacao_number = array("tag" => "li", "separator" => "", "currentTag" => "a");
+$opcao_paginacao_extra = array("tag" => "li", "disabledTag" => "a");
+?>
 <script type="text/javascript">
     function excluir(id) {
         $("#cliente_excluir").dialog("open");
@@ -62,7 +66,7 @@ $this->element("question", array(
                             <div style="min-height: 30px">
 
                             </div>
-                            <?php if (count($clientes) == 0): ?>
+                            <?php if ($qtd_clientes == 0): ?>
                                 <div>
                                     <h2>Nenhum cliente cadastrado encontrado. Para cadastrar seu primeiro cliente, <?= $this->Html->link("clique aqui", array("controller" => "cliente", "action" => "add")) ?>.</h2>
                                 </div>
@@ -87,7 +91,7 @@ $this->element("question", array(
                                                 <td><?= "P" . $cliente["Cliente"]["tipo_cliente"] ?></td>
                                                 <td><?= $cliente["Cliente"]["email"] ?></td>
                                                 <td><?= $cliente["Cliente"]["cidade"] . " - " . $cliente["Cliente"]["uf"] ?></td>
-                                                <td>Sim</td>
+                                                <td><?= $cliente["Cliente"]["ativo"] ? "Sim" : "Não" ?></td>
                                                 <td>
                                                     <a href="<?= $this->Url->relative('cliente/edit/' . $cliente["Cliente"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
                                                         <i class="fa fa-edit">
@@ -104,6 +108,16 @@ $this->element("question", array(
                                 </table>
                             <?php endif; ?>
                         </div>
+                    </div>
+                    <div class="box-footer clearfix">
+                        <?= $qtd_clientes ?> clientes encontrados.
+                        <?php if ($qtd_clientes > $limit_pagination): ?>
+                            <ul class="pagination pagination-sm no-margin pull-right">
+                                <?= $this->Paginator->prev('«', $opcao_paginacao_extra) ?>
+                                <?= $this->Paginator->numbers($opcao_paginacao_number) ?>
+                                <?= $this->Paginator->next('»', $opcao_paginacao_extra) ?>
+                            </ul>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

@@ -15,10 +15,21 @@ class ClienteController extends AppController {
     }
 
     public function index() {
-        $clientes = $this->Cliente->find('all');
-        $title = "Lista de Clientes";
 
+        $options = array(
+            "order" => array(
+                "Cliente.razao_social" => "ASC"
+            ),
+            "limit" => $this->limit_pagination
+        );
+
+        $this->paginate = $options;
+        $clientes = $this->paginate("Cliente");
+        $qtd_clientes = $this->Cliente->find("count");
+
+        $title = "Lista de Clientes";
         $this->set("title_for_layout", $title);
+        $this->set("qtd_clientes", $qtd_clientes);
         $this->set("clientes", $clientes);
     }
 
