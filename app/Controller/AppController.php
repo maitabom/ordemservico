@@ -9,6 +9,7 @@
  * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
+ *
  * Licensed under The MIT License
  * For full copyright and license information, please see the LICENSE.txt
  * Redistributions of files must retain the above copyright notice.
@@ -35,7 +36,13 @@ class AppController extends Controller {
 
     protected $nameSystem = "Ordem de Serviço";
     protected $charMask = ['.', '(', ')', '-', '/'];
+    protected $limit_pagination = 15;
     public $components = array("Geo", "Session", "Cookie", "Dialog", "Tokin");
+
+    public function beforeFilter() {
+        $this->set("limit_pagination", $this->limit_pagination);
+        parent::beforeFilter();
+    }
 
     /**
      * Limpa a máscara de uma String
