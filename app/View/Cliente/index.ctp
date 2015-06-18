@@ -42,27 +42,54 @@ $this->element("question", array(
                     </div>
                     <div class="box-body">
                         <div id="wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <?php
+                            echo $this->Form->create("Cliente", array(
+                                "url" => array(
+                                    "controller" => "cliente",
+                                    "action" => "index"
+                                ),
+                                "role" => "form"));
+                            ?>
                             <div class="row">
-                                <div class="col-xs-4">
-                                    <label for="exampleInputEmail1">Nome</label><br/>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                <div class="col-xs-3">
+                                    <?= $this->Form->label("nome", "Nome") ?><br/>
+                                    <?= $this->Form->text("nome", array("class" => "form-control", "style" => "width: 100%")) ?>
                                 </div>
-                                <div class="col-xs-4">
-                                    <label for="exampleInputEmail1">E-mail</label><br/>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                <div class="col-xs-3">
+                                    <?= $this->Form->label("email", "E-mail") ?><br/>
+                                    <?= $this->Form->text("email", array("class" => "form-control", "style" => "width: 100%")) ?>
                                 </div>
-                                <div class=" col-xs-4">
-                                    <label for="exampleInputEmail1">Cidade</label><br/>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                <div class=" col-xs-3">
+                                    <?= $this->Form->label("cidade", "Cidade") ?><br/>
+                                    <?= $this->Form->text("cidade", array("class" => "form-control", "style" => "width: 100%")) ?>
+                                </div>
+                                <div class="col-xs-3">
+                                    <?= $this->Form->label("uf", "Estado") ?><br/>
+                                    <?= $this->Form->select("uf", $estados, array("class" => "form-control", "style" => "width: 100%")) ?>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <?= $this->Form->label("documento_fiscal", "Documento Fiscal") ?><br/>
+                                    <?= $this->Form->text("documento_fiscal", array("class" => "form-control", "style" => "width: 100%")) ?>
+                                </div>
+                                <div class="col-xs-3">
+                                    <?= $this->Form->label("tipo_cliente", "Tipo de Cliente") ?>
+                                    <?= $this->Form->select("tipo_cliente", $tipos_cliente, array("class" => "form-control", "style" => "width: 100%", "empty" => false)) ?>
+                                </div>
+                                <div class="col-xs-3">
+                                    <?= $this->Form->label("mostra", "Mostrar") ?><br/>
+                                    <?= $this->Form->select("mostra", $combo_mostra, array("class" => "form-control", "style" => "width: 100%", "empty" => false)) ?>
                                 </div>
                             </div>
                             <div style="min-height: 15px">
 
                             </div>
                             <div style="text-align: right;">
-                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('cliente', 'add') . '\'' ?>">Novo</button>
-                                <button class="btn btn-primary">Buscar</button>
+                                <button id="btnNovo" type="button" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('cliente', 'add') . '\'' ?>">Novo</button>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
+                            <?php echo $this->Form->end(); ?>
                             <div style="min-height: 30px">
 
                             </div>
@@ -74,8 +101,8 @@ $this->element("question", array(
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Nome</th>
-                                            <th>Documento Fiscal</th>
+                                            <th>Razão Social</th>
+                                            <th>Nome Fantasia</th>
                                             <th>Tipo</th>
                                             <th>E-mail</th>
                                             <th>Localidade</th>
@@ -87,7 +114,7 @@ $this->element("question", array(
                                         <?php foreach ($clientes as $cliente): ?>
                                             <tr>
                                                 <td><?= $cliente["Cliente"]["razao_social"] ?></td>
-                                                <td><?= $cliente["Cliente"]["documento_fiscal"] ?></td>
+                                                <td><?= $cliente["Cliente"]["nome_fantasia"] ?></td>
                                                 <td><?= "P" . $cliente["Cliente"]["tipo_cliente"] ?></td>
                                                 <td><?= $cliente["Cliente"]["email"] ?></td>
                                                 <td><?= $cliente["Cliente"]["cidade"] . " - " . $cliente["Cliente"]["uf"] ?></td>
@@ -110,13 +137,15 @@ $this->element("question", array(
                         </div>
                     </div>
                     <div class="box-footer clearfix">
-                        <?= $qtd_clientes ?> clientes encontrados.
-                        <?php if ($qtd_clientes > $limit_pagination): ?>
-                            <ul class="pagination pagination-sm no-margin pull-right">
-                                <?= $this->Paginator->prev('«', $opcao_paginacao_extra) ?>
-                                <?= $this->Paginator->numbers($opcao_paginacao_number) ?>
-                                <?= $this->Paginator->next('»', $opcao_paginacao_extra) ?>
-                            </ul>
+                        <?php if ($qtd_clientes > 0): ?>
+                            <?= $qtd_clientes ?> clientes encontrados.
+                            <?php if ($qtd_clientes > $limit_pagination): ?>
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <?= $this->Paginator->prev('«', $opcao_paginacao_extra) ?>
+                                    <?= $this->Paginator->numbers($opcao_paginacao_number) ?>
+                                    <?= $this->Paginator->next('»', $opcao_paginacao_extra) ?>
+                                </ul>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                 </div>

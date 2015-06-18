@@ -16,7 +16,42 @@ class ClienteController extends AppController {
 
     public function index() {
 
+        $conditions = array();
+
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $mostrar = $data["Cliente"]["mostra"];
+            $tipo_cliente = $data["Cliente"]["tipo_cliente"];
+            $documento = $this->clearMask($data["Cliente"]["documento_fiscal"]);
+            $uf = $data["Cliente"]["uf"];
+
+            $conditions["OR"] = array(
+                "Cliente.razao_social LIKE" => "%" . $data["Cliente"]["nome"] . "%",
+                "Cliente.nome_fantasia LIKE" => "%" . $data["Cliente"]["nome"] . "%",
+            );
+
+            $conditions["Cliente.email LIKE"] = "%" . $data["Cliente"]["email"] . "%";
+            $conditions["Cliente.cidade LIKE"] = "%" . $data["Cliente"]["cidade"] . "%";
+
+            if ($uf != "") {
+                $conditions["Cliente.uf"] = $uf;
+            }
+
+            if ($documento != "") {
+                $conditions["Cliente.documento_fiscal"] = $documento;
+            }
+
+            if ($tipo_cliente != "T") {
+                $conditions["Cliente.tipo_cliente"] = $tipo_cliente;
+            }
+
+            if ($mostrar != "T") {
+                $conditions["Cliente.ativo"] = ($mostrar == "A") ? 1 : 0;
+            }
+        }
+
         $options = array(
+            "conditions" => $conditions,
             "order" => array(
                 "Cliente.razao_social" => "ASC"
             ),
@@ -25,12 +60,19 @@ class ClienteController extends AppController {
 
         $this->paginate = $options;
         $clientes = $this->paginate("Cliente");
-        $qtd_clientes = $this->Cliente->find("count");
+        $qtd_clientes = $this->Cliente->find("count", array("conditions" => $conditions));
 
         $title = "Lista de Clientes";
+        $estados = $this->Geo->listaUf();
+        $combo_mostra = ["T" => "Todos", "A" => "Somente ativos", "I" => "Somente inativos"];
+        $tipos_pessoas = ["T" => "Todos", "F" => "Somnte Pessoa Física", "J" => "Somente Pessoa Jurídica"];
+
         $this->set("title_for_layout", $title);
         $this->set("qtd_clientes", $qtd_clientes);
         $this->set("clientes", $clientes);
+        $this->set("combo_mostra", $combo_mostra);
+        $this->set("estados", $estados);
+        $this->set("tipos_cliente", $tipos_pessoas);
     }
 
     public function add() {
