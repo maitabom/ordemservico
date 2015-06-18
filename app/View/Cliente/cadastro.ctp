@@ -1,3 +1,82 @@
+<script type="text/javascript">
+    function validar() {
+        var mensagem = "";
+
+        if ($("#ClienteRazaoSocial").val() === "") {
+            mensagem += "- O nome ou a razão social do cliente é obrigatória.\n";
+            $("#ClienteRazaoSocial").css("border-color", "red");
+        } else {
+            $("#ClienteRazaoSocial").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#ClienteEndereco").val() === "") {
+            mensagem += "- O endereço do cliente é obrigatório.\n";
+            $("#ClienteEndereco").css("border-color", "red");
+        } else {
+            $("#ClienteEndereco").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#ClienteCidade").val() === "") {
+            mensagem += "- A cidade do cliente é obrigatória.\n";
+            $("#ClienteCidade").css("border-color", "red");
+        } else {
+            $("#ClienteCidade").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#ClienteUf").val() === "") {
+            mensagem += "- O estado do cliente é obrigatório.\n";
+            $("#ClienteUf").css("border-color", "red");
+        } else {
+            $("#ClienteUf").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#ClienteCep").val() === "") {
+            mensagem += "- O CEP do cliente é obrigatório.\n";
+            $("#ClienteCep").css("border-color", "red");
+        } else {
+            $("#ClienteCep").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#ClienteCelular").val() === "") {
+            mensagem += "- O celular do cliente é obrigatório.\n";
+            $("#ClienteCelular").css("border-color", "red");
+        } else {
+            $("#ClienteCelular").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#ClienteDocumentoFiscal").val() === "") {
+            mensagem += "- O CPF ou o CNPJ do cliente é obrigatório.\n";
+            $("#ClienteDocumentoFiscal").css("border-color", "red");
+        } else {
+            $("#ClienteDocumentoFiscal").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#ClienteEmail").val() === "") {
+            mensagem += "- É obrigatório informar o e-mail do cliente.\n";
+            $("#ClienteEmail").css("border-color", "red");
+        } else {
+            $("#ClienteEmail").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#radio_tipo_cliente input:checked").length === 0) {
+            mensagem += "- É obrigatório informar se o cliente é pessoa física ou pessoa jurídica.\n";
+        }
+
+        if (mensagem == "") {
+            return true;
+        } else {
+            $("#cadastro_erro").dialog("open");
+            $("#txtmaisdetalhes").val(mensagem);
+            return false;
+        }
+    }
+
+    $(function () {
+        VMasker(document.querySelector("#ClienteCep")).maskPattern("99999-999");
+        VMasker(document.querySelector("#ClienteTelefone")).maskPattern("(99)9999-9999");
+        VMasker(document.querySelector("#ClienteCelular")).maskPattern("(99)99999-9999");
+    });
+</script>
 <style>
     #radio_tipo_cliente label{
         font-weight: normal;
@@ -5,6 +84,14 @@
 </style>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
+<?=
+$this->element('message', array(
+    'name' => 'cadastro_erro',
+    'type' => 'error',
+    'message' => 'Ocorreu um erro ao efetuar o cadastro.',
+    'details' => ''
+))
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1><?= $title_for_layout ?></h1>
@@ -36,7 +123,7 @@
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">
-                            <?= $this->Form->label("razao_social", "Razão Social") ?>
+                            <?= $this->Form->label("razao_social", "Nome/Razão Social") ?>
                             <?= $this->Form->text("razao_social", array("class" => "form-control", "maxlength" => 255)) ?>
                         </div>
                         <div class="form-group col-xs-12">
@@ -92,7 +179,7 @@
                         <div style="text-align: right;">
                             <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('cliente') ?>'" type="button" class="btn btn-primary">Voltar</button>
                             <button type="reset" class="btn btn-primary">Limpar</button>
-                            <button type="submit" class="btn btn-success">Salvar</button>
+                            <button type="submit" class="btn btn-success" onclick="return validar()">Salvar</button>
                         </div>
                     </div><!-- /.box-body -->
                     <?= $this->Form->end() ?>
