@@ -27,7 +27,7 @@ class ClienteController extends AppController {
 
             $conditions["OR"] = array(
                 "Cliente.razao_social LIKE" => "%" . $data["Cliente"]["nome"] . "%",
-                "Cliente.nome_fantasia LIKE" => "%" . $data["Cliente"]["nome"] . "%",
+                "Cliente.nome_fantasia LIKE" => "%" . $data["Cliente"]["nome"] . "%"
             );
 
             $conditions["Cliente.email LIKE"] = "%" . $data["Cliente"]["email"] . "%";
