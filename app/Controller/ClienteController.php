@@ -103,10 +103,18 @@ class ClienteController extends AppController {
             $data = $this->request->data;
             $mensagem = "";
 
+            $id_cliente = $data["Cliente"]["id"];
+
             $data["Cliente"]["cep"] = $this->clearMask($data["Cliente"]["cep"]);
             $data["Cliente"]["telefone"] = $this->clearMask($data["Cliente"]["telefone"]);
             $data["Cliente"]["celular"] = $this->clearMask($data["Cliente"]["celular"]);
             $data["Cliente"]["documento_fiscal"] = $this->clearMask($data["Cliente"]["documento_fiscal"]);
+
+            if ($id_cliente == 0) {
+                $data["Cliente"]["data_cadastro"] = date("Y-m-d H:i:s");
+            } else {
+                $data["Cliente"]["data_alteracao"] = date("Y-m-d H:i:s");
+            }
 
             try {
                 $this->Cliente->save($data);

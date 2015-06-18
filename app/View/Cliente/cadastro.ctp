@@ -120,6 +120,8 @@ $this->element('message', array(
                     ));
 
                     echo $this->Form->hidden("id", array("value" => $id_cliente));
+                    echo $this->Form->hidden("data_cadastro");
+                    echo $this->Form->hidden("data_alteracao");
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">
