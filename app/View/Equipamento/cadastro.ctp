@@ -1,3 +1,4 @@
+<?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
 <div class="content-wrapper">
     <section class="content-header">
