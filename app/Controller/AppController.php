@@ -54,6 +54,24 @@ class AppController extends Controller {
     }
 
     /**
+     * Converte a data no formato local, para o formato aceito do banco de dados.
+     * @param string $data A data usada na tela, reconhecida pelo usuário
+     * @return string A data no formato reconhecido pelo banco de dados.
+     */
+    protected function formatDateDB($data) {
+        return date("Y-m-d", strtotime(str_replace('/', '-', $data)));
+    }
+
+    /**
+     * Converte a data no formato de banco para o formato da data compreensível ao usuário.
+     * @param string $data A data usada no formato do banco de dados.
+     * @return string A data no formato do usuário.
+     */
+    protected function formatDateView($data) {
+        return date("d/m/Y", strtotime($data));
+    }
+
+    /**
      * Verifica se a sessão do usuário foi criada e ativa, ou seja, se o mesmo efetuou o login.
      * @return boolean Se o usuário está logado no sistema e com acesso
      */
@@ -66,6 +84,7 @@ class AppController extends Controller {
      */
     protected function controlAuth() {
         if (!$this->isAuthorized()) {
+            $this->Session->setFlash("A sessão foi expirada.");
             $this->redirect(array("controller" => "system", "action" => "login"));
         }
     }
