@@ -15,7 +15,21 @@ class EquipamentoController extends AppController {
     }
 
     public function index() {
+        $options = array(
+            "order" => array(
+                "Equipamento.nome" => "ASC"
+            ),
+            "limit" => $this->limit_pagination
+        );
 
+        $this->paginate = $options;
+        $equipamentos = $this->paginate("Equipamento");
+        $qtd_equipamentos = $this->Equipamento->find("count");
+
+        $title = "Lista de Equipamentos";
+        $this->set("title_for_layout", $title);
+        $this->set("qtd_equipamentos", $qtd_equipamentos);
+        $this->set("equipamentos", $equipamentos);
     }
 
     public function add() {
