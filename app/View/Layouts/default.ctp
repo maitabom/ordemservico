@@ -57,6 +57,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <script src="<?= $this->Url->relative('plugins/jQuery/jQuery-2.1.3.min.js') ?>"></script>
         <!-- jQuery UI -->
         <script src="<?= $this->Url->relative('plugins/jQueryUI/jquery-ui.js') ?>"></script>
+        <script src="<?= $this->Url->relative('plugins/jQueryUI/datepicker-pt-BR.js') ?>"></script>
+        <link href="<?= $this->Url->relative('plugins/jQueryUI/jquery-ui.css') ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
