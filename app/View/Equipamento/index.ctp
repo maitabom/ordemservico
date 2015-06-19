@@ -75,7 +75,7 @@ $this->element("question", array(
                                                         <i class="fa fa-edit">
                                                         </i>
                                                     </a>
-                                                    <a class="btn btn-google-plus" title="Excluir">
+                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $equipamento["Equipamento"]["id"] ?>)" title="Excluir">
                                                         <i class="fa fa-trash">
                                                         </i>
                                                     </a>
