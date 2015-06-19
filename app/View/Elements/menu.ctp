@@ -43,6 +43,16 @@
                     <li><a href="<?= $this->Url->make('ordem_servico', 'prioridades') ?>"><i class="fa fa-bars"></i> Lista de Tarefas</a></li>
                 </ul>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gear"></i>
+                    <span>Outros</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="<?= $this->Url->make('equipamento') ?>"><i class="fa fa-print"></i> Equipamentos</a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
