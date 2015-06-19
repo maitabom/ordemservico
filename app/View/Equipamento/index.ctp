@@ -14,7 +14,7 @@ $opcao_paginacao_extra = array("tag" => "li", "disabledTag" => "a");
 $this->element("question", array(
     "name" => "equipamento_excluir",
     "form_name" => "frm_equipamento_excluir",
-    "message" => "Deseja excluir o cliente? Certifique que não haja nenhum serviço associado a este cliente. Você pode deixar inativo, se desejar.",
+    "message" => "Deseja excluir o equipamento? Certifique que não haja nenhum serviço associado a este equipamento. Você pode deixar inativo, se desejar.",
     "action" => array(
         "controller" => "equipamento",
         "action" => "delete"),
