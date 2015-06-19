@@ -26,9 +26,9 @@ $this->element("question", array(
 ?>
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>Pesquisa de Equipamentos</h1>
+        <h1>Lista de Equipamentos</h1>
         <ol class="breadcrumb">
-            <li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
+            <li><a hrefis="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#"><i class="fa fa-gear"></i>Outros</a></li>
             <li><a href="#"><i class="fa fa-print"></i>Equipamentos</a></li>
             <li class="active"><a href="#"><i class="fa fa-search"></i>Busca</a></li>
@@ -38,9 +38,6 @@ $this->element("question", array(
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Busca</h3>
-                    </div>
                     <div class="box-body">
                         <div id="wrapper" class="dataTables_wrapper form-inline" role="grid">
                             <div style="text-align: right;">
