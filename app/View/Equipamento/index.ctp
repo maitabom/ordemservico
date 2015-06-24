@@ -1,7 +1,3 @@
-<?php
-$opcao_paginacao_number = array("tag" => "li", "separator" => "", "currentTag" => "a");
-$opcao_paginacao_extra = array("tag" => "li", "disabledTag" => "a");
-?>
 <script type="text/javascript">
     function excluir(id) {
         $("#equipamento_excluir").dialog("open");
@@ -28,7 +24,7 @@ $this->element("question", array(
     <section class="content-header">
         <h1>Lista de Equipamentos</h1>
         <ol class="breadcrumb">
-            <li><a hrefis="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#"><i class="fa fa-gear"></i>Outros</a></li>
             <li><a href="#"><i class="fa fa-print"></i>Equipamentos</a></li>
             <li class="active"><a href="#"><i class="fa fa-search"></i>Busca</a></li>
@@ -87,18 +83,7 @@ $this->element("question", array(
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="box-footer clearfix">
-                        <?php if ($qtd_equipamentos > 0): ?>
-                            <?= $qtd_equipamentos ?> equipamentos encontrados.
-                            <?php if ($qtd_equipamentos > $limit_pagination): ?>
-                                <ul class="pagination pagination-sm no-margin pull-right">
-                                    <?= $this->Paginator->prev('«', $opcao_paginacao_extra) ?>
-                                    <?= $this->Paginator->numbers($opcao_paginacao_number) ?>
-                                    <?= $this->Paginator->next('»', $opcao_paginacao_extra) ?>
-                                </ul>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </div>
+                    <?= $this->element("pagination", array("qtd_total" => $qtd_equipamentos, "name" => "equipamentos")) ?>
                 </div>
             </div>
         </div>
