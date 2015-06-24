@@ -1,7 +1,3 @@
-<?php
-$opcao_paginacao_number = array("tag" => "li", "separator" => "", "currentTag" => "a");
-$opcao_paginacao_extra = array("tag" => "li", "disabledTag" => "a");
-?>
 <script type="text/javascript">
     function excluir(id) {
         $("#usuario_excluir").dialog("open");
@@ -118,18 +114,7 @@ $this->element("question", array(
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="box-footer clearfix">
-                        <?php if ($qtd_usuarios > 0): ?>
-                            <?= $qtd_usuarios ?> usuários encontrados.
-                            <?php if ($qtd_usuarios > $limit_pagination): ?>
-                                <ul class="pagination pagination-sm no-margin pull-right">
-                                    <?= $this->Paginator->prev('«', $opcao_paginacao_extra) ?>
-                                    <?= $this->Paginator->numbers($opcao_paginacao_number) ?>
-                                    <?= $this->Paginator->next('»', $opcao_paginacao_extra) ?>
-                                </ul>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </div>
+                    <?= $this->element("pagination", array("qtd_total" => $qtd_usuarios, "name" => "clientes")) ?>
                 </div>
             </div>
         </div>
