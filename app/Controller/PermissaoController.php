@@ -17,10 +17,21 @@ class PermissaoController extends AppController {
 
     public function index() {
 
-        $permissoes = $this->Permissao->find("all");
+        $options = array(
+            "order" => array(
+                "Permissao.nome" => "ASC"
+            ),
+            "limit" => $this->limit_pagination
+        );
+
+        $this->paginate = $options;
+
+        $permissoes = $this->paginate("Permissao");
+        $qtd_permissoes = $this->Permissao->find("count");
         $title = "Lista de Permissões";
         $this->set("title_for_layout", $title);
         $this->set("permissoes", $permissoes);
+        $this->set("qtd_permissoes", $qtd_permissoes);
     }
 
     public function add() {
