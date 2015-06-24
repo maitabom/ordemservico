@@ -15,33 +15,33 @@ class UsuarioController extends AppController {
     }
 
     public function index() {
-        $usuarios = null;
+
+        $conditions = array();
 
         if ($this->request->is('post')) {
             $data = $this->request->data;
             $mostrar = $data["Usuario"]["mostra"];
 
-            if ($mostrar == "T") {
-                $usuarios = $this->Usuario->find('all', array(
-                    'conditions' => array(
-                        "Usuario.nome LIKE" => "%" . $data["Usuario"]["nome"] . "%",
-                        "Usuario.nickname LIKE" => "%" . $data["Usuario"]["nickname"] . "%",
-                        "Usuario.email LIKE" => "%" . $data["Usuario"]["email"] . "%"
-                    )
-                ));
-            } else {
-                $usuarios = $this->Usuario->find('all', array(
-                    'conditions' => array(
-                        "Usuario.nome LIKE" => "%" . $data["Usuario"]["nome"] . "%",
-                        "Usuario.nickname LIKE" => "%" . $data["Usuario"]["nickname"] . "%",
-                        "Usuario.email LIKE" => "%" . $data["Usuario"]["email"] . "%",
-                        "Usuario.ativo" => ($mostrar == "A") ? "1" : "0"
-                    )
-                ));
+            $conditions["Usuario.nome LIKE"] = "%" . $data["Usuario"]["nome"] . "%";
+            $conditions["Usuario.nickname LIKE"] = "%" . $data["Usuario"]["nickname"] . "%";
+            $conditions["Usuario.email LIKE"] = "%" . $data["Usuario"]["email"] . "%";
+
+            if ($mostrar != "T") {
+                $conditions["Usuario.ativo"] = ($mostrar == "A") ? "1" : "0";
             }
-        } else {
-            $usuarios = $this->Usuario->find('all');
         }
+
+        $options = array(
+            "conditions" => $conditions,
+            "order" => array(
+                "Usuario.nome" => "ASC"
+            ),
+            "limit" => $this->limit_pagination
+        );
+
+        $this->paginate = $options;
+        $usuarios = $this->paginate("Usuario");
+        $qtd_usuarios = $this->Usuario->find("count", array("conditions" => $conditions));
 
         $combo_mostra = ["T" => "Todos", "A" => "Somente ativos", "I" => "Somente inativos"];
 
@@ -49,6 +49,7 @@ class UsuarioController extends AppController {
         $this->set("title_for_layout", $title);
         $this->set("combo_mostra", $combo_mostra);
         $this->set("usuarios", $usuarios);
+        $this->set("qtd_usuarios", $qtd_usuarios);
     }
 
     public function perfil($user) {
