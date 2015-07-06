@@ -11,6 +11,7 @@ class UsuarioController extends AppController {
     public function beforeFilter() {
         $this->loadModel('Usuario');
         $this->loadModel('Permissao');
+        $this->controlAuth();
         parent::beforeFilter();
     }
 

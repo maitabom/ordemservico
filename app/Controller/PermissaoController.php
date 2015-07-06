@@ -12,6 +12,7 @@ class PermissaoController extends AppController {
         $this->loadModel('Usuario');
         $this->loadModel('Permissao');
         $this->loadModel('Funcao');
+        $this->controlAuth();
         parent::beforeFilter();
     }
 

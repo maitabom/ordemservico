@@ -11,6 +11,7 @@ class ClienteController extends AppController {
     public function beforeFilter() {
         $this->loadModel('Cliente');
         $this->loadModel('OrdemServico');
+        $this->controlAuth();
         parent::beforeFilter();
     }
 

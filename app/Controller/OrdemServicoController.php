@@ -8,6 +8,11 @@ App::uses('AppController', 'Controller');
  */
 class OrdemServicoController extends AppController {
 
+    public function beforeFilter() {
+        $this->controlAuth();
+        parent::beforeFilter();
+    }
+
     public function index() {
 
     }
