@@ -167,4 +167,26 @@ class ClienteController extends AppController {
         }
     }
 
+    public function listar() {
+        $this->layout = "ajax";
+        $this->autoRender = false;
+        $this->Cliente->recursive = -1;
+
+        if ($this->request->is("ajax")) {
+            $nome = $this->request->query("nome");
+
+            $clientes = $this->Cliente->find("all", array(
+                "fields" => ["id", "razao_social", "nome_fantasia"],
+                "conditions" => array(
+                    "OR" => array(
+                        "Cliente.razao_social LIKE" => "%" . $nome . "%",
+                        "Cliente.nome_fantasia LIKE" => "%" . $nome . "%"
+                    )
+                )
+            ));
+
+            echo json_encode($clientes);
+        }
+    }
+
 }
