@@ -9,6 +9,9 @@ App::uses('AppController', 'Controller');
 class OrdemServicoController extends AppController {
 
     public function beforeFilter() {
+        $this->loadModel('Cliente');
+        $this->loadModel('OrdemServico');
+        $this->loadModel('Equipamento');
         $this->controlAuth();
         parent::beforeFilter();
     }
@@ -17,7 +20,7 @@ class OrdemServicoController extends AppController {
 
     }
 
-    public function add($id = NULL) {
+    public function add() {
 
     }
 
