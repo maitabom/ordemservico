@@ -13,7 +13,7 @@
             <div class="col-xs-12">
                 <h2 class="page-header">
                     <i class="fa fa-globe"></i> Moreth e Lopes
-                    <small class="pull-right">Data: 02/03/2015</small>
+                    <small class="pull-right">Data: <?= $ordem_servico["OrdemServico"]["data_criacao"] ?></small>
                 </h2>
             </div><!-- /.col -->
             <div class="row invoice-info">
