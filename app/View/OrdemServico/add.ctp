@@ -1,6 +1,6 @@
 <script type="text/javascript">
     $(function () {
-        $("#ClienteCliente").autocomplete({
+        $("#OrdemServicoCliente").autocomplete({
             source: function (request, response) {
                 $.ajax({
                     url: "<?= $this->Url->relative('/cliente/listar') ?>",
@@ -14,8 +14,8 @@
                 });
             },
             select: function (event, ui) {
-                $("#ClienteCliente").val(ui.item.Cliente.razao_social);
-                $("#ClienteIdCliente").val(ui.item.Cliente.id);
+                $("#OrdemServicoCliente").val(ui.item.Cliente.razao_social);
+                $("#OrdemServicoIdCliente").val(ui.item.Cliente.id);
 
                 return false;
             },
@@ -26,9 +26,9 @@
                     .appendTo(ul);
         };
 
-        VMasker(document.querySelector("#ClientePrazo")).maskPattern("99/99/9999");
+        VMasker(document.querySelector("#OrdemServicoPrazo")).maskPattern("99/99/9999");
 
-        $("#ClientePrazo").datepicker({
+        $("#OrdemServicoPrazo").datepicker({
             showButtonPanel: true
         }, $.datepicker.regional[ "pt-BR" ]);
     });
@@ -59,12 +59,17 @@ $this->element('message', array(
                 <!-- general form elements -->
                 <div class="box">
                     <?php
-                    echo $this->Form->create("Cliente", array(
+                    echo $this->Form->create("OrdemServico", array(
                         "url" => array(
-                            "controller" => "cliente",
+                            "controller" => "ordem_servico",
                             "action" => "save"),
                         "role" => "form"
                     ));
+
+                    $this->Form->hidden("prioridade");
+                    $this->Form->hidden("data_criacao");
+                    $this->Form->hidden("concluido");
+                    $this->Form->hidden("responsavel");
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">
@@ -109,31 +114,20 @@ $this->element('message', array(
                             <?= $this->Form->text("arquivo", array("class" => "form-control", "maxlength" => 255)) ?>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label for="exampleInputEmail1">Equipamento Para Saída</label>
-                            <select class="form-control">
-                                <option value=""></option>
-                                <option value="AC">CG 130 LX</option>
-                                <option value="AC">HP Deskjet</option>
-                            </select>
+                            <?= $this->Form->label("equipamento", "Equipamento Par Saída") ?>
+                            <?= $this->Form->select("equipamento", $equipamentos, array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label for="exampleInputEmail1">Modo de Entrega</label>
-                            <select class="form-control">
-                                <option value=""></option>
-                                <option value="AC">Sedex</option>
-                                <option value="AC">PAC</option>
-                                <option value="AC">Transportadora</option>
-                                <option value="AC">Motoboy</option>
-                                <option value="AC">Cliente vem buscar</option>
-                            </select>
+                            <?= $this->Form->label("modo_entrega", "Modo de Entrega") ?>
+                            <?= $this->Form->select("modo_entrega", $modos_entregas, array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-4">
-                            <label for="exampleInputEmail1">Contato do Cliente</label>
-                            <input type="text" class="form-control">
+                            <?= $this->Form->label("contato_cliente", "Contato do Cliente") ?>
+                            <?= $this->Form->text("contato_cliente", array("class" => "form-control", "maxlength" => 50)) ?>
                         </div>
                         <div class="form-group col-xs-12">
-                            <label for="exampleInputEmail1">Observações</label>
-                            <textarea class="form-control"></textarea>
+                            <?= $this->Form->label("observacoes", "Observações") ?>
+                            <?= $this->Form->textarea("observacoes", array("class" => "form-control")) ?>
                         </div>
 
                         <div style="text-align: right;">
