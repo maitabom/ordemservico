@@ -23,6 +23,20 @@ class OrdemServicoController extends AppController {
 
         if ($this->request->is("post")) {
             $data = $this->request->data;
+
+            $conditions["OrdemServico.id"] = $data["OrdemServico"]["numero"];
+
+            $conditions["OR"] = array(
+                "Cliente.razao_social LIKE" => "%" . $data["OrdemServico"]["cliente"] . "%",
+                "Cliente.nome_fantasia LIKE" => "%" . $data["OrdemServico"]["cliente"] . "%"
+            );
+
+            $conditions["OrdemServico.servico"] = $data["OrdemServico"]["servico"];
+            $conditions["OrdemServico.data_emissao >="] = $data["OrdemServico"]["data_emissao_inicio"];
+            $conditions["OrdemServico.data_emissao <="] = $data["OrdemServico"]["data_emissao_fim"];
+            $conditions["OrdemServico.prazo <="] = $data["OrdemServico"]["prazo_inicio"];
+            $conditions["OrdemServico.prazo >="] = $data["OrdemServico"]["prazo_fim"];
+            $conditions["OrdemServico.cancelado"] = false;
         }
 
         $options = array(
@@ -32,6 +46,15 @@ class OrdemServicoController extends AppController {
             ),
             "limit" => $this->limit_pagination
         );
+
+        $this->paginate = $options;
+        $ordem_servico = $this->paginate("OrdemServico");
+        $qtd_ordens = $this->OrdemServico->find("count", array("conditions" => $conditions));
+        $title = "Lista de Ordens de Serviço";
+
+        $this->set("title_for_layout", $title);
+        $this->set("ordens_servicos", $ordem_servico);
+        $this->set("qtd_ordens", $qtd_ordens);
     }
 
     public function add() {
@@ -99,7 +122,7 @@ class OrdemServicoController extends AppController {
 
         try {
             $this->OrdemServico->save($data);
-            $this->Dialog->alert("O cliente foi salvo com sucesso!");
+            $this->Dialog->alert("A ordem de serviço foi gerada com sucesso!");
 
             $id = $this->OrdemServico->id;
             $this->redirect(array("action" => "documento", $id));
