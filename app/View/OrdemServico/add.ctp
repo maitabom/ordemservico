@@ -29,8 +29,12 @@
         VMasker(document.querySelector("#OrdemServicoPrazo")).maskPattern("99/99/9999");
 
         $("#OrdemServicoPrazo").datepicker({
-            showButtonPanel: true
-        }, $.datepicker.regional[ "pt-BR" ]);
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
     });
 </script>
 <?= $this->Session->flash() ?>

@@ -43,8 +43,12 @@
         VMasker(document.querySelector("#EquipamentoDataAquisicao")).maskPattern("99/99/9999");
 
         $("#EquipamentoDataAquisicao").datepicker({
-            showButtonPanel: true
-        }, $.datepicker.regional[ "pt-BR" ]);
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
     });
 </script>
 <?= $this->Session->flash() ?>
