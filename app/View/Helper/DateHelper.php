@@ -17,8 +17,16 @@ class DateHelper extends AppHelper {
      * @param string $data A data usada no formato do banco de dados.
      * @return string A data no formato do usuário.
      */
-    public function format($data) {
-        return date("d/m/Y", strtotime($data));
+    public function format($data, $complete = false) {
+        $data;
+
+        if ($complete) {
+            $data = date("d/m/Y H:i:s", strtotime($data));
+        } else {
+            $data = date("d/m/Y", strtotime($data));
+        }
+
+        return $data;
     }
 
 }
