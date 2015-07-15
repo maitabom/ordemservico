@@ -10,6 +10,7 @@ class OrdemServicoController extends AppController {
 
     public function beforeFilter() {
         $this->loadModel('Cliente');
+        $this->loadModel('Usuario');
         $this->loadModel('OrdemServico');
         $this->loadModel('Equipamento');
         $this->loadModel('ModoEntrega');
@@ -59,14 +60,66 @@ class OrdemServicoController extends AppController {
             )
         ));
 
+        $modo_entrega = $this->ModoEntrega->find("all", array(
+            "conditions" => array(
+                "ModoEntrega.id" => $ordem_servico["OrdemServico"]["modo_entrega"]
+            )
+        ));
+
+        $criador = $this->Usuario->find("all", array(
+            "conditions" => array(
+                "Usuario.id" => $ordem_servico["OrdemServico"]["responsavel"]
+            )
+        ));
+
+        $equipamento = $this->Equipamento->find("all", array(
+            "conditions" => array(
+                "Equipamento.id" => $ordem_servico["OrdemServico"]["equipamento"]
+            )
+        ));
+
         $this->set("id", $id);
         $this->set("ordem_servico", $ordem_servico);
-        $this->set("cliente", $cliente);
+        $this->set("cliente", $cliente[0]);
+        $this->set("modo_entrega", $modo_entrega[0]);
+        $this->set("responsavel", $criador[0]);
+        $this->set("equipamento", $equipamento[0]);
     }
 
     public function imprimir($id) {
         $this->layout = "print";
+
+        $ordem_servico = $this->OrdemServico->read(null, $id);
+        $cliente = $this->Cliente->find("all", array(
+            "conditions" => array(
+                "Cliente.id" => $ordem_servico["OrdemServico"]["id_cliente"]
+            )
+        ));
+
+        $modo_entrega = $this->ModoEntrega->find("all", array(
+            "conditions" => array(
+                "ModoEntrega.id" => $ordem_servico["OrdemServico"]["modo_entrega"]
+            )
+        ));
+
+        $criador = $this->Usuario->find("all", array(
+            "conditions" => array(
+                "Usuario.id" => $ordem_servico["OrdemServico"]["responsavel"]
+            )
+        ));
+
+        $equipamento = $this->Equipamento->find("all", array(
+            "conditions" => array(
+                "Equipamento.id" => $ordem_servico["OrdemServico"]["equipamento"]
+            )
+        ));
+
         $this->set("id", $id);
+        $this->set("ordem_servico", $ordem_servico);
+        $this->set("cliente", $cliente[0]);
+        $this->set("modo_entrega", $modo_entrega[0]);
+        $this->set("responsavel", $criador[0]);
+        $this->set("equipamento", $equipamento[0]);
     }
 
     public function save() {
