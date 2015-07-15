@@ -6258,7 +6258,7 @@
             this.mouseHandled = false;
             this.element
                     .uniqueId()
-                    .addClass("ui-menu ui-widget ui-widget-content")
+                    .addClass("ui-menu ui-widget ui-widget-contente")
                     .toggleClass("ui-menu-icons", !!this.element.find(".ui-icon").length)
                     .attr({
                         role: this.options.role,
