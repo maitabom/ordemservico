@@ -10,20 +10,20 @@
             <div class="col-sm-6 invoice-col">
                 <big>Cliente</big>
                 <address>
-                    <strong><?= $cliente["Cliente"]["razao_social"] ?></strong><br>
-                    <?= $cliente["Cliente"]["endereco"] ?> - <?= $cliente["Cliente"]["bairro"] ?><br>
-                    <?= $cliente["Cliente"]["cidade"] ?> - <?= $cliente["Cliente"]["uf"] ?><br>
-                    Telefone: <?= $this->Format->phone($cliente["Cliente"]["telefone"]) ?><br/>
-                    Email: <?= $cliente["Cliente"]["email"] ?>
+                    <strong><?= $ordem_servico["Cliente"]["razao_social"] ?></strong><br>
+                    <?= $ordem_servico["Cliente"]["endereco"] ?> - <?= $ordem_servico["Cliente"]["bairro"] ?><br>
+                    <?= $ordem_servico["Cliente"]["cidade"] ?> - <?= $ordem_servico["Cliente"]["uf"] ?><br>
+                    Telefone: <?= $this->Format->phone($ordem_servico["Cliente"]["telefone"]) ?><br/>
+                    Email: <?= $ordem_servico["Cliente"]["email"] ?>
                 </address>
             </div>
             <div class="col-sm-6 invoice-col">
                 <big><b>Ordem de Produção #<?= $this->Format->zeroPad($id) ?></b><br/></big>
                 <br/>
-                <b>Modo de Entrega:</b> <?= $modo_entrega["ModoEntrega"]["nome"] ?><br/>
+                <b>Modo de Entrega:</b> <?= $ordem_servico["ModoEntrega"]["nome"] ?><br/>
                 <b>Prazo de Entrega:</b> <?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?><br/>
                 <b>Contato do Cliente:</b> <?= $ordem_servico["OrdemServico"]["contato_cliente"] ?><br/>
-                <b>Criado Por:</b> <?= $responsavel["Usuario"]["nome"] ?>
+                <b>Criado Por:</b> <?= $ordem_servico["Responsavel"]["nome"] ?>
             </div><!-- /.col -->
         </div><!-- /.row  -->
         <hr style=""/>
@@ -45,7 +45,7 @@
                         </td>
                         <td>
                             <b>Equipamento Para Saída</b><br/>
-                            <span><?= $equipamento["Equipamento"]["nome"] ?></span>
+                            <span><?= $ordem_servico["Equipamento"]["nome"] ?></span>
                         </td>
                     </tr>
                     <tr>
