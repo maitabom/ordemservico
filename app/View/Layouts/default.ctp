@@ -57,7 +57,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <script src="<?= $this->Url->relative('plugins/jQuery/jQuery-2.1.3.min.js') ?>"></script>
         <!-- jQuery UI -->
         <script src="<?= $this->Url->relative('plugins/jQueryUI/jquery-ui.js') ?>"></script>
-        <script src="<?= $this->Url->relative('plugins/jQueryUI/datepicker-pt-BR.js') ?>"></script>
         <link href="<?= $this->Url->relative('plugins/jQueryUI/jquery-ui.css') ?>" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -118,18 +117,22 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <strong>Copyright &copy; 2015 Moreth e Lopes</strong> Todos os direitos reservados.
                 </footer>
             </div>
+        </div>
 
-            <!-- Bootstrap 3.3.2 JS -->
-            <script src="<?= $this->Url->relative('bootstrap/js/bootstrap.min.js') ?>" type="text/javascript"></script>
-            <!-- SlimScroll -->
-            <script src="<?= $this->Url->relative('plugins/slimScroll/jquery.slimScroll.min.js') ?>" type="text/javascript"></script>
-            <!-- FastClick -->
-            <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
-            <!-- AdminLTE App -->
-            <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
-            <script src="<?= $this->Url->relative('js/vanilla-masker.js') ?>" type="text/javascript"></script>
-            <!-- DATA TABES SCRIPT -->
-            <script src="<?= $this->Url->relative('plugins/datatables/jquery.dataTables.js') ?>" type="text/javascript"></script>
-            <script src="<?= $this->Url->relative('plugins/datatables/dataTables.bootstrap.js') ?>" type="text/javascript"></script>
+        <!-- Bootstrap 3.3.2 JS -->
+        <script src="<?= $this->Url->relative('bootstrap/js/bootstrap.min.js') ?>" type="text/javascript"></script>
+        <!-- SlimScroll -->
+        <script src="<?= $this->Url->relative('plugins/slimScroll/jquery.slimScroll.min.js') ?>" type="text/javascript"></script>
+        <!-- FastClick -->
+        <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
+        <!-- AdminLTE App -->
+        <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
+        <script src="<?= $this->Url->relative('js/vanilla-masker.js') ?>" type="text/javascript"></script>
+        <!-- DATA TABES SCRIPT -->
+        <script src="<?= $this->Url->relative('plugins/datatables/jquery.dataTables.js') ?>" type="text/javascript"></script>
+        <script src="<?= $this->Url->relative('plugins/datatables/dataTables.bootstrap.js') ?>" type="text/javascript"></script>
+        <!--DATEPICKER-->
+        <script src="<?= $this->Url->relative('plugins/datepicker/bootstrap-datepicker.js') ?>" type="text/javascript"></script>
+        <script src="<?= $this->Url->relative('plugins/datepicker/locales/bootstrap-datepicker.pt-BR.js') ?>" type="text/javascript"></script>
     </body>
 </html>
