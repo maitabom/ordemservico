@@ -51,7 +51,17 @@ class OrdemServicoController extends AppController {
     }
 
     public function documento($id) {
+
+        $ordem_servico = $this->OrdemServico->read(null, $id);
+        $cliente = $this->Cliente->find("all", array(
+            "conditions" => array(
+                "Cliente.id" => $ordem_servico["OrdemServico"]["id_cliente"]
+            )
+        ));
+
         $this->set("id", $id);
+        $this->set("ordem_servico", $ordem_servico);
+        $this->set("cliente", $cliente);
     }
 
     public function imprimir($id) {
