@@ -1,8 +1,7 @@
 <?php
 
 /**
- * CakePHP DateHelper
- * @author valentim
+ * Classe que auxilia na manipulação e formatção de data, para exibição adequada ao usuário.
  */
 class DateHelper extends AppHelper {
 
