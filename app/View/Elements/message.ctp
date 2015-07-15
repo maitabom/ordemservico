@@ -53,7 +53,7 @@ switch ($type) {
                             <a id="lnkmaisdetalhes" href="#" style="color: yellow">Mais detalhes</a>
                         </div>
                         <div id="mais-detalhes" style="display: none" class="col-md-12">
-                            <textarea id="txtmaisdetalhes" class="form-control" style="cursor: text; resize: vertical;" readonly><?= h($details) ?></textarea>
+                            <textarea id="txtmaisdetalhes" rows="5" class="form-control" style="cursor: text; resize: vertical;" readonly><?= h($details) ?></textarea>
                         </div>
                     </div>
                 <?php endif; ?>
