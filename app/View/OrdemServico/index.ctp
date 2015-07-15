@@ -1,4 +1,25 @@
+<script type="text/javascript">
+    function excluir(id) {
+        $("#ordem_servico_excluir").dialog("open");
+        $("#questionParameter").val(id);
+    }
+</script>
+<?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
+<?=
+$this->element("question", array(
+    "name" => "ordem_servico_excluir",
+    "form_name" => "frm_servico_excluir",
+    "message" => "Deseja cancelar esta ordem de serviço?",
+    "action" => array(
+        "controller" => "ordem_servico",
+        "action" => "delete"),
+    "buttons" => array(
+        "ok" => "Sim",
+        "cancel" => "Não"
+    )
+))
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>Pesquisa de Ordem de Serviço</h1>
@@ -17,6 +38,14 @@
                     </div>
                     <div class="box-body">
                         <div id="wrapper" class="dataTables_wrapper form-inline" role="grid">
+                            <?php
+                            echo $this->Form->create("OrdemServico", array(
+                                "url" => array(
+                                    "controller" => "ordem_servico",
+                                    "action" => "index"
+                                ),
+                                "role" => "form"));
+                            ?>
                             <div class="row">
                                 <div class="col-xs-4">
                                     <label for="exampleInputEmail1">Número</label><br/>
@@ -45,258 +74,58 @@
 
                             </div>
                             <div style="text-align: right;">
-                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('ordem_servico', 'add') . '\'' ?>">Novo</button>
-                                <button class="btn btn-primary">Buscar</button>
+                                <button type="button" id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('ordem_servico', 'add') . '\'' ?>">Novo</button>
+                                <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
+                            <?php echo $this->Form->end(); ?>
                             <div style="min-height: 30px">
 
                             </div>
-                            <table id="example1" class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Número</th>
-                                        <th>Cliente</th>
-                                        <th>Serviço</th>
-                                        <th>Data Emissão</th>
-                                        <th>Prazo de Entrega</th>
-                                        <th style="width: 14%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007782</td>
-                                        <td>Restaurante Super Lanche</td>
-                                        <td>Adesivo - Preços para cardápio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>007781</td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>21/02/2015</td>
-                                        <td>25/02/2015</td>
-                                        <td>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', '11114') ?>" class="btn btn-bitbucket" title="Editar">
-                                                <i class="fa fa-edit">
-                                                </i>
-                                            </a>
-                                            <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', '11114') ?>" class="btn btn-tumblr" title="Visualizar">
-                                                <i class="fa fa-eye">
-                                                </i>
-                                            </a>
-                                            <a class="btn btn-google-plus" title="Excluir">
-                                                <i class="fa fa-trash">
-                                                </i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                            </table>
+                            <?php if ($qtd_ordens == 0): ?>
+                                <div>
+                                    <h2>Nenhuma ordem de serviço encontrada. Para gerar a nova ordem de serviço, <?= $this->Html->link("clique aqui", array("controller" => "ordem_servico", "action" => "add")) ?>.</h2>
+                                </div>
+                            <?php else: ?>
+                                <table id="example1" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Número</th>
+                                            <th>Cliente</th>
+                                            <th>Serviço</th>
+                                            <th>Data Emissão</th>
+                                            <th>Prazo de Entrega</th>
+                                            <th style="width: 14%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($ordens_servicos as $ordem_servico): ?>
+                                            <tr>
+                                                <td><?= $this->Format->zeroPad($ordem_servico["OrdemServico"]["id"]) ?></td>
+                                                <td><abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></abbr></td>
+                                                <td><?= $ordem_servico["OrdemServico"]["servico"] ?></td>
+                                                <td><?= $this->Date->format($ordem_servico["OrdemServico"]["data_criacao"]) ?></td>
+                                                <td><?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></td>
+                                                <td>
+                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', $ordem_servico["OrdemServico"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                        <i class="fa fa-edit">
+                                                        </i>
+                                                    </a>
+                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', $ordem_servico["OrdemServico"]["id"]) ?>" class="btn btn-tumblr" title="Visualizar">
+                                                        <i class="fa fa-eye">
+                                                        </i>
+                                                    </a>
+                                                    <a class="btn btn-google-plus" title="Cancelar">
+                                                        <i class="fa fa-trash">
+                                                        </i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                </table>
+                            <?php endif; ?>
                         </div>
                     </div>
+                    <?= $this->element("pagination", array("qtd_total" => $qtd_ordens, "name" => "ordens de serviço")) ?>
                 </div>
             </div>
         </div>
