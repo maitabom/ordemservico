@@ -43,13 +43,13 @@ class OrdemServicoController extends AppController {
             $conditions["OrdemServico.servico LIKE"] = "%" . $data["OrdemServico"]["servico"] . "%";
 
             if ($emissao_inicio != "" && $emissao_fim != "") {
-                $conditions["OrdemServico.data_emissao >="] = $data["OrdemServico"]["data_emissao_inicio"];
-                $conditions["OrdemServico.data_emissao <="] = $data["OrdemServico"]["data_emissao_fim"];
+                $conditions["OrdemServico.data_criacao >="] = $this->formatDateDB($data["OrdemServico"]["data_emissao_inicio"]);
+                $conditions["OrdemServico.data_criacao <="] = $this->formatDateDB($data["OrdemServico"]["data_emissao_fim"]);
             }
 
             if ($prazo_inicio != "" && $prazo_fim != "") {
-                $conditions["OrdemServico.prazo <="] = $data["OrdemServico"]["prazo_inicio"];
-                $conditions["OrdemServico.prazo >="] = $data["OrdemServico"]["prazo_fim"];
+                $conditions["OrdemServico.prazo <="] = $this->formatDateDB($data["OrdemServico"]["prazo_inicio"]);
+                $conditions["OrdemServico.prazo >="] = $this->formatDateDB($data["OrdemServico"]["prazo_fim"]);
             }
 
             $conditions["OrdemServico.cancelado"] = $cancelado;
@@ -78,36 +78,40 @@ class OrdemServicoController extends AppController {
     public function add() {
         $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
         $modo_entrega = $this->ModoEntrega->find("list", array(
-            "fields" => ["id", "nome"],
+            "fields" => [ "id", "nome"],
             "conditions" => array(
                 "ModoEntrega.ativo" => true
             )
         ));
-
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
     }
 
     public function edit($id) {
-        $this->set("id", $id);
+        $this->set(
+                "id", $id);
     }
 
-    public function templates() {
+    public function
+
+    templates() {
 
     }
 
     public function template_edit($id) {
-        $this->set("id", $id);
+        $this->set(
+                "id", $id);
     }
 
-    public function prioridades() {
+    public function
+
+    prioridades() {
 
     }
 
     public function documento($id) {
 
         $ordem_servico = $this->OrdemServico->read(null, $id);
-
         $this->set("id", $id);
         $this->set("ordem_servico", $ordem_servico);
     }
@@ -116,7 +120,6 @@ class OrdemServicoController extends AppController {
         $this->layout = "print";
 
         $ordem_servico = $this->OrdemServico->read(null, $id);
-
         $this->set("id", $id);
         $this->set("ordem_servico", $ordem_servico);
     }

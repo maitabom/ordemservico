@@ -3,6 +3,46 @@
         $("#ordem_servico_excluir").dialog("open");
         $("#questionParameter").val(id);
     }
+
+    $(function () {
+
+        VMasker(document.querySelector("#OrdemServicoDataEmissaoInicio")).maskPattern("99/99/9999");
+        VMasker(document.querySelector("#OrdemServicoDataEmissaoFim")).maskPattern("99/99/9999");
+        VMasker(document.querySelector("#OrdemServicoPrazoInicio")).maskPattern("99/99/9999");
+        VMasker(document.querySelector("#OrdemServicoPrazoFim")).maskPattern("99/99/9999");
+
+        $("#OrdemServicoDataEmissaoInicio").datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $("#OrdemServicoDataEmissaoFim").datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $("#OrdemServicoPrazoInicio").datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
+
+        $("#OrdemServicoPrazoFim").datepicker({
+            format: "dd/mm/yyyy",
+            todayBtn: "linked",
+            language: "pt-BR",
+            autoclose: true,
+            todayHighlight: true
+        });
+    });
 </script>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
