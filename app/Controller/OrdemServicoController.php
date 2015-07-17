@@ -88,8 +88,25 @@ class OrdemServicoController extends AppController {
     }
 
     public function edit($id) {
-        $this->set(
-                "id", $id);
+        $ordem_servico = $this->OrdemServico->read(null, $id);
+        $ordem_servico["OrdemServico"]["prazo"] = $this->formatDateView($ordem_servico["OrdemServico"]["prazo"]);
+
+        $this->request->data = $ordem_servico;
+
+        $prioridades = [0 => "Baixa", 1 => "Média", 2 => "Alta"];
+        $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
+        $modo_entrega = $this->ModoEntrega->find("list", array(
+            "fields" => [ "id", "nome"],
+            "conditions" => array(
+                "ModoEntrega.ativo" => true
+            )
+        ));
+
+        $this->set("id", $id);
+        $this->set("nome_cliente", $ordem_servico["Cliente"]["razao_social"]);
+        $this->set("equipamentos", $equipamentos);
+        $this->set("modos_entregas", $modo_entrega);
+        $this->set("prioridades", $prioridades);
     }
 
     public function templates() {
@@ -97,13 +114,10 @@ class OrdemServicoController extends AppController {
     }
 
     public function template_edit($id) {
-        $this->set(
-                "id", $id);
+        $this->set("id", $id);
     }
 
-    public function
-
-    prioridades() {
+    public function prioridades() {
 
     }
 
