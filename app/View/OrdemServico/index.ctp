@@ -48,26 +48,35 @@ $this->element("question", array(
                             ?>
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <label for="exampleInputEmail1">Número</label><br/>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                    <?= $this->Form->label("numero", "Número") ?><br/>
+                                    <?= $this->Form->text("numero", array("class" => "form-control", "style" => "width: 100%")) ?>
                                 </div>
                                 <div class="col-xs-4">
-                                    <label for="exampleInputEmail1">Cliente</label><br/>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                    <?= $this->Form->label("cliente", "Cliente") ?><br/>
+                                    <?= $this->Form->text("cliente", array("class" => "form-control", "style" => "width: 100%")) ?>
                                 </div>
                                 <div class=" col-xs-4">
-                                    <label for="exampleInputEmail1">Serviço</label><br/>
-                                    <input type="text" class="form-control" id="exampleInputEmail1">
+                                    <?= $this->Form->label("servico", "Serviço") ?><br/>
+                                    <?= $this->Form->text("servico", array("class" => "form-control", "style" => "width: 100%")) ?>
                                 </div>
-                                <div class=" col-xs-6">
-                                    <label for="exampleInputEmail1">Data de Emissão</label><br/>
-                                    de <input type="text" class="form-control" id="exampleInputEmail1">
-                                    à <input type="text" class="form-control" id="exampleInputEmail1">
+                            </div>
+                            <div style="min-height: 15px">
+
+                            </div>
+                            <div class="row">
+                                <div class=" col-xs-4">
+                                    <?= $this->Form->label("data_emissao", "Data de Emissão") ?><br/>
+                                    de <?= $this->Form->text("data_emissao_inicio", array("class" => "form-control", "style" => "width: 100px")) ?>
+                                    à <?= $this->Form->text("data_emissao_fim", array("class" => "form-control", "style" => "width: 100px")) ?>
                                 </div>
-                                <div class=" col-xs-6">
-                                    <label for="exampleInputEmail1">Prazo de Entrega</label><br/>
-                                    de <input type="text" class="form-control" id="exampleInputEmail1">
-                                    à <input type="text" class="form-control" id="exampleInputEmail1">
+                                <div class="col-xs-4">
+                                    <?= $this->Form->label("data_emissao", "Prazo") ?><br/>
+                                    de <?= $this->Form->text("prazo_inicio", array("class" => "form-control", "style" => "width: 100px")) ?>
+                                    à <?= $this->Form->text("prazo_fim", array("class" => "form-control", "style" => "width: 100px")) ?>
+                                </div>
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <?= $this->Form->checkbox("cancelado") ?> Exibir ordens de serviço canceladas
                                 </div>
                             </div>
                             <div style="min-height: 15px">
