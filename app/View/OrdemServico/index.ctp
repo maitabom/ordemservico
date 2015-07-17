@@ -1,3 +1,26 @@
+<?php
+
+function textoPrioridade($prioridade) {
+    $texto;
+
+    switch ($prioridade) {
+        case 0:
+            $texto = "Baixa";
+            break;
+        case 1:
+            $texto = "Média";
+            break;
+        case 2:
+            $texto = "Alta";
+            break;
+        default:
+            $texto = "Não definido";
+            break;
+    }
+
+    return $texto;
+}
+?>
 <script type="text/javascript">
     function excluir(id) {
         $("#ordem_servico_excluir").dialog("open");
@@ -144,6 +167,7 @@ $this->element("question", array(
                                             <th>Serviço</th>
                                             <th>Data Emissão</th>
                                             <th>Prazo de Entrega</th>
+                                            <th>Prioridade</th>
                                             <th style="width: 14%"></th>
                                         </tr>
                                     </thead>
@@ -155,6 +179,7 @@ $this->element("question", array(
                                                 <td><?= $ordem_servico["OrdemServico"]["servico"] ?></td>
                                                 <td><?= $this->Date->format($ordem_servico["OrdemServico"]["data_criacao"]) ?></td>
                                                 <td><?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></td>
+                                                <td><?= textoPrioridade($ordem_servico["OrdemServico"]["prioridade"]) ?></td>
                                                 <td>
                                                     <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', $ordem_servico["OrdemServico"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
                                                         <i class="fa fa-edit">
