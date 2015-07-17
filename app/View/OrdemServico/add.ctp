@@ -74,6 +74,7 @@ $this->element('message', array(
                     $this->Form->hidden("data_criacao");
                     $this->Form->hidden("concluido");
                     $this->Form->hidden("responsavel");
+                    $this->Form->hidden("cancelado");
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">

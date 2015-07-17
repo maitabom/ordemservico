@@ -92,9 +92,7 @@ class OrdemServicoController extends AppController {
                 "id", $id);
     }
 
-    public function
-
-    templates() {
+    public function templates() {
 
     }
 
@@ -139,6 +137,7 @@ class OrdemServicoController extends AppController {
         $data["OrdemServico"]["data_criacao"] = date("Y-m-d H:i:s");
         $data["OrdemServico"]["prioridade"] = 1;
         $data["OrdemServico"]["concluido"] = false;
+        $data["OrdemServico"]["cancelado"] = false;
         $data["OrdemServico"]["responsavel"] = $this->Session->read("UsuarioID");
 
         try {
