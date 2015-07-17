@@ -6,6 +6,7 @@
 
     $(function () {
 
+        VMasker(document.querySelector("#OrdemServicoNumero")).maskNumber();
         VMasker(document.querySelector("#OrdemServicoDataEmissaoInicio")).maskPattern("99/99/9999");
         VMasker(document.querySelector("#OrdemServicoDataEmissaoFim")).maskPattern("99/99/9999");
         VMasker(document.querySelector("#OrdemServicoPrazoInicio")).maskPattern("99/99/9999");
