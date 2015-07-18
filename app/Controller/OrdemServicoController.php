@@ -140,6 +140,9 @@ class OrdemServicoController extends AppController {
         if ($this->request->is("post")) {
             $data = $this->request->data;
             $this->create($data);
+        } else if ($this->request->is('put')) {
+            $data = $this->request->data;
+            $this->update($data);
         }
     }
 
@@ -163,7 +166,26 @@ class OrdemServicoController extends AppController {
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao gerar a nova ordem de serviço.";
             $this->Dialog->error($mensagem, $ex->getMessage());
-            $this->redirect(array("action" => "cadastro", $data["OrdemServico"]["id"]));
+            $this->redirect(array("action" => "add", $data["OrdemServico"]["id"]));
+        }
+    }
+
+    private function update($data) {
+        $mensagem = "";
+
+        $data["OrdemServico"]["prazo"] = $this->formatDateDB($data["OrdemServico"]["prazo"]);
+        $data["OrdemServico"]["responsavel"] = $this->Session->read("UsuarioID");
+
+        try {
+            $this->OrdemServico->save($data);
+            $this->Dialog->alert("A ordem de serviço foi atualizada com sucesso!");
+
+            $id = $this->OrdemServico->id;
+            $this->redirect(array("action" => "documento", $id));
+        } catch (Exception $ex) {
+            $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
+            $this->Dialog->error($mensagem, $ex->getMessage());
+            $this->redirect(array("action" => "edit", $data["OrdemServico"]["id"]));
         }
     }
 

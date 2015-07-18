@@ -44,7 +44,8 @@ $this->element('message', array(
                         "role" => "form"
                     ));
 
-                    $this->Form->hidden("id", array("value" => $id));
+                    $this->Form->hidden("id");
+                    $this->Form->hidden("cancelado");
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">
