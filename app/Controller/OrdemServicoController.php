@@ -83,6 +83,10 @@ class OrdemServicoController extends AppController {
                 "ModoEntrega.ativo" => true
             )
         ));
+
+        $title = "Gerar Ordem de Serviço";
+
+        $this->set("title_for_layout", $title);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
     }
@@ -102,6 +106,9 @@ class OrdemServicoController extends AppController {
             )
         ));
 
+        $title = "Editar Ordem de Serviço";
+
+        $this->set("title_for_layout", $title);
         $this->set("id", $id);
         $this->set("nome_cliente", $ordem_servico["Cliente"]["razao_social"]);
         $this->set("equipamentos", $equipamentos);
@@ -124,6 +131,10 @@ class OrdemServicoController extends AppController {
     public function documento($id) {
 
         $ordem_servico = $this->OrdemServico->read(null, $id);
+
+        $title = "Ordem de Serviço $id";
+
+        $this->set("title_for_layout", $title);
         $this->set("id", $id);
         $this->set("ordem_servico", $ordem_servico);
     }
@@ -132,6 +143,9 @@ class OrdemServicoController extends AppController {
         $this->layout = "print";
 
         $ordem_servico = $this->OrdemServico->read(null, $id);
+        $title = "Ordem de Serviço $id";
+
+        $this->set("title_for_layout", $title);
         $this->set("id", $id);
         $this->set("ordem_servico", $ordem_servico);
     }
