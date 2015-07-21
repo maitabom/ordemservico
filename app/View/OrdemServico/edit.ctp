@@ -25,7 +25,7 @@ $this->element('message', array(
     <section class="content-header">
         <h1>Editar Ordem de Serviço <small><?= $this->Format->zeroPad($id) ?></small></h1>
         <ol class="breadcrumb">
-            <li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
+            <   li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#"><i class="fa fa-files-o"></i>Ordem de Serviço</a></li>
             <li class="active"><a href="#"><i class="fa fa-edit"></i>Editar Ordem de Serviço</a></li>
         </ol>
@@ -44,8 +44,8 @@ $this->element('message', array(
                         "role" => "form"
                     ));
 
-                    $this->Form->hidden("id");
-                    $this->Form->hidden("cancelado");
+                    echo $this->Form->hidden("id");
+                    echo $this->Form->hidden("cancelado");
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">

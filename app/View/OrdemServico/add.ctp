@@ -70,11 +70,11 @@ $this->element('message', array(
                         "role" => "form"
                     ));
 
-                    $this->Form->hidden("prioridade");
-                    $this->Form->hidden("data_criacao");
-                    $this->Form->hidden("concluido");
-                    $this->Form->hidden("responsavel");
-                    $this->Form->hidden("cancelado");
+                    echo $this->Form->hidden("prioridade");
+                    echo $this->Form->hidden("data_criacao");
+                    echo $this->Form->hidden("concluido");
+                    echo $this->Form->hidden("responsavel");
+                    echo $this->Form->hidden("cancelado");
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">
