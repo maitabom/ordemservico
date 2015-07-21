@@ -1,3 +1,26 @@
+<?php
+
+function textoPrioridade($prioridade) {
+    $texto;
+
+    switch ($prioridade) {
+        case 0:
+            $texto = "Baixa";
+            break;
+        case 1:
+            $texto = "Média";
+            break;
+        case 2:
+            $texto = "Alta";
+            break;
+        default:
+            $texto = "Não definido";
+            break;
+    }
+
+    return $texto;
+}
+?>
 <?= $this->element('menu'); ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -13,7 +36,7 @@
                     <span class="info-box-icon bg-aqua"><i class="fa fa-gear"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Tarefas Ativas</span>
-                        <span class="info-box-number">35</span>
+                        <span class="info-box-number"><?= $tarefas_ativas ?></span>
                     </div><!-- /.info-box-content -->
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -21,8 +44,8 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-green"><i class="fa fa-thumbs-o-up"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Concluídas em 7 dias</span>
-                        <span class="info-box-number">12</span>
+                        <span class="info-box-text">Concluídas</span>
+                        <span class="info-box-number"><?= $tarefas_concluidas ?></span>
                     </div><!-- /.info-box-content -->
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -31,8 +54,8 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-red"><i class="fa fa-frown-o"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Canceladas em 7 dias</span>
-                        <span class="info-box-number">4</span>
+                        <span class="info-box-text">Canceladas</span>
+                        <span class="info-box-number"><?= $tarefas_canceladas ?></span>
                     </div><!-- /.info-box-content -->
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -40,8 +63,8 @@
                 <div class="info-box">
                     <span class="info-box-icon bg-yellow"><i class="fa fa-group"></i></span>
                     <div class="info-box-content">
-                        <span class="info-box-text">Clientes Atendidos</span>
-                        <span class="info-box-number">40</span>
+                        <span class="info-box-text">Clientes Cadastrados</span>
+                        <span class="info-box-number"><?= $clientes ?></span>
                     </div><!-- /.info-box-content -->
                 </div><!-- /.info-box -->
             </div><!-- /.col -->
@@ -54,48 +77,34 @@
                     </div><!-- /.box-header -->
                     <div class="box-body">
                         <div class="table-responsive">
-                            <table class="table no-margin">
-                                <thead>
-                                    <tr>
-                                        <th>Número</th>
-                                        <th>Cliente</th>
-                                        <th>Serviço</th>
-                                        <th>Prazo de Entrega</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><?= $this->Html->link("007781", array("controller" => "ordem_servico", "action" => "documento", 23471)) ?></td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>25/07/2015</td>
-                                    </tr>
-                                    <tr>
-                                        <td><?= $this->Html->link("007782", array("controller" => "ordem_servico", "action" => "documento", 23471)) ?></td>
-                                        <td>Restaurante Super Lanche</td>
-                                        <td>Adesivo - Preços para cardápio</td>
-                                        <td>25/05/2015</td>
-                                    </tr>
-                                    <tr>
-                                        <td><?= $this->Html->link("007783", array("controller" => "ordem_servico", "action" => "documento", 23471)) ?></td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>25/02/2015</td>
-                                    </tr>
-                                    <tr>
-                                        <td><?= $this->Html->link("007784", array("controller" => "ordem_servico", "action" => "documento", 23471)) ?></td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>25/02/2015</td>
-                                    </tr>
-                                    <tr>
-                                        <td><?= $this->Html->link("007785", array("controller" => "ordem_servico", "action" => "documento", 23471)) ?></td>
-                                        <td>Pizzaria Flamengo</td>
-                                        <td>Faixa Promocional - Anuncio</td>
-                                        <td>25/02/2015</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <?php if (count($ordens_servicos) == 0): ?>
+                                <div>
+                                    <h2>Nenhuma ordem de serviço encontrada. Para gerar a nova ordem de serviço, <?= $this->Html->link("clique aqui", array("controller" => "ordem_servico", "action" => "add")) ?>.</h2>
+                                </div>
+                            <?php else: ?>
+                                <table class="table no-margin">
+                                    <thead>
+                                        <tr>
+                                            <th>Número</th>
+                                            <th>Cliente</th>
+                                            <th>Serviço</th>
+                                            <th>Prazo de Entrega</th>
+                                            <th>Prioridade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach ($ordens_servicos as $ordem_servico): ?>
+                                            <tr>
+                                                <td><?= $this->Html->link($this->Format->zeroPad($ordem_servico["OrdemServico"]["id"]), array("controller" => "ordem_servico", "action" => "documento", $ordem_servico["OrdemServico"]["id"])) ?></td>
+                                                <td><abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></td>
+                                                <td><?= $ordem_servico["OrdemServico"]["servico"] ?></td>
+                                                <td><?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></td>
+                                                <td><?= textoPrioridade($ordem_servico["OrdemServico"]["prioridade"]) ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            <?php endif; ?>
                         </div><!-- /.table-responsive -->
                     </div><!-- /.box-body -->
                     <div class="box-footer clearfix">

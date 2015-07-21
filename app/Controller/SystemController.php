@@ -10,6 +10,8 @@ class SystemController extends AppController {
 
     public function beforeFilter() {
         $this->loadModel('Usuario');
+        $this->loadModel('OrdemServico');
+        $this->loadModel('Cliente');
         parent::beforeFilter();
     }
 
@@ -189,9 +191,61 @@ class SystemController extends AppController {
     public function board() {
 
         if ($this->isAuthorized()) {
+
+            $options = array(
+                "conditions" => array(
+                    "OrdemServico.cancelado" => false
+                ),
+                "order" => array(
+                    "OrdemServico.id" => "DESC"
+                ),
+                "limit" => 5
+            );
+
+            $options_ativos = array(
+                "conditions" => array(
+                    "OrdemServico.cancelado" => false,
+                    "OrdemServico.concluido" => false
+                ),
+                "order" => array(
+                    "OrdemServico.id" => "DESC"
+                )
+            );
+
+            $options_concluidos = array(
+                "conditions" => array(
+                    "OrdemServico.concluido" => true
+                ),
+                "order" => array(
+                    "OrdemServico.id" => "DESC"
+                )
+            );
+
+            $options_cancelados = array(
+                "conditions" => array(
+                    "OrdemServico.cancelado" => true
+                ),
+                "order" => array(
+                    "OrdemServico.id" => "DESC"
+                )
+            );
+
+            $ordem_servico = $this->OrdemServico->find("all", $options);
+            $qtd_ordens = $this->OrdemServico->find("count", $options_ativos);
+            $qtd_ordens_concluidas = $this->OrdemServico->find("count", $options_concluidos);
+            $qtd_ordens_canceladas = $this->OrdemServico->find("count", $options_cancelados);
+            $qtd_clientes = $this->Cliente->find("count");
+
             $title = "Painel";
+
             $this->set("title_for_layout", $title);
+            $this->set("ordens_servicos", $ordem_servico);
+            $this->set("tarefas_ativas", $qtd_ordens);
+            $this->set("tarefas_concluidas", $qtd_ordens_concluidas);
+            $this->set("tarefas_canceladas", $qtd_ordens_canceladas);
+            $this->set("clientes", $qtd_clientes);
         } else {
+            $this->Session->setFlash("A sessão do usuário foi expirada.");
             $this->redirect(array("action" => "login"));
         }
     }
