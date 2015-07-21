@@ -10,6 +10,81 @@
             todayHighlight: true
         });
     });
+
+    function validar() {
+        var mensagem = "";
+
+        if ($("#OrdemServicoServico").val() === "") {
+            mensagem += "- É obrigatório informar o tipo de serviço a ser prestado na ordem de serviço.\n";
+            $("#OrdemServicoServico").css("border-color", "red");
+        } else {
+            $("#OrdemServicoServico").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoMaterial").val() === "") {
+            mensagem += "- É obrigatório informar o materal a ser utilizado no serviço.\n";
+            $("#OrdemServicoMaterial").css("border-color", "red");
+        } else {
+            $("#OrdemServicoMaterial").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoFormato").val() === "") {
+            mensagem += "- E obrigatorio informar o formato.\n";
+            $("#OrdemServicoFormato").css("border-color", "red");
+        } else {
+            $("#OrdemServicoFormato").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoFormatoFinal").val() === "") {
+            mensagem += "- É obrigatório informar o formato final.\n";
+            $("#OrdemServicoFormatoFinal").css("border-color", "red");
+        } else {
+            $("#OrdemServicoFormatoFinal").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoQuantidadeProducao").val() === "") {
+            mensagem += "- É obrigatório informar a quantidade de produção.\n";
+            $("#OrdemServicoQuantidadeProducao").css("border-color", "red");
+        } else {
+            $("#OrdemServicoQuantidadeProducao").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoQuantidadeCliente").val() === "") {
+            mensagem += "- É obrigatório informar a quantidade dada ao cliente.\n";
+            $("#OrdemServicoQuantidadeCliente").css("border-color", "red");
+        } else {
+            $("#OrdemServicoQuantidadeCliente").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoAcabamento").val() === "") {
+            mensagem += "- É obrigatório informar o acabamento a respeito da ordem de serviço.\n";
+            $("#OrdemServicoAcabamento").css("border-color", "red");
+        } else {
+            $("#OrdemServicoAcabamento").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoEquipamento").val() === "") {
+            mensagem += "- É obrigatório informar o equipamento relacionado à ordem de serviço.\n";
+            $("#OrdemServicoEquipamento").css("border-color", "red");
+        } else {
+            $("#OrdemServicoEquipamento").css("border-color", "#D2D6DE");
+        }
+
+        if ($("#OrdemServicoModoEntrega").val() === "") {
+            mensagem += "- É obrigatório informar a forma de entrega à ordem de serviço.\n";
+            $("#OrdemServicoModoEntrega").css("border-color", "red");
+        } else {
+            $("#OrdemServicoModoEntrega").css("border-color", "#D2D6DE");
+        }
+
+        if (mensagem == "") {
+            return true;
+        } else {
+            $("#cadastro_erro").dialog("open");
+            $("#txtmaisdetalhes").val(mensagem);
+            return false;
+        }
+    }
 </script>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
@@ -115,7 +190,7 @@ $this->element('message', array(
                             <button type="button" class="btn btn-danger">Cancelar</button>
                             <button type="button" class="btn btn-warning">Criar Template</button>
                             <button type="button" class="btn btn-success">Marcar Concluído</button>
-                            <button type="submit" class="btn btn-success"><b>Salvar</b></button>
+                            <button type="submit" onclick="return validar();" class="btn btn-success"><b>Salvar</b></button>
                         </div>
                     </div><!-- /.box-body -->
                     <?= $this->Form->end() ?>
