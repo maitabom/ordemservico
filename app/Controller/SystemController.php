@@ -122,7 +122,9 @@ class SystemController extends AppController {
                     "token" => $token
                 );
 
-                if ($this->sendEmailTemplate($header, "lembrarsenha", $params)) {
+                $this->Sender->foo();
+
+                if ($this->Sender->sendEmailTemplate($header, "lembrarsenha", $params)) {
                     $this->Session->setFlash("A mensagem foi enviada com sucesso!");
                 } else {
                     $this->Session->setFlash("Ocorreu um erro ao enviar a mensagem");
