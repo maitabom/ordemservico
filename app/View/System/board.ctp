@@ -1,26 +1,3 @@
-<?php
-
-function textoPrioridade($prioridade) {
-    $texto;
-
-    switch ($prioridade) {
-        case 0:
-            $texto = "Baixa";
-            break;
-        case 1:
-            $texto = "Média";
-            break;
-        case 2:
-            $texto = "Alta";
-            break;
-        default:
-            $texto = "Não definido";
-            break;
-    }
-
-    return $texto;
-}
-?>
 <?= $this->element('menu'); ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -99,7 +76,7 @@ function textoPrioridade($prioridade) {
                                                 <td><abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></td>
                                                 <td><?= $ordem_servico["OrdemServico"]["servico"] ?></td>
                                                 <td><?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></td>
-                                                <td><?= textoPrioridade($ordem_servico["OrdemServico"]["prioridade"]) ?></td>
+                                                <td><?= $this->Business->priorityText($ordem_servico["OrdemServico"]["prioridade"]) ?></td>
                                             </tr>
                                         <?php endforeach; ?>
                                     </tbody>
