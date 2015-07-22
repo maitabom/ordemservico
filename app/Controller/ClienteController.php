@@ -23,7 +23,7 @@ class ClienteController extends AppController {
             $data = $this->request->data;
             $mostrar = $data["Cliente"]["mostra"];
             $tipo_cliente = $data["Cliente"]["tipo_cliente"];
-            $documento = $this->clearMask($data["Cliente"]["documento_fiscal"]);
+            $documento = $this->Format->clearMask($data["Cliente"]["documento_fiscal"]);
             $uf = $data["Cliente"]["uf"];
 
             $conditions["OR"] = array(
@@ -106,10 +106,10 @@ class ClienteController extends AppController {
 
             $id_cliente = $data["Cliente"]["id"];
 
-            $data["Cliente"]["cep"] = $this->clearMask($data["Cliente"]["cep"]);
-            $data["Cliente"]["telefone"] = $this->clearMask($data["Cliente"]["telefone"]);
-            $data["Cliente"]["celular"] = $this->clearMask($data["Cliente"]["celular"]);
-            $data["Cliente"]["documento_fiscal"] = $this->clearMask($data["Cliente"]["documento_fiscal"]);
+            $data["Cliente"]["cep"] = $this->Format->clearMask($data["Cliente"]["cep"]);
+            $data["Cliente"]["telefone"] = $this->Format->clearMask($data["Cliente"]["telefone"]);
+            $data["Cliente"]["celular"] = $this->Format->clearMask($data["Cliente"]["celular"]);
+            $data["Cliente"]["documento_fiscal"] = $this->Format->clearMask($data["Cliente"]["documento_fiscal"]);
 
             if ($id_cliente == 0) {
                 $data["Cliente"]["data_cadastro"] = date("Y-m-d H:i:s");
