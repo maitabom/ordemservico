@@ -43,13 +43,13 @@ class OrdemServicoController extends AppController {
             $conditions["OrdemServico.servico LIKE"] = "%" . $data["OrdemServico"]["servico"] . "%";
 
             if ($emissao_inicio != "" && $emissao_fim != "") {
-                $conditions["OrdemServico.data_criacao >="] = $this->formatDateDB($data["OrdemServico"]["data_emissao_inicio"]);
-                $conditions["OrdemServico.data_criacao <="] = $this->formatDateDB($data["OrdemServico"]["data_emissao_fim"]);
+                $conditions["OrdemServico.data_criacao >="] = $this->Date->formatDateDB($data["OrdemServico"]["data_emissao_inicio"]);
+                $conditions["OrdemServico.data_criacao <="] = $this->Date->formatDateDB($data["OrdemServico"]["data_emissao_fim"]);
             }
 
             if ($prazo_inicio != "" && $prazo_fim != "") {
-                $conditions["OrdemServico.prazo <="] = $this->formatDateDB($data["OrdemServico"]["prazo_inicio"]);
-                $conditions["OrdemServico.prazo >="] = $this->formatDateDB($data["OrdemServico"]["prazo_fim"]);
+                $conditions["OrdemServico.prazo <="] = $this->Date->formatDateDB($data["OrdemServico"]["prazo_inicio"]);
+                $conditions["OrdemServico.prazo >="] = $this->Date->formatDateDB($data["OrdemServico"]["prazo_fim"]);
             }
 
             $conditions["OrdemServico.cancelado"] = $cancelado;
@@ -93,7 +93,7 @@ class OrdemServicoController extends AppController {
 
     public function edit($id) {
         $ordem_servico = $this->OrdemServico->read(null, $id);
-        $ordem_servico["OrdemServico"]["prazo"] = $this->formatDateView($ordem_servico["OrdemServico"]["prazo"]);
+        $ordem_servico["OrdemServico"]["prazo"] = $this->Date->formatDateView($ordem_servico["OrdemServico"]["prazo"]);
 
         $this->request->data = $ordem_servico;
 
@@ -163,7 +163,7 @@ class OrdemServicoController extends AppController {
     private function create($data) {
         $mensagem = "";
 
-        $data["OrdemServico"]["prazo"] = $this->formatDateDB($data["OrdemServico"]["prazo"]);
+        $data["OrdemServico"]["prazo"] = $this->Date->formatDateDB($data["OrdemServico"]["prazo"]);
 
         $data["OrdemServico"]["data_criacao"] = date("Y-m-d H:i:s");
         $data["OrdemServico"]["prioridade"] = 1;
@@ -187,7 +187,7 @@ class OrdemServicoController extends AppController {
     private function update($data) {
         $mensagem = "";
 
-        $data["OrdemServico"]["prazo"] = $this->formatDateDB($data["OrdemServico"]["prazo"]);
+        $data["OrdemServico"]["prazo"] = $this->Date->formatDateDB($data["OrdemServico"]["prazo"]);
         $data["OrdemServico"]["responsavel"] = $this->Session->read("UsuarioID");
 
         try {

@@ -46,7 +46,7 @@ class EquipamentoController extends AppController {
 
         if ($id > 0) {
             $data = $this->Equipamento->read(null, $id);
-            $data["Equipamento"]["data_aquisicao"] = $this->formatDateView($data["Equipamento"]["data_aquisicao"]);
+            $data["Equipamento"]["data_aquisicao"] = $this->Date->formatDateView($data["Equipamento"]["data_aquisicao"]);
 
             $this->request->data = $data;
         }
@@ -59,7 +59,7 @@ class EquipamentoController extends AppController {
         if ($this->request->is('post') || $this->request->is('put')) {
             $data = $this->request->data;
 
-            $data["Equipamento"]["data_aquisicao"] = $this->formatDateDB($data["Equipamento"]["data_aquisicao"]);
+            $data["Equipamento"]["data_aquisicao"] = $this->Date->formatDateDB($data["Equipamento"]["data_aquisicao"]);
 
             try {
                 $this->Equipamento->save($data);
