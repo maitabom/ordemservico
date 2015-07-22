@@ -32,9 +32,6 @@ class TokenController extends AppController {
             $dataCriacao = $result["Token"]["datacriacao"];
             $intervalo = $this->Tokin->getInterval($dataCriacao);
 
-            var_dump($dataCriacao);
-            var_dump($intervalo);
-
             if ($intervalo >= $this->horaLimite) {
                 $this->Session->setFlash("Infelizmente, o token informado perdeu a validade. Favor repetir a operação.");
                 $this->Tokin->markUnresolved($id);
