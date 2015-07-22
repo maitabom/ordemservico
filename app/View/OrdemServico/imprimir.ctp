@@ -22,6 +22,7 @@
                 <br/>
                 <b>Modo de Entrega:</b> <?= $ordem_servico["ModoEntrega"]["nome"] ?><br/>
                 <b>Prazo de Entrega:</b> <?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?><br/>
+                <b>Prioridade:</b> <?= $this->Business->priorityText($ordem_servico["OrdemServico"]["prioridade"]) ?><br/>
                 <b>Contato do Cliente:</b> <?= $ordem_servico["OrdemServico"]["contato_cliente"] ?><br/>
                 <b>Criado Por:</b> <?= $ordem_servico["Responsavel"]["nome"] ?>
             </div><!-- /.col -->
