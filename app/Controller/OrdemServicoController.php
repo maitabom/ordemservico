@@ -125,7 +125,20 @@ class OrdemServicoController extends AppController {
     }
 
     public function prioridades() {
+        $ordens_servico = $this->OrdemServico->find("all", array(
+            "conditions" => array(
+                "OrdemServico.cancelado" => false,
+                "OrdemServico.concluido" => false,
+            ), "order" => array(
+                "OrdemServico.prioridade" => "DESC",
+                "OrdemServico.id" => "DESC"
+            )
+        ));
 
+        $title = "Lista de Prioridades";
+
+        $this->set("title_for_layout", $title);
+        $this->set("ordens_servico", $ordens_servico);
     }
 
     public function documento($id) {
