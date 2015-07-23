@@ -38,4 +38,31 @@ class BusinessHelper extends AppHelper {
         return $texto;
     }
 
+    /**
+     * Retorna a cor de acordo com a prioridade da ordem de serviço.
+     * A cor informada é baseada na folha de estilos definida para este site.
+     * @param int $priority Valor representando a prioridade
+     * @return string Cor relacionada a prioridade
+     */
+    public function priorityColor($priority) {
+        $cor = "";
+
+        switch ($priority) {
+            case 0:
+                $cor = "bg-blue";
+                break;
+            case 1:
+                $cor = "bg-yellow";
+                break;
+            case 2:
+                $cor = "bg-red";
+                break;
+            default:
+                $cor = "bg-black";
+                break;
+        }
+
+        return $cor;
+    }
+
 }
