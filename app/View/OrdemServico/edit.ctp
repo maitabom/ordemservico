@@ -85,6 +85,11 @@
             return false;
         }
     }
+
+    function excluir(id) {
+        $("#ordem_servico_excluir").dialog("open");
+        $("#questionParameter").val(id);
+    }
 </script>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
@@ -96,11 +101,48 @@ $this->element('message', array(
     'details' => ''
 ))
 ?>
+
+<?=
+$this->element("question", array(
+    "name" => "ordem_servico_cancelar",
+    "form_name" => "frm_servico_cancelar",
+    "message" => "Deseja cancelar esta ordem de serviço?",
+    "action" => array(
+        "controller" => "ordem_servico",
+        "action" => "cancelar"),
+    "callback" => array(
+        "controller" => "ordem_servico",
+        "action" => "documento", $id),
+    "buttons" => array(
+        "ok" => "Sim",
+        "cancel" => "Não"
+    )
+))
+?>
+
+<?=
+$this->element("question", array(
+    "name" => "ordem_servico_concluir",
+    "form_name" => "frm_servico_cancelar",
+    "message" => "Deseja marcar esta ordem de serviço como concluído?",
+    "action" => array(
+        "controller" => "ordem_servico",
+        "action" => "concluir"),
+    "callback" => array(
+        "controller" => "ordem_servico",
+        "action" => "documento", $id),
+    "buttons" => array(
+        "ok" => "Sim",
+        "cancel" => "Não"
+    )
+))
+?>
+
 <div class="content-wrapper">
     <section class="content-header">
         <h1>Editar Ordem de Serviço <small><?= $this->Format->zeroPad($id) ?></small></h1>
         <ol class="breadcrumb">
-            <   li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#"><i class="fa fa-files-o"></i>Ordem de Serviço</a></li>
             <li class="active"><a href="#"><i class="fa fa-edit"></i>Editar Ordem de Serviço</a></li>
         </ol>
@@ -187,7 +229,7 @@ $this->element('message', array(
 
                         <div style="text-align: right;">
                             <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('ordem_servico') ?>'" type="button" class="btn btn-primary">Voltar</button>
-                            <button type="button" class="btn btn-danger">Cancelar</button>
+                            <button type="button" onclick="cancelar();" class="btn btn-danger">Cancelar</button>
                             <button type="button" class="btn btn-warning">Criar Template</button>
                             <button type="button" class="btn btn-success">Marcar Concluído</button>
                             <button type="submit" onclick="return validar();" class="btn btn-success"><b>Salvar</b></button>

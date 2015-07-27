@@ -173,7 +173,7 @@ class OrdemServicoController extends AppController {
         }
     }
 
-    public function cancelar($id) {
+    public function cancelar() {
         try {
             $ordem_servico = $this->OrdemServico->read(null, $id);
             $ordem_servico["OrdemServico"]["cancelado"] = true;
@@ -187,7 +187,7 @@ class OrdemServicoController extends AppController {
         }
     }
 
-    public function concluir($id) {
+    public function concluir() {
         try {
             $ordem_servico = $this->OrdemServico->read(null, $id);
             $ordem_servico["OrdemServico"]["concluido"] = true;
