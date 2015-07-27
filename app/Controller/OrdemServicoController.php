@@ -176,24 +176,28 @@ class OrdemServicoController extends AppController {
     public function cancelar($id) {
         try {
             $ordem_servico = $this->OrdemServico->read(null, $id);
-            $data["OrdemServico"]["cancelado"] = true;
+            $ordem_servico["OrdemServico"]["cancelado"] = true;
+
             $this->OrdemServico->save($ordem_servico);
+            $this->Dialog->alert("A ordem se serviço foi cancelada com sucesso.");
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
             $this->Dialog->error($mensagem, $ex->getMessage());
-            $this->redirect(array("action" => "documento", $data["OrdemServico"]["id"]));
+            $this->redirect(array("action" => "index"));
         }
     }
 
     public function concluir($id) {
         try {
             $ordem_servico = $this->OrdemServico->read(null, $id);
-            $data["OrdemServico"]["concluido"] = true;
+            $ordem_servico["OrdemServico"]["concluido"] = true;
+
             $this->OrdemServico->save($ordem_servico);
+            $this->Dialog->alert("A ordem se serviço foi concluida com sucesso.");
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
             $this->Dialog->error($mensagem, $ex->getMessage());
-            $this->redirect(array("action" => "documento", $data["OrdemServico"]["id"]));
+            $this->redirect(array("action" => "index"));
         }
     }
 
