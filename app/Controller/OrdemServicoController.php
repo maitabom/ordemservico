@@ -179,7 +179,7 @@ class OrdemServicoController extends AppController {
             $ordem_servico["OrdemServico"]["cancelado"] = true;
 
             $this->OrdemServico->save($ordem_servico);
-            $this->Dialog->alert("A ordem se serviço foi cancelada com sucesso.");
+            $this->Dialog->alert("A ordem de serviço foi cancelada com sucesso.");
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
             $this->Dialog->error($mensagem, $ex->getMessage());
@@ -193,7 +193,7 @@ class OrdemServicoController extends AppController {
             $ordem_servico["OrdemServico"]["concluido"] = true;
 
             $this->OrdemServico->save($ordem_servico);
-            $this->Dialog->alert("A ordem se serviço foi concluida com sucesso.");
+            $this->Dialog->alert("A ordem de serviço foi concluida com sucesso.");
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
             $this->Dialog->error($mensagem, $ex->getMessage());
