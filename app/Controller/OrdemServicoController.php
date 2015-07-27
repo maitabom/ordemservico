@@ -173,6 +173,30 @@ class OrdemServicoController extends AppController {
         }
     }
 
+    public function cancelar($id) {
+        try {
+            $ordem_servico = $this->OrdemServico->read(null, $id);
+            $data["OrdemServico"]["cancelado"] = true;
+            $this->OrdemServico->save($ordem_servico);
+        } catch (Exception $ex) {
+            $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
+            $this->Dialog->error($mensagem, $ex->getMessage());
+            $this->redirect(array("action" => "documento", $data["OrdemServico"]["id"]));
+        }
+    }
+
+    public function concluir($id) {
+        try {
+            $ordem_servico = $this->OrdemServico->read(null, $id);
+            $data["OrdemServico"]["concluido"] = true;
+            $this->OrdemServico->save($ordem_servico);
+        } catch (Exception $ex) {
+            $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
+            $this->Dialog->error($mensagem, $ex->getMessage());
+            $this->redirect(array("action" => "documento", $data["OrdemServico"]["id"]));
+        }
+    }
+
     private function create($data) {
         $mensagem = "";
 
