@@ -1,3 +1,11 @@
+<?php
+$retorno = null;
+
+if (isset($callback)) {
+    $retorno = $callback;
+}
+?>
+
 <script type="text/javascript">
     $(function () {
         $("<?= '#' . $name ?>").dialog({
@@ -31,6 +39,7 @@
         ));
 
         echo $this->Form->hidden("question.parameter");
+        echo $this->Form->hidden("question.callback", array("value" => $retorno));
         ?>
 
         <div class="modal-content">
