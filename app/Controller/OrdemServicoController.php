@@ -90,6 +90,7 @@ class OrdemServicoController extends AppController {
     }
 
     public function add() {
+        $prioridades = [0 => "Baixa", 1 => "Média", 2 => "Alta"];
         $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
         $modo_entrega = $this->ModoEntrega->find("list", array(
             "fields" => [ "id", "nome"],
@@ -103,6 +104,7 @@ class OrdemServicoController extends AppController {
         $this->set("title_for_layout", $title);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
+        $this->set("prioridades", $prioridades);
     }
 
     public function edit($id) {
@@ -232,7 +234,6 @@ class OrdemServicoController extends AppController {
         $data["OrdemServico"]["prazo"] = $this->Date->formatDateDB($data["OrdemServico"]["prazo"]);
 
         $data["OrdemServico"]["data_criacao"] = date("Y-m-d H:i:s");
-        $data["OrdemServico"]["prioridade"] = 1;
         $data["OrdemServico"]["concluido"] = false;
         $data["OrdemServico"]["cancelado"] = false;
         $data["OrdemServico"]["responsavel"] = $this->Session->read("UsuarioID");

@@ -110,6 +110,13 @@
             $("#OrdemServicoModoEntrega").css("border-color", "#D2D6DE");
         }
 
+        if ($("#OrdemServicoPrioridade").val() === "") {
+            mensagem += "- É obrigatório informar a prioridade da ordem de serviço.\n";
+            $("#OrdemServicoPrioridade").css("border-color", "red");
+        } else {
+            $("#OrdemServicoPrioridade").css("border-color", "#D2D6DE");
+        }
+
         if (mensagem == "") {
             return true;
         } else {
@@ -152,7 +159,6 @@ $this->element('message', array(
                         "role" => "form"
                     ));
 
-                    echo $this->Form->hidden("prioridade");
                     echo $this->Form->hidden("data_criacao");
                     echo $this->Form->hidden("concluido");
                     echo $this->Form->hidden("responsavel");
@@ -200,17 +206,21 @@ $this->element('message', array(
                             <?= $this->Form->label("arquivo", "Arquivo") ?>
                             <?= $this->Form->text("arquivo", array("class" => "form-control", "maxlength" => 255)) ?>
                         </div>
-                        <div class="form-group col-xs-4">
+                        <div class="form-group col-xs-3">
                             <?= $this->Form->label("equipamento", "Equipamento Par Saída") ?>
                             <?= $this->Form->select("equipamento", $equipamentos, array("class" => "form-control")) ?>
                         </div>
-                        <div class="form-group col-xs-4">
+                        <div class="form-group col-xs-3">
                             <?= $this->Form->label("modo_entrega", "Modo de Entrega") ?>
                             <?= $this->Form->select("modo_entrega", $modos_entregas, array("class" => "form-control")) ?>
                         </div>
-                        <div class="form-group col-xs-4">
+                        <div class="form-group col-xs-3">
                             <?= $this->Form->label("contato_cliente", "Contato do Cliente") ?>
                             <?= $this->Form->text("contato_cliente", array("class" => "form-control", "maxlength" => 50)) ?>
+                        </div>
+                        <div class="form-group col-xs-3">
+                            <?= $this->Form->label("prioridade", "Prioridade") ?>
+                            <?= $this->Form->select("prioridade", $prioridades, array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-12">
                             <?= $this->Form->label("observacoes", "Observações") ?>
