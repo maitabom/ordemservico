@@ -173,29 +173,38 @@ class OrdemServicoController extends AppController {
         }
     }
 
-    public function cancelar() {
-        try {
-            $ordem_servico = $this->OrdemServico->read(null, $id);
-            $ordem_servico["OrdemServico"]["cancelado"] = true;
+    public function cancelar($id) {
 
-            $this->OrdemServico->save($ordem_servico);
+        try {
+            $data = $this->request->data;
+            $destino = unserialize($data["question"]["callback"]);
+
+            $this->OrdemServico->id = $id;
+            $this->OrdemServico->saveField("cancelado", true);
+
             $this->Dialog->alert("A ordem de serviço foi cancelada com sucesso.");
+            $this->redirect($destino);
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
+
             $this->Dialog->error($mensagem, $ex->getMessage());
             $this->redirect(array("action" => "index"));
         }
     }
 
-    public function concluir() {
+    public function concluir($id) {
         try {
-            $ordem_servico = $this->OrdemServico->read(null, $id);
-            $ordem_servico["OrdemServico"]["concluido"] = true;
+            $data = $this->request->data;
+            $destino = unserialize($data["question"]["callback"]);
 
-            $this->OrdemServico->save($ordem_servico);
+            $this->OrdemServico->id = $id;
+            $this->OrdemServico->saveField("concluido", true);
+
             $this->Dialog->alert("A ordem de serviço foi concluida com sucesso.");
+            $this->redirect($destino);
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
+
             $this->Dialog->error($mensagem, $ex->getMessage());
             $this->redirect(array("action" => "index"));
         }
