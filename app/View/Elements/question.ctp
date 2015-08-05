@@ -39,7 +39,7 @@ if (isset($callback)) {
         ));
 
         echo $this->Form->hidden("question.parameter");
-        echo $this->Form->hidden("question.callback", array("value" => $retorno));
+        echo $this->Form->hidden("question.callback", array("value" => serialize($retorno)));
         ?>
 
         <div class="modal-content">
