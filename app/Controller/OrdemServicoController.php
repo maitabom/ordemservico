@@ -128,6 +128,8 @@ class OrdemServicoController extends AppController {
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
         $this->set("prioridades", $prioridades);
+        $this->set("cancelado", $ordem_servico["OrdemServico"]["cancelado"]);
+        $this->set("concluido", $ordem_servico["OrdemServico"]["concluido"]);
     }
 
     public function templates() {
