@@ -29,7 +29,7 @@ class OrdemServicoController extends AppController {
             $emissao_fim = $data["OrdemServico"]["data_emissao_fim"];
             $prazo_inicio = $data["OrdemServico"]["prazo_inicio"];
             $prazo_fim = $data["OrdemServico"]["prazo_fim"];
-            $cancelado = $data["OrdemServico"]["cancelado"];
+            $mostrar = $data["OrdemServico"]["mostrar"];
 
             if ($numero != "") {
                 $conditions["OrdemServico.id"] = $data["OrdemServico"]["numero"];
@@ -52,9 +52,21 @@ class OrdemServicoController extends AppController {
                 $conditions["OrdemServico.prazo >="] = $this->Date->formatDateDB($data["OrdemServico"]["prazo_fim"]);
             }
 
-            $conditions["OrdemServico.cancelado"] = $cancelado;
+            switch ($mostrar) {
+                case"A":
+                    $conditions["OrdemServico.cancelado"] = false;
+                    $conditions["OrdemServico.concluido"] = false;
+                    break;
+                case"C":
+                    $conditions["OrdemServico.cancelado"] = true;
+                    break;
+                case"F":
+                    $conditions["OrdemServico.concluido"] = true;
+                    break;
+            }
         } else {
             $conditions["OrdemServico.cancelado"] = false;
+            $conditions["OrdemServico.concluido"] = false;
         }
 
         $options = array(
@@ -68,11 +80,13 @@ class OrdemServicoController extends AppController {
         $this->paginate = $options;
         $ordem_servico = $this->paginate("OrdemServico");
         $qtd_ordens = $this->OrdemServico->find("count", array("conditions" => $conditions));
+        $status_ordens = ["A" => "Ativos", "C" => "Cancelados", "F" => "Concluídos", "T" => "Todos"];
         $title = "Lista de Ordens de Serviço";
 
         $this->set("title_for_layout", $title);
         $this->set("ordens_servicos", $ordem_servico);
         $this->set("qtd_ordens", $qtd_ordens);
+        $this->set("status_ordens", $status_ordens);
     }
 
     public function add() {

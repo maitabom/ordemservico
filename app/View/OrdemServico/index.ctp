@@ -116,15 +116,16 @@ $this->element("question", array(
                                     à <?= $this->Form->text("prazo_fim", array("class" => "form-control", "style" => "width: 100px")) ?>
                                 </div>
                                 <div class="col-xs-4">
-                                    <br/>
-                                    <?= $this->Form->checkbox("cancelado") ?> Exibir ordens de serviço canceladas
+                                    <?= $this->Form->label("mostrar", "Mostrar") ?><br/>
+                                    <?= $this->Form->select("mostrar", $status_ordens, array("empty" => false, "class" => "form-control", "style" => "width: 100%")) ?>
                                 </div>
                             </div>
                             <div style="min-height: 15px">
 
                             </div>
-                            <div style="text-align: right;">
-                                <button type="button" id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('ordem_servico', 'add') . '\'' ?>">Novo</button>
+                            <div style="text-align: right;
+                                 ">
+                                <button type="button" id="btnNovo" class="btn btn-success" onclick="< ? = 'window.location = \''.$this - > Url - > make('ordem_servico', 'add').'\'' ? >">Novo</button>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
                             <?php echo $this->Form->end(); ?>
