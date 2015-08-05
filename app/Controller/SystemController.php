@@ -196,7 +196,8 @@ class SystemController extends AppController {
 
             $options = array(
                 "conditions" => array(
-                    "OrdemServico.cancelado" => false
+                    "OrdemServico.cancelado" => false,
+                    "OrdemServico.concluido" => false
                 ),
                 "order" => array(
                     "OrdemServico.id" => "DESC"
