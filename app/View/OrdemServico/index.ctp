@@ -123,8 +123,7 @@ $this->element("question", array(
                             <div style="min-height: 15px">
 
                             </div>
-                            <div style="text-align: right;
-                                 ">
+                            <div style="text-align: right;">
                                 <button type="button" id="btnNovo" class="btn btn-success" onclick="< ? = 'window.location = \''.$this - > Url - > make('ordem_servico', 'add').'\'' ? >">Novo</button>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
