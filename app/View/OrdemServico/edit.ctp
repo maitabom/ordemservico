@@ -86,8 +86,13 @@
         }
     }
 
-    function excluir(id) {
-        $("#ordem_servico_excluir").dialog("open");
+    function cancelar(id) {
+        $("#ordem_servico_cancelar").dialog("open");
+        $("#questionParameter").val(id);
+    }
+
+    function concluir(id) {
+        $("#ordem_servico_concluir").dialog("open");
         $("#questionParameter").val(id);
     }
 </script>
@@ -109,7 +114,7 @@ $this->element("question", array(
     "message" => "Deseja cancelar esta ordem de serviço?",
     "action" => array(
         "controller" => "ordem_servico",
-        "action" => "cancelar"),
+        "action" => "cancelar", $id),
     "callback" => array(
         "controller" => "ordem_servico",
         "action" => "documento", $id),
@@ -127,7 +132,7 @@ $this->element("question", array(
     "message" => "Deseja marcar esta ordem de serviço como concluído?",
     "action" => array(
         "controller" => "ordem_servico",
-        "action" => "concluir"),
+        "action" => "concluir", $id),
     "callback" => array(
         "controller" => "ordem_servico",
         "action" => "documento", $id),
@@ -231,7 +236,7 @@ $this->element("question", array(
                             <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('ordem_servico') ?>'" type="button" class="btn btn-primary">Voltar</button>
                             <button type="button" onclick="cancelar();" class="btn btn-danger">Cancelar</button>
                             <button type="button" class="btn btn-warning">Criar Template</button>
-                            <button type="button" class="btn btn-success">Marcar Concluído</button>
+                            <button type="button" onclick="concluir();" class="btn btn-success">Marcar Concluído</button>
                             <button type="submit" onclick="return validar();" class="btn btn-success"><b>Salvar</b></button>
                         </div>
                     </div><!-- /.box-body -->
