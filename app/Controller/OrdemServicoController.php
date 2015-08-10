@@ -194,14 +194,21 @@ class OrdemServicoController extends AppController {
     public function cancelar($id) {
 
         try {
+
             $data = $this->request->data;
-            $destino = unserialize($data["question"]["callback"]);
+            $destino = null;
+
+            if ($this->request->is("put")) {
+                $destino = unserialize($data["question"]["callback"]);
+            }
 
             $this->OrdemServico->id = $id;
             $this->OrdemServico->saveField("cancelado", true);
 
-            $this->Dialog->alert("A ordem de serviço foi cancelada com sucesso.");
-            $this->redirect($destino);
+            if ($this->request->is("put")) {
+                $this->Dialog->alert("A ordem de serviço foi cancelada com sucesso.");
+                $this->redirect($destino);
+            }
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
 
@@ -213,13 +220,19 @@ class OrdemServicoController extends AppController {
     public function concluir($id) {
         try {
             $data = $this->request->data;
-            $destino = unserialize($data["question"]["callback"]);
+            $destino = null;
+
+            if ($this->request->is("put")) {
+                $destino = unserialize($data["question"]["callback"]);
+            }
 
             $this->OrdemServico->id = $id;
             $this->OrdemServico->saveField("concluido", true);
 
-            $this->Dialog->alert("A ordem de serviço foi concluida com sucesso.");
-            $this->redirect($destino);
+            if ($this->request->is("put")) {
+                $this->Dialog->alert("A ordem de serviço foi concluida com sucesso.");
+                $this->redirect($destino);
+            }
         } catch (Exception $ex) {
             $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
 
