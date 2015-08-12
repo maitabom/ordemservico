@@ -95,6 +95,13 @@
         $("#ordem_servico_concluir").dialog("open");
         $("#questionParameter").val(id);
     }
+
+    function criarModelo() {
+        if (validar()) {
+            $("#OrdemServicoEditForm").attr("action", "<?= $this->Url->relative('/ordem_servico/template_create') ?>");
+            $("#OrdemServicoEditForm").submit();
+        }
+    }
 </script>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
@@ -292,7 +299,7 @@ $this->element("question", array(
                             <?php if ($cancelado == false && $concluido == false): ?>
                                 <button type="button" onclick="cancelar();" class="btn btn-danger">Cancelar</button>
                             <?php endif; ?>
-                            <button type="button" class="btn btn-warning">Criar Template</button>
+                            <button type="button" onclick="criarModelo()" class="btn btn-warning">Criar Template</button>
                             <?php if ($cancelado == false && $concluido == false): ?>
                                 <button type="button" onclick="concluir();" class="btn btn-success">Marcar Concluído</button>
                             <?php endif; ?>
