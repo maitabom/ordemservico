@@ -12,6 +12,7 @@ class OrdemServicoController extends AppController {
         $this->loadModel('Cliente');
         $this->loadModel('Usuario');
         $this->loadModel('OrdemServico');
+        $this->loadModel('OrdemServicoModelo');
         $this->loadModel('Equipamento');
         $this->loadModel('ModoEntrega');
         $this->controlAuth();
@@ -142,6 +143,42 @@ class OrdemServicoController extends AppController {
         $this->set("id", $id);
     }
 
+    public function template_create() {
+
+        $data = $this->request->data;
+
+        $modelo = array(
+            "OrdemServicoModelo" => array(
+                "id_cliente" => $data["OrdemServico"]["id_cliente"],
+                "servico" => $data["OrdemServico"]["servico"],
+                "material" => $data["OrdemServico"]["material"],
+                "formato" => $data["OrdemServico"]["formato"],
+                "formato_final" => $data["OrdemServico"]["formato_final"],
+                "quantidade_producao" => $data["OrdemServico"]["quantidade_producao"],
+                "quantidade_cliente" => $data["OrdemServico"]["quantidade_cliente"],
+                "acabamento" => $data["OrdemServico"]["acabamento"],
+                "data_criacao" => date("Y-m-d H:i:s"),
+                "arquivo" => $data["OrdemServico"]["arquivo"],
+                "equipamento" => $data["OrdemServico"]["equipamento"],
+                "modo_entrega" => $data["OrdemServico"]["modo_entrega"],
+                "contato_cliente" => $data["OrdemServico"]["modo_entrega"],
+                "ordem_servico_origem" => $data["OrdemServico"]["id"]
+            )
+        );
+
+
+        try {
+            $this->OrdemServicoModelo->save($modelo);
+            $this->Dialog->alert("O modelo da ordem de serviço foi criado com sucesso!");
+            $this->redirect(array("action" => "templates"));
+        } catch (Exception $ex) {
+            $mensagem = "Ocorreu um erro no sistema ao criar o modelo desta ordem de serviço.";
+
+            $this->Dialog->error($mensagem, $ex->getMessage());
+            $this->redirect(array("action" => "index"));
+        }
+    }
+
     public function prioridades() {
         $ordens_servico = $this->OrdemServico->find("all", array(
             "conditions" => array(
@@ -191,21 +228,26 @@ class OrdemServicoController extends AppController {
         }
     }
 
-    public function cancelar($id) {
+    public function cancelar($id = null) {
 
         try {
-
+            $this->autoRender = false;
+            $this->layout = "ajax";
             $data = $this->request->data;
             $destino = null;
 
-            if ($this->request->is("put")) {
+            if ($this->request->is("post") || $this->request->is("put")) {
                 $destino = unserialize($data["question"]["callback"]);
+
+                if ($id == null) {
+                    $id = $data["question"]["parameter"];
+                }
             }
 
             $this->OrdemServico->id = $id;
             $this->OrdemServico->saveField("cancelado", true);
 
-            if ($this->request->is("put")) {
+            if ($this->request->is("post") || $this->request->is("put")) {
                 $this->Dialog->alert("A ordem de serviço foi cancelada com sucesso.");
                 $this->redirect($destino);
             }
@@ -222,14 +264,14 @@ class OrdemServicoController extends AppController {
             $data = $this->request->data;
             $destino = null;
 
-            if ($this->request->is("put")) {
+            if ($this->request->is("post") || $this->request->is("put")) {
                 $destino = unserialize($data["question"]["callback"]);
             }
 
             $this->OrdemServico->id = $id;
             $this->OrdemServico->saveField("concluido", true);
 
-            if ($this->request->is("put")) {
+            if ($this->request->is("post") || $this->request->is("put")) {
                 $this->Dialog->alert("A ordem de serviço foi concluida com sucesso.");
                 $this->redirect($destino);
             }
