@@ -162,10 +162,12 @@ class OrdemServicoController extends AppController {
                 "equipamento" => $data["OrdemServico"]["equipamento"],
                 "modo_entrega" => $data["OrdemServico"]["modo_entrega"],
                 "contato_cliente" => $data["OrdemServico"]["modo_entrega"],
-                "ordem_servico_origem" => $data["OrdemServico"]["id"]
             )
         );
 
+        if (isset($data["OrdemServico"]["id"])) {
+            $modelo["ordem_servico_origem"] = $data["OrdemServico"]["id"];
+        }
 
         try {
             $this->OrdemServicoModelo->save($modelo);
