@@ -54,7 +54,10 @@ $this->element("question", array(
     "message" => "Deseja cancelar esta ordem de serviço?",
     "action" => array(
         "controller" => "ordem_servico",
-        "action" => "delete"),
+        "action" => "cancelar"),
+    "callback" => array(
+        "controller" => "ordem_servico",
+        "action" => "index"),
     "buttons" => array(
         "ok" => "Sim",
         "cancel" => "Não"
@@ -166,7 +169,7 @@ $this->element("question", array(
                                                         <i class="fa fa-eye">
                                                         </i>
                                                     </a>
-                                                    <a class="btn btn-google-plus" title="Cancelar">
+                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $ordem_servico['OrdemServico']['id'] ?>)" title="Cancelar">
                                                         <i class="fa fa-trash">
                                                         </i>
                                                     </a>
