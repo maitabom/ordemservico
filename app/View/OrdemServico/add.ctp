@@ -125,6 +125,13 @@
             return false;
         }
     }
+
+    function criarModelo() {
+        if (validar()) {
+            $("#OrdemServicoAddForm").attr("action", "<?= $this->Url->relative('/ordem_servico/template_create') ?>");
+            $("#OrdemServicoAddForm").submit();
+        }
+    }
 </script>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
@@ -230,7 +237,7 @@ $this->element('message', array(
                         <div style="text-align: right;">
                             <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('ordem_servico') ?>'" type="button" class="btn btn-primary">Voltar</button>
                             <button type="reset" class="btn btn-primary">Limpar</button>
-                            <button type="button" class="btn btn-warning">Criar Template</button>
+                            <button type="button" onclick="criarModelo()" class="btn btn-warning">Criar Template</button>
                             <button type="submit" onclick="return validar();" class="btn btn-success">Salvar</button>
                         </div>
                     </div><!-- /.box-body -->
