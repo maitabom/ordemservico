@@ -161,7 +161,7 @@ class OrdemServicoController extends AppController {
                 "arquivo" => $data["OrdemServico"]["arquivo"],
                 "equipamento" => $data["OrdemServico"]["equipamento"],
                 "modo_entrega" => $data["OrdemServico"]["modo_entrega"],
-                "contato_cliente" => $data["OrdemServico"]["modo_entrega"],
+                "contato_cliente" => $data["OrdemServico"]["contato_cliente"],
             )
         );
 
