@@ -231,8 +231,7 @@ class OrdemServicoController extends AppController {
     public function cancelar($id = null) {
 
         try {
-            $this->autoRender = false;
-            $this->layout = "ajax";
+
             $data = $this->request->data;
             $destino = null;
 
