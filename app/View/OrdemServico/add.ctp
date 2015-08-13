@@ -41,7 +41,7 @@
         var mensagem = "";
 
         if ($("#OrdemServicoIdCliente").val() === "") {
-            mensagem += "- É obrigatorio informar o nome do cliente.\n";
+            mensagem += "- É obrigatorio informar o nome do cliente cadastrado no sistema.\n";
             $("#OrdemServicoCliente").css("border-color", "red");
         } else {
             $("#OrdemServicoCliente").css("border-color", "#D2D6DE");
