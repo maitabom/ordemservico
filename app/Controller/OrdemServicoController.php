@@ -174,7 +174,26 @@ class OrdemServicoController extends AppController {
     }
 
     public function template_edit($id) {
+
+        $modelo = $this->OrdemServicoModelo->read(null, $id);
+
+        $this->request->data = $modelo;
+
+        $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
+        $modo_entrega = $this->ModoEntrega->find("list", array(
+            "fields" => [ "id", "nome"],
+            "conditions" => array(
+                "ModoEntrega.ativo" => true
+            )
+        ));
+
+        $title = "Editar Modelo de Ordem de Serviço";
+
         $this->set("id", $id);
+        $this->set("title_for_layout", $title);
+        $this->set("equipamentos", $equipamentos);
+        $this->set("modos_entregas", $modo_entrega);
+        $this->set("nome_cliente", $modelo["Cliente"]["razao_social"]);
     }
 
     public function template_create() {
@@ -212,6 +231,24 @@ class OrdemServicoController extends AppController {
 
             $this->Dialog->error($mensagem, $ex->getMessage());
             $this->redirect(array("action" => "index"));
+        }
+    }
+
+    public function template_save() {
+
+        $data = $this->request->data;
+
+        try {
+            $this->OrdemServicoModelo->save($data);
+            $this->Dialog->alert("O modelo da ordem de serviço foi atualizada com sucesso!");
+
+            $id = $this->OrdemServicoModelo->id;
+
+            $this->redirect(array("action" => "template_edit", $id));
+        } catch (Exception $ex) {
+            $mensagem = "Ocorreu um erro no sistema ao atualizar a ordem de serviço.";
+            $this->Dialog->error($mensagem, $ex->getMessage());
+            $this->redirect(array("action" => "template_edit", $data["OrdemServicoModelo"]["id"]));
         }
     }
 
@@ -255,11 +292,12 @@ class OrdemServicoController extends AppController {
     }
 
     public function save() {
+
+        $data = $this->request->data;
+
         if ($this->request->is("post")) {
-            $data = $this->request->data;
             $this->create($data);
         } else if ($this->request->is('put')) {
-            $data = $this->request->data;
             $this->update($data);
         }
     }
