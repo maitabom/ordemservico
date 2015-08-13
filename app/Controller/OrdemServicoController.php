@@ -302,6 +302,25 @@ class OrdemServicoController extends AppController {
         }
     }
 
+    public function delete() {
+        if ($this->request->is('post')) {
+            $data = $this->request->data;
+            $id = $data["question"]["parameter"];
+
+            try {
+                $this->OrdemServicoModelo->id = $id;
+                $this->OrdemServicoModelo->delete();
+
+                $this->Dialog->alert("O modelo da ordem de serviço foi excluída com sucesso.");
+                $this->redirect(array("action" => "templates"));
+            } catch (Exception $ex) {
+                $mensagem = "Ocorreu um erro no sistema o modelo da ordem de serviço.";
+                $this->Dialog->error($mensagem, $ex->getMessage());
+                $this->redirect(array("action" => "index"));
+            }
+        }
+    }
+
     public function cancelar($id = null) {
 
         try {

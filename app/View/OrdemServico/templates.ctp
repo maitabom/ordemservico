@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    function excluir(id) {
+        $("#ordem_servico_excluir").dialog("open");
+        $("#questionParameter").val(id);
+    }
+</script>
 <?= $this->element('menu'); ?>
 <?= $this->Session->flash() ?>
 <?=
@@ -7,10 +13,7 @@ $this->element("question", array(
     "message" => "Deseja exclur o modelo da ordem de serviço?",
     "action" => array(
         "controller" => "ordem_servico",
-        "action" => "template_delete"),
-    "callback" => array(
-        "controller" => "ordem_servico",
-        "action" => "templates"),
+        "action" => "delete"),
     "buttons" => array(
         "ok" => "Sim",
         "cancel" => "Não"
@@ -92,7 +95,7 @@ $this->element("question", array(
                                                         <i class="fa fa-plus">
                                                         </i>
                                                     </a>
-                                                    <a class="btn btn-google-plus" title="Excluir">
+                                                    <a class="btn btn-google-plus" href="#"onclick="excluir(<?= $ordem_servico['OrdemServicoModelo']['id'] ?>)" title="Excluir">
                                                         <i class="fa fa-trash">
                                                         </i>
                                                     </a>
