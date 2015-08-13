@@ -73,7 +73,7 @@ $this->element("question", array(
                             </table>
                         </div>
                     </div>
-                    <?= $this->element("pagination", array("qtd_total" => $qtd_permissoes, "name" => "itens")) ?>
+                    <?= $this->element("pagination", array("qtd_total" => $qtd_permissoes)) ?>
                 </div>
             </div>
         </div>

@@ -180,7 +180,13 @@ $this->element("question", array(
                             <?php endif; ?>
                         </div>
                     </div>
-                    <?= $this->element("pagination", array("qtd_total" => $qtd_ordens, "name" => "ordens de serviço")) ?>
+                    <?=
+                    $this->element("pagination", array(
+                        "qtd_total" => $qtd_ordens,
+                        "name" => "ordens de serviço",
+                        "predicate" => "encontradas",
+                        "singular" => "encontrada"))
+                    ?>
                 </div>
             </div>
         </div>
