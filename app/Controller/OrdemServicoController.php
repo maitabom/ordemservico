@@ -137,6 +137,40 @@ class OrdemServicoController extends AppController {
 
     public function templates() {
 
+        $conditions = array();
+
+        if ($this->request->is("post")) {
+
+            $data = $this->request->data;
+
+            $conditions["OR"] = array(
+                "Cliente.razao_social LIKE" => "%" . $data["OrdemServicoModelo"]["cliente"] . "%",
+                "Cliente.nome_fantasia LIKE" => "%" . $data["OrdemServicoModelo"]["cliente"] . "%"
+            );
+
+            $conditions["OrdemServicoModelo.servico LIKE"] = "%" . $data["OrdemServicoModelo"]["servico"] . "%";
+        }
+
+        $options = array(
+            "conditions" => $conditions,
+            "order" => array(
+                "Cliente.razao_social" => "ASC",
+                "Cliente.nome_fantasia" => "ASC",
+                "OrdemServicoModelo.servico" => "ASC"
+            ),
+            "limit" => $this->limit_pagination
+        );
+
+        $this->paginate = $options;
+
+        $ordem_servico_modelo = $this->paginate("OrdemServicoModelo");
+        $qtd_ordens = $this->OrdemServicoModelo->find("count", array("conditions" => $conditions));
+
+        $title = "Modelos de Ordem de Serviço";
+
+        $this->set("title_for_layout", $title);
+        $this->set("ordens_servicos", $ordem_servico_modelo);
+        $this->set("qtd_ordens", $qtd_ordens);
     }
 
     public function template_edit($id) {
