@@ -84,11 +84,11 @@ $this->element("question", array(
                                                 <td><abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></abbr></td>
                                                 <td><?= $ordem_servico["OrdemServicoModelo"]["servico"] ?></td>
                                                 <td>
-                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'template_edit', $ordem_servico["Cliente"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'template_edit', $ordem_servico["OrdemServicoModelo"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
                                                         <i class="fa fa-edit">
                                                         </i>
                                                     </a>
-                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'add', $ordem_servico["Cliente"]["id"]) ?>" class="btn btn-tumblr" title="Gerar nova ordem de serviço a partir deste modelo">
+                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'add', $ordem_servico["OrdemServicoModelo"]["id"]) ?>" class="btn btn-tumblr" title="Gerar nova ordem de serviço a partir deste modelo">
                                                         <i class="fa fa-plus">
                                                         </i>
                                                     </a>
