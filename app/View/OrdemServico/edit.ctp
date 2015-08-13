@@ -175,6 +175,7 @@ $this->element("question", array(
 
                     echo $this->Form->hidden("id");
                     echo $this->Form->hidden("cancelado");
+                    echo $this->Form->hidden("concluido");
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">
