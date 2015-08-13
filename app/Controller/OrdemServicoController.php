@@ -90,7 +90,7 @@ class OrdemServicoController extends AppController {
         $this->set("status_ordens", $status_ordens);
     }
 
-    public function add() {
+    public function add($id = null) {
         $prioridades = [0 => "Baixa", 1 => "Média", 2 => "Alta"];
         $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
         $modo_entrega = $this->ModoEntrega->find("list", array(
@@ -106,6 +106,34 @@ class OrdemServicoController extends AppController {
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
         $this->set("prioridades", $prioridades);
+
+        if ($id != null) {
+            $modelo = $this->OrdemServicoModelo->read(null, $id);
+
+            $ordem_servico = array(
+                "OrdemServico" => array(
+                    "id_cliente" => $modelo["OrdemServicoModelo"]["id_cliente"],
+                    "servico" => $modelo["OrdemServicoModelo"]["servico"],
+                    "material" => $modelo["OrdemServicoModelo"]["material"],
+                    "formato" => $modelo["OrdemServicoModelo"]["formato"],
+                    "formato_final" => $modelo["OrdemServicoModelo"]["formato_final"],
+                    "quantidade_producao" => $modelo["OrdemServicoModelo"]["quantidade_producao"],
+                    "quantidade_cliente" => $modelo["OrdemServicoModelo"]["quantidade_cliente"],
+                    "acabamento" => $modelo["OrdemServicoModelo"]["acabamento"],
+                    "data_criacao" => date("Y-m-d H:i:s"),
+                    "arquivo" => $modelo["OrdemServicoModelo"]["arquivo"],
+                    "equipamento" => $modelo["OrdemServicoModelo"]["equipamento"],
+                    "modo_entrega" => $modelo["OrdemServicoModelo"]["modo_entrega"],
+                    "contato_cliente" => $modelo["OrdemServicoModelo"]["contato_cliente"])
+            );
+
+            $cliente = $this->Cliente->read(null, $modelo["OrdemServicoModelo"]["id_cliente"]);
+
+            $this->request->data = $ordem_servico;
+            $this->set("nome_cliente", $cliente["Cliente"]["razao_social"]);
+        } else {
+            $this->set("nome_cliente", "");
+        }
     }
 
     public function edit($id) {
@@ -214,7 +242,7 @@ class OrdemServicoController extends AppController {
                 "arquivo" => $data["OrdemServico"]["arquivo"],
                 "equipamento" => $data["OrdemServico"]["equipamento"],
                 "modo_entrega" => $data["OrdemServico"]["modo_entrega"],
-                "contato_cliente" => $data["OrdemServico"]["contato_cliente"],
+                "contato_cliente" => $data["OrdemServico"]["contato_cliente"]
             )
         );
 

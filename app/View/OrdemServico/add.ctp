@@ -175,7 +175,7 @@ $this->element('message', array(
                         <div class="form-group col-xs-12">
                             <?= $this->Form->label("cliente", "Cliente") ?>
                             <?= $this->Form->hidden("id_cliente") ?>
-                            <?= $this->Form->text("cliente", array("class" => "form-control", "maxlength" => 255)) ?>
+                            <?= $this->Form->text("cliente", array("class" => "form-control", "value" => $nome_cliente, "maxlength" => 255)) ?>
                         </div>
                         <div class="form-group col-xs-12">
                             <?= $this->Form->label("servico", "Servico") ?>
