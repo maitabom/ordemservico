@@ -97,7 +97,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                         <!-- Menu Footer-->
                                         <li class="user-footer">
                                             <div class="pull-left">
-                                                <?= $this->Html->link("Perfil", "/perfil/samara", array("class" => "btn btn-default btn-flat")) ?>
+                                                <?= $this->Html->link("Perfil", array("controller" => "usuario", "action" => "perfil", $this->Session->read("UsuarioUsuario")), array("class" => "btn btn-default btn-flat")) ?>
                                             </div>
                                             <div class="pull-right">
                                                 <?= $this->Html->link("Sair", array("controller" => "system", "action" => "logoff"), array("class" => "btn btn-default btn-flat")) ?>
