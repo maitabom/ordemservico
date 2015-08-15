@@ -76,6 +76,21 @@ class UsuarioController extends AppController {
         $this->redirect(array("action" => "cadastro", $id));
     }
 
+    public function editar($id) {
+        $title = "Edição do Usuário";
+        $usuario = $this->Usuario->read(null, $id);
+        $estados = $this->Geo->listaUf();
+        $permissoes = $this->Permissao->find('list', array('fields' => array('id', 'nome')));
+
+        $this->request->data = $usuario;
+
+        $this->set("title_for_layout", $title);
+        $this->set("id_usuario", $id);
+        $this->set("estados", $estados);
+        $this->set("permissoes", $permissoes);
+        $this->set("nickname", $usuario["Usuario"]["nickname"]);
+    }
+
     public function delete() {
         if ($this->request->is('post')) {
             $data = $this->request->data;
@@ -108,12 +123,14 @@ class UsuarioController extends AppController {
             $data["Usuario"]["telefone"] = $this->Format->clearMask($data["Usuario"]["telefone"]);
             $data["Usuario"]["celular"] = $this->Format->clearMask($data["Usuario"]["celular"]);
 
+            $destino = unserialize($data["Usuario"]["destino"]);
+
             try {
                 $this->Usuario->save($data);
                 $this->Dialog->alert("O usuário foi salvo com sucesso.");
                 $id = $this->Usuario->id;
 
-                $this->redirect(array("action" => "cadastro", $id));
+                $this->redirect($destino);
             } catch (Exception $ex) {
                 $mensagem = "Ocorreu um erro no sistema ao salvar o usuário.";
                 $this->Dialog->error($mensagem, $ex->getMessage());
