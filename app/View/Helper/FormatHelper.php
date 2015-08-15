@@ -25,6 +25,18 @@ class FormatHelper extends AppHelper {
     }
 
     /**
+     * Formata para CEP.
+     * @param string $value Valor original cep
+     * @return string CEP Formatado
+     */
+    public function zipCode($value) {
+        $pattern = '/^(\d{5})(\d{3})$/';
+        $result = preg_replace($pattern, '\\1-\\2', $value);
+
+        return $result;
+    }
+
+    /**
      * Formata um número colocando zeros a esquerda
      * @param string $value O valor a ser formatado
      * @param int $lenght A quantidade de zeros a ser adicionada. Por padrão, será 7.
@@ -32,6 +44,15 @@ class FormatHelper extends AppHelper {
      */
     public function zeroPad($value, $lenght = 7) {
         return str_pad($value, $lenght, "0", STR_PAD_LEFT);
+    }
+
+    /**
+     * Retorna o primeiro nome da pessoa.
+     * @param string $name Nome completo da pessoa.
+     * @return string Primeiro nome da pessoa.
+     */
+    public function firstName($name) {
+        return explode(" ", $name)[0];
     }
 
 }
