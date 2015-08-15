@@ -164,6 +164,7 @@ $this->element('message', array(
                         "role" => "form"));
 
                     echo $this->Form->hidden("id", array("value" => $id_usuario));
+                    echo $this->Form->hidden("destino", array("value" => serialize(array("action" => "cadastro", $id_usuario))));
                     ?>
                     <div class="box-body">
                         <div class="form-group col-xs-12">
