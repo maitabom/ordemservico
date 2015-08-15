@@ -1,4 +1,5 @@
 <?= $this->element('menu'); ?>
+<?= $this->Session->flash() ?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>Perfil de <?= $this->Format->firstName($usuario["Usuario"]["nome"]) ?></h1>
