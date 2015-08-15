@@ -128,9 +128,13 @@ class UsuarioController extends AppController {
             try {
                 $this->Usuario->save($data);
                 $this->Dialog->alert("O usuário foi salvo com sucesso.");
-                $id = $this->Usuario->id;
 
-                $this->redirect($destino);
+                if ($this->request->is('put')) {
+                    $this->redirect($destino);
+                } else if ($this->request->is('post')) {
+                    $id = $this->Usuario->id;
+                    $this->redirect(array("action" => "cadastro", $id));
+                }
             } catch (Exception $ex) {
                 $mensagem = "Ocorreu um erro no sistema ao salvar o usuário.";
                 $this->Dialog->error($mensagem, $ex->getMessage());
