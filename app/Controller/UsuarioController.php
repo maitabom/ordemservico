@@ -54,7 +54,18 @@ class UsuarioController extends AppController {
     }
 
     public function perfil($user) {
-        $this->set("usuario", $user);
+
+        $usuario = $this->Usuario->find("first", array(
+            "conditions" => array(
+                "Usuario.nickname" => $user
+            )
+        ));
+
+        $estados = $this->Geo->listaUf();
+
+        $this->set("usuario", $usuario);
+        $this->set("nick", $user);
+        $this->set("estados", $estados);
     }
 
     public function add() {
