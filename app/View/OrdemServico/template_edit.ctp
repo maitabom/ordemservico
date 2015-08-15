@@ -124,7 +124,7 @@ $this->element('message', array(
 ?>
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>Editar Modelo de Ordem de Serviço <small><?= $id ?></small></h1>
+        <h1>Editar Modelo de Ordem de Serviço <small><?= $this->Format->zeroPad($id) ?></small></h1>
         <ol class="breadcrumb">
             <li><a href="<?= $this->Url->relative('/painel') ?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a href="#"><i class="fa fa-files-o"></i>Ordem de Serviço</a></li>
