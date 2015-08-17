@@ -81,7 +81,7 @@
 $this->element('message', array(
     'name' => 'cadastro_erro',
     'type' => 'error',
-    'message' => 'Ocorreu um erro ao efetuar o cadastro.',
+    'message' => 'Ocorreu um erro ao efetuar alteraçoes do cadastro.',
     'details' => ''
 ))
 ?>
