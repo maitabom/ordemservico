@@ -92,7 +92,7 @@
                         </div>
                         <?php if ($nick == $this->Session->read("UsuarioUsuario")): ?>
                             <div class="row" style="margin-right: 5px;">
-                                <a href="#" class="btn btn-danger pull-right" style="margin-right: 5px"><i class="fa fa-lock"></i> Alterar Senha</a>
+                                <a href="<?= $this->Url->makeParams('usuario', 'password', $usuario["Usuario"]["id"]) ?>" class="btn btn-danger pull-right" style="margin-right: 5px"><i class="fa fa-lock"></i> Alterar Senha</a>
                                 <a href="<?= $this->Url->makeParams('usuario', 'editar', $usuario["Usuario"]["id"]) ?>" class="btn btn-primary pull-right" style="margin-right: 5px"><i class="fa fa-edit"></i> Editar</a>
                             </div>
                         <?php endif; ?>
