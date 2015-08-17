@@ -82,52 +82,52 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                                 <li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="<?= $this->Url->relative('img/avatar6.png') ?>" class="user-image" alt="User Image"/>
-                                        <span class="hidden-xs"><?= $this->Session->read("UsuarioNome") ?></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <!-- User image -->
-                                        <li class="user-header">
-                                            <img src="<?= $this->Url->relative('img/avatar6.png') ?>" class="img-circle" alt="User Image" />
+                                        <span class="hidden-xs"><?= $this->Format->firstName($this->Session->read("UsuarioNome"))  ?></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <!-- User image -->
+                                                <li class="user-header">
+                                                    <img src="<?= $this->Url->relative('img/avatar6.png') ?>" class="img-circle" alt="User Image" />
                                             <p>
                                                 <b><?= $this->Session->read("UsuarioNome") ?></b><br/>
                                                 <small> <?= $this->Session->read("UsuarioCargo") ?></small>
-                                            </p>
-                                            <div style="width: 10px"></div>
-                                        </li>
-                                        <!-- Menu Footer-->
-                                        <li class="user-footer">
-                                            <div class="pull-left">
-                                                <?= $this->Html->link("Perfil", array("controller" => "usuario", "action" => "perfil", $this->Session->read("UsuarioUsuario")), array("class" => "btn btn-default btn-flat")) ?>
+                                                    </p>
+                                                    <div style="width: 10px"></div>
+                                                </li>
+                                                <!-- Menu Footer-->
+                                                <li class="user-footer">
+                                                    <div class="pull-left">
+                                                        <?= $this->Html->link("Perfil", array     ("controller" => "usuario", "action" => "perfil", $this->Session->read("UsuarioUsuario")), array("class" => "btn btn-default btn-flat")) ?>
                                             </div>
                                             <div class="pull-right">
                                                 <?= $this->Html->link("Sair", array("controller" => "system", "action" => "logoff"), array("class" => "btn btn-default btn-flat")) ?>
-                                            </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </li>
                                     </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </header>
+                                </div>
+                            </nav>
+                        </header>
                 <?= $this->fetch('content'); ?>
-                <footer class="main-footer">
-                    <div class="pull-right hidden-xs">
-                        <b>Version</b> 1.0
+                        <footer class="main-footer">
+                            <div class="pull-right hidden-xs">
+                                <b>Version</b> 1.0
+                            </div>
+                            <strong>Copyright &copy; 2015 Moreth e Lopes</strong> Todos os direitos reservados.
+                        </footer>
                     </div>
-                    <strong>Copyright &copy; 2015 Moreth e Lopes</strong> Todos os direitos reservados.
-                </footer>
-            </div>
-        </div>
+                </div>
 
-        <!-- Bootstrap 3.3.2 JS -->
-        <script src="<?= $this->Url->relative('bootstrap/js/bootstrap.min.js') ?>" type="text/javascript"></script>
-        <!-- SlimScroll -->
-        <script src="<?= $this->Url->relative('plugins/slimScroll/jquery.slimScroll.min.js') ?>" type="text/javascript"></script>
-        <!-- FastClick -->
-        <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
-        <!-- AdminLTE App -->
-        <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
-        <script src="<?= $this->Url->relative('js/vanilla-masker.js') ?>" type="text/javascript"></script>
+                <!-- Bootstrap 3.3.2 JS -->
+                <script src="<?= $this->Url->relative('bootstrap/js/bootstrap.min.js') ?>" type="text/javascript"></script>
+                <!-- SlimScroll -->
+                <script src="<?= $this->Url->relative('plugins/slimScroll/jquery.slimScroll.min.js') ?>" type="text/javascript"></script>
+                <!-- FastClick -->
+                <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
+                <!-- AdminLTE App -->
+                <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
+        <script src="<?=  $this->Url->relative('js/vanilla-masker.js') ?>" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->
         <script src="<?= $this->Url->relative('plugins/datatables/jquery.dataTables.js') ?>" type="text/javascript"></script>
         <script src="<?= $this->Url->relative('plugins/datatables/dataTables.bootstrap.js') ?>" type="text/javascript"></script>
