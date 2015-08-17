@@ -76,6 +76,17 @@ class UsuarioController extends AppController {
         $this->redirect(array("action" => "cadastro", $id));
     }
 
+    public function password($id) {
+        $title = "Alterar Senha";
+        $usuario = $this->Usuario->read(null, $id);
+
+        $this->set("title_for_layout", $title);
+        $this->set("id_usuario", $id);
+        $this->set("usuario", $usuario);
+        $this->set("senha_atual", $usuario["Usuario"]["senha"]);
+        $this->set("nickname", $usuario["Usuario"]["nickname"]);
+    }
+
     public function editar($id) {
         $title = "Edição do Usuário";
         $usuario = $this->Usuario->read(null, $id);
@@ -156,6 +167,24 @@ class UsuarioController extends AppController {
         $this->set("id_usuario", $id);
         $this->set("estados", $estados);
         $this->set("permissoes", $permissoes);
+    }
+
+    public function change() {
+        try {
+            $data = $this->request->data;
+            $id = $data["Usuario"]["id"];
+            $senha = $data["Usuario"]["senha_nova"];
+
+            $this->Usuario->id = $id;
+            $this->Usuario->saveField("senha", $senha);
+
+            $this->Dialog->alert("A senha foi alterada com sucesso.");
+            $this->redirect(array("action" => "perfil", $this->Session->read("UsuarioUsuario")));
+        } catch (Exception $ex) {
+            $mensagem = "Ocorreu um erro no sistema ao salvar o usuário.";
+            $this->Dialog->error($mensagem, $ex->getMessage());
+            $this->redirect(array("action" => "perfil", $this->Session->read("UsuarioUsuario")));
+        }
     }
 
 }
