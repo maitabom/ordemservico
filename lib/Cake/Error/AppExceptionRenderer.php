@@ -12,6 +12,7 @@ class AppExceptionRenderer extends ExceptionRenderer {
     public function notFound($error) {
         $this->controller->beforeFilter();
         $this->controller->set('title_for_layout', 'Não encontrado');
+        $this->controller->set('error', $error);
         $this->controller->render('/Errors/error404');
         $this->controller->response->send();
     }
@@ -19,6 +20,7 @@ class AppExceptionRenderer extends ExceptionRenderer {
     public function badRequest($error) {
         $this->controller->beforeFilter();
         $this->controller->set('title_for_layout', 'Requisição Inválida');
+        $this->controller->set('error', $error);
         $this->controller->render('/Errors/error400');
         $this->controller->response->send();
     }
@@ -40,6 +42,7 @@ class AppExceptionRenderer extends ExceptionRenderer {
     public function internalError($error) {
         $this->controller->beforeFilter();
         $this->controller->set('title_for_layout', 'Erro do sistema');
+        $this->controller->set('error', $error);
         $this->controller->render('/Errors/error500');
         $this->controller->response->send();
     }
@@ -104,6 +107,10 @@ class AppExceptionRenderer extends ExceptionRenderer {
     }
 
     public function privateAction($error) {
+        $this->internalError($error);
+    }
+
+    public function fatalError($error) {
         $this->internalError($error);
     }
 
