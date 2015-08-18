@@ -1,26 +1,47 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          http://cakephp.org CakePHP(tm) Project
- * @package       app.View.Errors
- * @since         CakePHP(tm) v 0.10.0.1076
- * @license       http://www.opensource.org/licenses/mit-license.php MIT License
- */
-?>
-<h2><?php echo $message; ?></h2>
-<p class="error">
-	<strong><?php echo __d('cake', 'Error'); ?>: </strong>
-	<?php echo __d('cake', 'An Internal Error Has Occurred.'); ?>
-</p>
-<?php
-if (Configure::read('debug') > 0):
-	echo $this->element('exception_stack_trace');
-endif;
-?>
+<script type="text/javascript">
+    $(function () {
+        $("#mais_detalhes").click(function () {
+            $("#mais_detalhes").toggle();
+            $("#details").toggle();
+        });
+    });
+</script>
+<?= $this->element('menu'); ?>
+<div class="content-wrapper">
+    <section class="content-header">
+
+    </section>
+    <section class="content">
+        <div class="error-page">
+            <h2 class="headline text-red"> 500</h2>
+            <h1><i class="fa fa-bug text-yellow"></i> Falha no sistema</h1>
+            <p style="font-size: large">A última operação feita no sistema tem gerado um erro grave. Enquanto isso, você pode retorna para a <?= $this->Html->link("página inicial", array("controller" => "system", "action" => "board")) ?>. Caso o problema persista, contate ao administrador do sistema.</p>
+            <form class="search-form">
+                <div style="text-align: center;">
+                    <button id="mais_detalhes" type="button" class="btn btn-flat bg-red-gradient margin">Mais detalhes</button>
+                </div>
+                <div id="details" style="display: none;">
+                    <p class="alert alert-error">
+                        <button class="close" data-dismiss="alert">×</button>
+                        <strong><?php echo __d('cake_dev', 'Error'); ?>: </strong>
+                        <?php echo h($error->getMessage()); ?>
+                    </p>
+                    <?php if (!empty($error->queryString)) : ?>
+                        <p class="alert alert-info">
+                            <button class="close" data-dismiss="alert">×</button>
+                            <strong><?php echo __d('cake_dev', 'SQL Query'); ?>: </strong>
+                            <?php echo $error->queryString; ?>
+                        </p>
+                    <?php endif; ?>
+                    <?php if (!empty($error->params)) : ?>
+                        <strong><?php echo __d('cake_dev', 'SQL Query Params'); ?>: </strong>
+                        <?php echo Debugger::dump($error->params); ?>
+                    <?php endif; ?>
+                    <?php echo $this->element('exception_stack_trace'); ?>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+
+
