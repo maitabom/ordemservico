@@ -39,7 +39,13 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         $this->set("limit_pagination", $this->limit_pagination);
+        $this->set("fullscreen", false);
         parent::beforeFilter();
+    }
+
+    public function beforeRender() {
+        $this->handleError();
+        parent::beforeRender();
     }
 
     /**
@@ -67,6 +73,17 @@ class AppController extends Controller {
     protected function redirectLogin($mensagem) {
         $this->Session->setFlash($mensagem);
         $this->redirect(array("controller" => "system", "action" => "login"));
+    }
+
+    /**
+     * Faz o tratamento de erros
+     */
+    private function handleError() {
+        if ($this->name == "CakeError") {
+            if (!$this->isAuthorized()) {
+                $this->layout = "empty";
+            }
+        }
     }
 
 }
