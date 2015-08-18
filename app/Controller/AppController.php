@@ -82,6 +82,8 @@ class AppController extends Controller {
         if ($this->name == "CakeError") {
             if (!$this->isAuthorized()) {
                 $this->layout = "empty";
+            } else {
+                $this->set("fullscreen", true);
             }
         }
     }
