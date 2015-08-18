@@ -295,6 +295,7 @@ class OrdemServicoController extends AppController {
 
         $this->set("title_for_layout", $title);
         $this->set("ordens_servico", $ordens_servico);
+        $this->set("fullscreen", true);
     }
 
     public function documento($id) {
