@@ -122,7 +122,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
         <!-- Bootstrap 3.3.2 JS -->
         <script src="<?= $this->Url->relative('bootstrap/js/bootstrap.min.js') ?>" type="text/javascript"></script>
         <!-- SlimScroll -->
-        <script src="<?= $this->Url->relative('plugins/slimScroll/jquery.slimScroll.min.js') ?>" type="text/javascript"></script>
+        <script src="<?= $this->Url->relative('plugins/slimScroll/jquery.slimscroll.min.js') ?>" type="text/javascript"></script>
         <!-- FastClick -->
         <script src="<?= $this->Url->relative('plugins/fastclick/fastclick.min.js') ?>"></script>
         <!-- AdminLTE App -->
