@@ -100,7 +100,7 @@ $this->element("question", array(
                                                         </a>
                                                     <?php endif; ?>
                                                     <?php if ($this->Membership->handleRole("EXCLUIR_MODELO_ORDEM_SERVICO")): ?>
-                                                        <a class="btn btn-google-plus" href="#"onclick="excluir(<?= $ordem_servico['OrdemServicoModelo']['id'] ?>)" title="Excluir">
+                                                        <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $ordem_servico['OrdemServicoModelo']['id'] ?>)" title="Excluir">
                                                             <i class="fa fa-trash">
                                                             </i>
                                                         </a>
