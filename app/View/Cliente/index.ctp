@@ -82,7 +82,9 @@ $this->element("question", array(
 
                             </div>
                             <div style="text-align: right;">
-                                <button id="btnNovo" type="button" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('cliente', 'add') . '\'' ?>">Novo</button>
+                                <?php if ($this->Membership->handleRole("ADICIONAR_CLIENTES")): ?>
+                                    <button id="btnNovo" type="button" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('cliente', 'add') . '\'' ?>">Novo</button>
+                                <?php endif; ?>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
                             <?php echo $this->Form->end(); ?>
@@ -116,14 +118,18 @@ $this->element("question", array(
                                                 <td><?= $cliente["Cliente"]["cidade"] . " - " . $cliente["Cliente"]["uf"] ?></td>
                                                 <td><?= $cliente["Cliente"]["ativo"] ? "Sim" : "Não" ?></td>
                                                 <td>
-                                                    <a href="<?= $this->Url->relative('cliente/edit/' . $cliente["Cliente"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
-                                                        <i class="fa fa-edit">
-                                                        </i>
-                                                    </a>
-                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $cliente["Cliente"]["id"] ?>)" title="Excluir">
-                                                        <i class="fa fa-trash">
-                                                        </i>
-                                                    </a>
+                                                    <?php if ($this->Membership->handleRole("EDITAR_CLIENTES")): ?>
+                                                        <a href="<?= $this->Url->relative('cliente/edit/' . $cliente["Cliente"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                            <i class="fa fa-edit">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->Membership->handleRole("EXCLUIR_CLIENTES")): ?>
+                                                        <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $cliente["Cliente"]["id"] ?>)" title="Excluir">
+                                                            <i class="fa fa-trash">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
