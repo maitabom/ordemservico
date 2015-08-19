@@ -54,7 +54,13 @@ class SystemController extends AppController {
 
                 if (!empty($retorno)) {
                     if ($retorno["Usuario"]["ativo"] == false) {
+                        $this->Session->destroy();
                         $this->redirectLogin("O usuário encontra-se inativo para o sistema.");
+                    }
+
+                    if ($retorno["Permissao"]["ativo"] == false) {
+                        $this->Session->destroy();
+                        $this->redirectLogin("O usuário encontra-se em um grupo de usuário inativo.");
                     }
 
                     $this->Session->write("UsuarioID", $retorno["Usuario"]["id"]);
