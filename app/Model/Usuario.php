@@ -11,7 +11,7 @@ class Usuario extends AppModel {
     public $name = "Usuario";
     public $useTable = "usuarios";
     public $belongsTo = array(
-        "Grupo" => array(
+        "Permissao" => array(
             "className" => "Permissao",
             "foreignKey" => "grupo"
         )
