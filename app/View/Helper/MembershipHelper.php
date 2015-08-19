@@ -15,11 +15,15 @@ class MembershipHelper extends AppHelper {
     /**
      * Faz tratamento de permissões de tela para usuário.
      * @param string $function Chave da função
-     * @param type $userID
-     * @return boolean
-     * @throws InternalErrorException
+     * @param mixed $userID ID o nickname do usuario
+     * @return boolean Se o usuário possui a permissão de acessar o componente.
+     * @throws InternalErrorException O método de validação de componentes, está chamando uma função inválida.
      */
-    public function handleRole($function, $userID) {
+    public function handleRole($function, $userID = null) {
+
+        if (!isset($userID)) {
+            $userID = $this->getUser();
+        }
 
         if (!$this->isFunction($function)) {
             throw new InternalErrorException("O método de validação de componentes, está chamando uma função inválida.");
@@ -36,6 +40,14 @@ class MembershipHelper extends AppHelper {
         }
 
         return $autorizado;
+    }
+
+    /**
+     * Obtém o usuário corrente logado do sistema.
+     * @return int ID do usuário;
+     */
+    private function getUser() {
+        return $this->Session->read("UsuarioID");
     }
 
     /**
@@ -84,7 +96,7 @@ class MembershipHelper extends AppHelper {
 
         $fs = $roleModel->query($query);
 
-        $this->Session->write("USER_FUNCTIONS", $fs);
+        CakeSession::write("USER_FUNCTIONS", $fs);
 
         return $fs;
     }
