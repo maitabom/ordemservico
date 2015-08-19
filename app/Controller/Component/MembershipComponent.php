@@ -6,7 +6,7 @@
  */
 class MembershipComponent extends Component {
 
-    public $components = array();
+    public $components = array("Session");
 
     /**
      * Gera uma lista de funções por controllers e actions
@@ -58,7 +58,7 @@ class MembershipComponent extends Component {
 
         if ($funcao != null) {
 
-            $funcoes = $this->getFunctionsUser($userID);
+            $funcoes = ($this->Session->check("USER_FUNCTIONS")) ? $this->Session->read("USER_FUNCTIONS") : $this->getFunctionsUser($userID);
 
             foreach ($funcoes as $fn) {
                 if ($fn["fn"]["chave"] == $funcao) {
@@ -118,6 +118,8 @@ class MembershipComponent extends Component {
         $query.= "where fg.grupos_id = $roleID; ";
 
         $fs = $roleModel->query($query);
+
+        $this->Session->write("USER_FUNCTIONS", $fs);
 
         return $fs;
     }
