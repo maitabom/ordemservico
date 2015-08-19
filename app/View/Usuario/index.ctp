@@ -83,9 +83,10 @@ $this->element("question", array(
                                 <table id="example1" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
-                                            <th style="width: 40%">Nome</th>
-                                            <th style="width: 20%">Nick</th>
-                                            <th style="width: 25%">E-mail</th>
+                                            <th>Nome</th>
+                                            <th>Login</th>
+                                            <th>E-mail</th>
+                                            <th>Grupo</th>
                                             <th>Ativo</th>
                                             <th></th>
                                         </tr>
@@ -96,6 +97,7 @@ $this->element("question", array(
                                                 <td><?= $usuario["Usuario"]["nome"] ?></td>
                                                 <td><?= $usuario["Usuario"]["nickname"] ?></td>
                                                 <td><?= $usuario["Usuario"]["email"] ?></td>
+                                                <td><?= $usuario["Permissao"]["nome"] ?></td>
                                                 <td><?= $usuario["Usuario"]["ativo"] ? "Sim" : "Não" ?></td>
                                                 <td>
                                                     <a href="<?= $this->Url->relative('usuario/edit/' . $usuario["Usuario"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
