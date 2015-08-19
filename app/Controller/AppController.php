@@ -35,7 +35,7 @@ class AppController extends Controller {
 
     protected $nameSystem = "Ordem de Serviço";
     protected $limit_pagination = 15;
-    public $components = array("Geo", "Session", "Cookie", "Dialog", "Tokin", "Sender", "Date", "Format");
+    public $components = ["Geo", "Session", "Cookie", "Dialog", "Tokin", "Sender", "Date", "Format", "Membership"];
 
     public function beforeFilter() {
         $this->set("limit_pagination", $this->limit_pagination);
@@ -46,6 +46,11 @@ class AppController extends Controller {
     public function beforeRender() {
         $this->handleError();
         parent::beforeRender();
+    }
+
+    public function afterFilter() {
+        $this->accessRole();
+        parent::afterFilter();
     }
 
     /**
@@ -85,6 +90,20 @@ class AppController extends Controller {
             } else {
                 $this->set("fullscreen", true);
             }
+        }
+    }
+
+    /**
+     * Verifica se o usuário possui a permissão de acessar a tela do sistema.
+     * @throws ForbiddenException O usuário não tem a permissão de acessar a determinada tela do sistema.
+     */
+    protected function accessRole() {
+        $controller = $this->request->controller;
+        $action = $this->request->action;
+        $url = ["controller" => $controller, "action" => $action];
+
+        if (!$this->Membership->handleRole($url, $this->Session->read("UsuarioID"))) {
+            throw new ForbiddenException();
         }
     }
 
