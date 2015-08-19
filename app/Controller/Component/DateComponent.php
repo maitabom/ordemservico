@@ -1,7 +1,7 @@
 <?php
 
 /**
- * CakePHP Classe de manipulação e formatação de data
+ * Componente de manipulação e formatação de data
  * @author valentim
  */
 class DateComponent extends Component {
