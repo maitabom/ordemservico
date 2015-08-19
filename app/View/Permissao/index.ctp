@@ -38,7 +38,9 @@ $this->element("question", array(
                         <div id = "wrapper" class = "dataTables_wrapper form-inline" role = "grid">
 
                             <div style = "text-align: right;">
-                                <button id = "btnNovo" class = "btn btn-success" onclick = "<?= 'window.location = \'' . $this->Url->make('permissao', 'add') . '\'' ?>">Novo</button>
+                                <?php if ($this->Membership->handleRole("ADICIONAR_PERMISSOES")): ?>
+                                    <button id = "btnNovo" class = "btn btn-success" onclick = "<?= 'window.location = \'' . $this->Url->make('permissao', 'add') . '\'' ?>">Novo</button>
+                                <?php endif; ?>
                             </div>
                             <div style = "min-height: 30px">
 
@@ -58,14 +60,18 @@ $this->element("question", array(
                                             <td><?= $permissao["Permissao"]["nome"] ?></td>
                                             <td><?= $permissao["Permissao"]["ativo"] ? "Sim" : "Não" ?></td>
                                             <td>
-                                                <a href="<?= $this->Url->relative('permissao/edit/' . $permissao["Permissao"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
-                                                    <i class="fa fa-edit">
-                                                    </i>
-                                                </a>
-                                                <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $permissao["Permissao"]["id"] ?>)" title="Excluir">
-                                                    <i class="fa fa-trash">
-                                                    </i>
-                                                </a>
+                                                <?php if ($this->Membership->handleRole("EDITAR_PERMISSOES")): ?>
+                                                    <a href="<?= $this->Url->relative('permissao/edit/' . $permissao["Permissao"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                        <i class="fa fa-edit">
+                                                        </i>
+                                                    </a>
+                                                <?php endif; ?>
+                                                <?php if ($this->Membership->handleRole("EXCLUIR_PERMISSOES")): ?>
+                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $permissao["Permissao"]["id"] ?>)" title="Excluir">
+                                                        <i class="fa fa-trash">
+                                                        </i>
+                                                    </a>
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
