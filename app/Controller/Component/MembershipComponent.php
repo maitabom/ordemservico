@@ -8,6 +8,10 @@ class MembershipComponent extends Component {
 
     public $components = array();
 
+    /**
+     * Gera uma lista de funções por controllers e actions
+     * @return array Lista de funções por controllers e actions
+     */
     public function actionRoles() {
         $roles = [
             "LISTA_USUARIOS" => ["controller" => "usuario", "action" => "index"],
@@ -40,6 +44,82 @@ class MembershipComponent extends Component {
         ];
 
         return $roles;
+    }
+
+    /**
+     * Faz tratamento de permissões de tela para usuário, por meio de um controle ou de ação.
+     * @param array $url Endereço por meio de controller e action informado.
+     * @param mixed $userID ID ou nickname do usuário.
+     * @return bool Se o mesmo tem permissão de acessar a tela.
+     */
+    public function handleRole($url, $userID) {
+        $funcao = $this->getFunction($url);
+        $autorizado = false;
+
+        if ($funcao != null) {
+
+            $funcoes = $this->getFunctionsUser($userID);
+
+            foreach ($funcoes as $fn) {
+                if ($fn["fn"]["chave"] == $funcao) {
+                    $autorizado = true;
+                    break;
+                }
+            }
+        } else {
+            $autorizado = true;
+        }
+
+        return $autorizado;
+    }
+
+    /**
+     * Obtém a função por meio do endereço informado.
+     * @param array $url Endereço por meio de controller e action informado.
+     * @return string Função relacionada ou nulo, caso não a encontre.
+     */
+    private function getFunction($url) {
+        $roles = $this->actionRoles();
+        $function = null;
+
+        foreach ($roles as $key => $value) {
+            if (($url["controller"] == $value["controller"]) && ($url["action"] == $value["action"])) {
+                $function = $key;
+            }
+        }
+
+        return $function;
+    }
+
+    /**
+     * Obtém as funções de acordo com usuário
+     * @param mixed $userID ID ou nickname do usuário.
+     * @return array Lista de funções permitidas do usuário.
+     */
+    private function getFunctionsUser($userID) {
+        $userModel = ClassRegistry::init("Usuario");
+        $roleModel = ClassRegistry::init("Permissao");
+
+        $usuario = $userModel->find("first", array(
+            "conditions" => array(
+                "OR" => array(
+                    "Usuario.nickname" => $userID,
+                    "Usuario.id" => $userID
+                )
+            )
+        ));
+
+        $roleID = $usuario["Usuario"]["grupo"];
+
+        $query = "select fn.nome, fn.chave ";
+        $query.= "from funcoes fn ";
+        $query.= "inner join funcoes_grupos fg ";
+        $query.= "on fn.id = fg.funcoes_id ";
+        $query.= "where fg.grupos_id = $roleID; ";
+
+        $fs = $roleModel->query($query);
+
+        return $fs;
     }
 
 }
