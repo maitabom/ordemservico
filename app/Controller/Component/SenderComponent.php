@@ -48,8 +48,4 @@ class SenderComponent extends Component {
         return $email->send();
     }
 
-    public function foo() {
-
-    }
-
 }
