@@ -68,7 +68,9 @@ $this->element("question", array(
 
                             </div>
                             <div style="text-align: right;">
-                                <button type="button" id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('usuario', 'add') . '\'' ?>">Novo</button>
+                                <?php if ($this->Membership->handleRole("ADICIONAR_USUARIOS")): ?>
+                                    <button type="button" id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('usuario', 'add') . '\'' ?>">Novo</button>
+                                <?php endif; ?>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
                             <?php echo $this->Form->end(); ?>
@@ -100,14 +102,18 @@ $this->element("question", array(
                                                 <td><?= $usuario["Permissao"]["nome"] ?></td>
                                                 <td><?= $usuario["Usuario"]["ativo"] ? "Sim" : "Não" ?></td>
                                                 <td>
-                                                    <a href="<?= $this->Url->relative('usuario/edit/' . $usuario["Usuario"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
-                                                        <i class="fa fa-edit">
-                                                        </i>
-                                                    </a>
-                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $usuario["Usuario"]["id"] ?>)" title="Excluir">
-                                                        <i class="fa fa-trash">
-                                                        </i>
-                                                    </a>
+                                                    <?php if ($this->Membership->handleRole("EDITAR_USUARIOS")): ?>
+                                                        <a href="<?= $this->Url->relative('usuario/edit/' . $usuario["Usuario"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                            <i class="fa fa-edit">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->Membership->handleRole("EXCLUIR_USUARIOS")): ?>
+                                                        <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $usuario["Usuario"]["id"] ?>)" title="Excluir">
+                                                            <i class="fa fa-trash">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
