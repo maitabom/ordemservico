@@ -57,7 +57,7 @@ $this->element("question", array(
                                             <th>Modelo</th>
                                             <th>Data de Aquisição</th>
                                             <th>Ativo</th>
-                                            <th style="width: 14%"></th>
+                                            <th style="width: 9%"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
