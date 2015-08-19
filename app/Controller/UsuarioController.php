@@ -142,6 +142,16 @@ class UsuarioController extends AppController {
             $destino = unserialize($data["Usuario"]["destino"]);
 
             try {
+                $un = $this->Usuario->find("count", array(
+                    "conditions" => array(
+                        "Usuario.nickname" => $data["Usuario"]["nickname"]
+                    )
+                ));
+
+                if ($un > 0) {
+                    throw new Exception("Existe um usuário com o nick escolhido.");
+                }
+
                 $this->Usuario->save($data);
                 $this->Dialog->alert("O usuário foi salvo com sucesso.");
 
