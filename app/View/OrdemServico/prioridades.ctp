@@ -90,9 +90,15 @@
                                     <p><b>Prazo:</b> <?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></p>
                                 </div>
                                 <div class="col-md-2" style="text-align: right">
-                                    <button id="btvisualizar" class="btn btn-info" onclick="<?= 'window.open(\'' . $this->Url->makeParams('ordem_servico', 'documento', $ordem_servico["OrdemServico"]["id"]) . '\')' ?>" title="Visualizar"><i class="fa fa-eye"></i></button>
-                                    <button id="btcancelar" value="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="btn btn-danger" title="Cancelar"><i class="fa fa-times"></i></button>
-                                    <button id="btconcluido" value="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="btn btn-success" title="Concluído"><i class="fa fa-check"></i></button>
+                                    <?php if ($this->Membership->handleRole("VISUALIZAR_ORDEM_SERVICO")): ?>
+                                        <button id="btvisualizar" class="btn btn-info" onclick="<?= 'window.open(\'' . $this->Url->makeParams('ordem_servico', 'documento', $ordem_servico["OrdemServico"]["id"]) . '\')' ?>" title="Visualizar"><i class="fa fa-eye"></i></button>
+                                    <?php endif; ?>
+                                    <?php if ($this->Membership->handleRole("CANCELAR_ORDEM_SERVICO")): ?>
+                                        <button id="btcancelar" value="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="btn btn-danger" title="Cancelar"><i class="fa fa-times"></i></button>
+                                    <?php endif; ?>
+                                    <?php if ($this->Membership->handleRole("CONCLUIR_ORDEM_SERVICO")): ?>
+                                        <button id="btconcluido" value="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="btn btn-success" title="Concluído"><i class="fa fa-check"></i></button>
+                                        <?php endif; ?>
                                 </div>
                             </li>
                         <?php endforeach; ?>

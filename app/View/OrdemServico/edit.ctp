@@ -297,11 +297,13 @@ $this->element("question", array(
 
                         <div style="text-align: right;">
                             <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('ordem_servico') ?>'" type="button" class="btn btn-primary">Voltar</button>
-                            <?php if ($cancelado == false && $concluido == false): ?>
+                            <?php if (($this->Membership->handleRole("CANCELAR_ORDEM_SERVICO")) && ($cancelado == false && $concluido == false)): ?>
                                 <button type="button" onclick="cancelar();" class="btn btn-danger">Cancelar</button>
                             <?php endif; ?>
-                            <button type="button" onclick="criarModelo()" class="btn btn-warning">Criar Template</button>
-                            <?php if ($cancelado == false && $concluido == false): ?>
+                            <?php if ($this->Membership->handleRole("CADASTRAR_MODELO_ORDEM_SERVICO")): ?>
+                                <button type="button" onclick="criarModelo()" class="btn btn-warning">Criar Template</button>
+                            <?php endif; ?>
+                            <?php if (($this->Membership->handleRole("CONCLUIR_ORDEM_SERVICO")) && ($cancelado == false && $concluido == false)): ?>
                                 <button type="button" onclick="concluir();" class="btn btn-success">Marcar Concluído</button>
                             <?php endif; ?>
                             <button type="submit" onclick="return validar();" class="btn btn-success"><b>Salvar</b></button>

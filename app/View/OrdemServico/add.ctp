@@ -237,7 +237,9 @@ $this->element('message', array(
                         <div style="text-align: right;">
                             <button id="btnVoltar" onclick="window.location = '<?= $this->Url->make('ordem_servico') ?>'" type="button" class="btn btn-primary">Voltar</button>
                             <button type="reset" class="btn btn-primary">Limpar</button>
-                            <button type="button" onclick="criarModelo()" class="btn btn-warning">Criar Template</button>
+                            <?php if ($this->Membership->handleRole("CADASTRAR_MODELO_ORDEM_SERVICO")): ?>
+                                <button type="button" onclick="criarModelo()" class="btn btn-warning">Criar Template</button>
+                            <?php endif; ?>
                             <button type="submit" onclick="return validar();" class="btn btn-success">Salvar</button>
                         </div>
                     </div><!-- /.box-body -->

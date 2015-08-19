@@ -127,7 +127,9 @@ $this->element("question", array(
 
                             </div>
                             <div style="text-align: right;">
-                                <button type="button" id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('ordem_servico', 'add') . '\'' ?>">Novo</button>
+                                <?php if ($this->Membership->handleRole("ADICIONAR_ORDEM_SERVICO")): ?>
+                                    <button type="button" id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('ordem_servico', 'add') . '\'' ?>">Novo</button>
+                                <?php endif; ?>
                                 <button type="submit" class="btn btn-primary">Buscar</button>
                             </div>
                             <?php echo $this->Form->end(); ?>
@@ -161,21 +163,28 @@ $this->element("question", array(
                                                 <td><?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></td>
                                                 <td><?= $this->Business->priorityText($ordem_servico["OrdemServico"]["prioridade"]) ?></td>
                                                 <td>
-                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', $ordem_servico["OrdemServico"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
-                                                        <i class="fa fa-edit">
-                                                        </i>
-                                                    </a>
-                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', $ordem_servico["OrdemServico"]["id"]) ?>" class="btn btn-tumblr" title="Visualizar">
-                                                        <i class="fa fa-eye">
-                                                        </i>
-                                                    </a>
-                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $ordem_servico['OrdemServico']['id'] ?>)" title="Cancelar">
-                                                        <i class="fa fa-trash">
-                                                        </i>
-                                                    </a>
+                                                    <?php if ($this->Membership->handleRole("EDITAR_ORDEM_SERVICO")): ?>
+                                                        <a href="<?= $this->Url->makeParams('ordem_servico', 'edit', $ordem_servico["OrdemServico"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                            <i class="fa fa-edit">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->Membership->handleRole("VISUALIZAR_ORDEM_SERVICO")): ?>
+                                                        <a href="<?= $this->Url->makeParams('ordem_servico', 'documento', $ordem_servico["OrdemServico"]["id"]) ?>" class="btn btn-tumblr" title="Visualizar">
+                                                            <i class="fa fa-eye">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->Membership->handleRole("CANCELAR_ORDEM_SERVICO")): ?>
+                                                        <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $ordem_servico['OrdemServico']['id'] ?>)" title="Cancelar">
+                                                            <i class="fa fa-trash">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
+                                    </tbody>
                                 </table>
                             <?php endif; ?>
                         </div>
