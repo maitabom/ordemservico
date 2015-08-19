@@ -78,7 +78,7 @@ $this->element("question", array(
                                         <tr>
                                             <th>Cliente</th>
                                             <th>Serviço</th>
-                                            <th style="width: 14%"></th>
+                                            <th style="width: 13%"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -87,18 +87,24 @@ $this->element("question", array(
                                                 <td><abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></abbr></td>
                                                 <td><?= $ordem_servico["OrdemServicoModelo"]["servico"] ?></td>
                                                 <td>
-                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'template_edit', $ordem_servico["OrdemServicoModelo"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
-                                                        <i class="fa fa-edit">
-                                                        </i>
-                                                    </a>
-                                                    <a href="<?= $this->Url->makeParams('ordem_servico', 'add', $ordem_servico["OrdemServicoModelo"]["id"]) ?>" class="btn btn-tumblr" title="Gerar nova ordem de serviço a partir deste modelo">
-                                                        <i class="fa fa-plus">
-                                                        </i>
-                                                    </a>
-                                                    <a class="btn btn-google-plus" href="#"onclick="excluir(<?= $ordem_servico['OrdemServicoModelo']['id'] ?>)" title="Excluir">
-                                                        <i class="fa fa-trash">
-                                                        </i>
-                                                    </a>
+                                                    <?php if ($this->Membership->handleRole("EDITAR_MODELO_ORDEM_SERVICO")): ?>
+                                                        <a href="<?= $this->Url->makeParams('ordem_servico', 'template_edit', $ordem_servico["OrdemServicoModelo"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                            <i class="fa fa-edit">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->Membership->handleRole("ADICIONAR_ORDEM_SERVICO")): ?>
+                                                        <a href="<?= $this->Url->makeParams('ordem_servico', 'add', $ordem_servico["OrdemServicoModelo"]["id"]) ?>" class="btn btn-tumblr" title="Gerar nova ordem de serviço a partir deste modelo">
+                                                            <i class="fa fa-plus">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->Membership->handleRole("EXCLUIR_MODELO_ORDEM_SERVICO")): ?>
+                                                        <a class="btn btn-google-plus" href="#"onclick="excluir(<?= $ordem_servico['OrdemServicoModelo']['id'] ?>)" title="Excluir">
+                                                            <i class="fa fa-trash">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
