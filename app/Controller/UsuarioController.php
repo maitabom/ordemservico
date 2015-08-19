@@ -91,7 +91,12 @@ class UsuarioController extends AppController {
         $title = "Edição do Usuário";
         $usuario = $this->Usuario->read(null, $id);
         $estados = $this->Geo->listaUf();
-        $permissoes = $this->Permissao->find('list', array('fields' => array('id', 'nome')));
+        $permissoes = $this->Permissao->find('list', array(
+            'fields' => array('id', 'nome'),
+            "conditions" => array(
+                "Permissao.ativo" => true
+            )
+        ));
 
         $this->request->data = $usuario;
 
@@ -157,7 +162,12 @@ class UsuarioController extends AppController {
     public function cadastro($id) {
         $title = ($id > 0) ? "Edição do Usuário" : "Novo Usuário";
         $estados = $this->Geo->listaUf();
-        $permissoes = $this->Permissao->find('list', array('fields' => array('id', 'nome')));
+        $permissoes = $this->Permissao->find('list', array(
+            'fields' => array('id', 'nome'),
+            "conditions" => array(
+                "Permissao.ativo" => true
+            )
+        ));
 
         if ($id > 0) {
             $this->request->data = $this->Usuario->read(null, $id);
