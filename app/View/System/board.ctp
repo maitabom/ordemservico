@@ -85,12 +85,15 @@
                         </div><!-- /.table-responsive -->
                     </div><!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        <?= $this->Html->link("Gerar Nova Ordem", array("controller" => "ordem_servico", "action" => "add"), array("class" => "btn btn-sm btn-info btn-flat pull-left")) ?>
-                        <?= $this->Html->link("Visualizar Todas as Ordens", array("controller" => "ordem_servico"), array("class" => "btn btn-sm btn-default btn-flat pull-right")) ?>
+                        <?php if ($this->Membership->handleRole("ADICIONAR_ORDEM_SERVICO")): ?>
+                            <?= $this->Html->link("Gerar Nova Ordem", array("controller" => "ordem_servico", "action" => "add"), array("class" => "btn btn-sm btn-info btn-flat pull-left")) ?>
+                        <?php endif; ?>
+                        <?php if ($this->Membership->handleRole("LISTA_ORDEM_SERVICO")): ?>
+                            <?= $this->Html->link("Visualizar Todas as Ordens", array("controller" => "ordem_servico"), array("class" => "btn btn-sm btn-default btn-flat pull-right")) ?>
+                        <?php endif; ?>
                     </div><!-- /.box-footer -->
                 </div>
             </div>
-
         </div>
     </section>
 </div>
