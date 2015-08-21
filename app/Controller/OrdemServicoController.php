@@ -310,7 +310,7 @@ class OrdemServicoController extends AppController {
     }
 
     public function imprimir($id) {
-        $this->layout = "print";
+        $this->layout = "double_print";
 
         $ordem_servico = $this->OrdemServico->read(null, $id);
         $title = "Ordem de Serviço $id";
@@ -402,6 +402,11 @@ class OrdemServicoController extends AppController {
             $this->Dialog->error($mensagem, $ex->getMessage());
             $this->redirect(array("action" => "index"));
         }
+    }
+
+    public function teste() {
+        //Função para realizar teste de impressão
+        $this->layout = "print";
     }
 
     private function create($data) {
