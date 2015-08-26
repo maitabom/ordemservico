@@ -80,7 +80,7 @@
                             </div>
                             <div class="col-xs-3">
                                 <b>Grupo de Usuários</b><br/>
-                                <span><?= $this->Format->phone($usuario["Grupo"]["nome"]) ?></span>
+                                <span><?= $this->Format->phone($usuario["Permissao"]["nome"]) ?></span>
                             </div>
                             <div class="col-xs-3">
                                 <b>Ativo</b><br/>
