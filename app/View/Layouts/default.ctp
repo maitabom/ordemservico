@@ -112,7 +112,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                 <?= $this->fetch('content'); ?>
                 <footer class="main-footer">
                     <div class="pull-right hidden-xs">
-                        <b>Version</b> 1.0
+                        <b>Version</b> 1.1
                     </div>
                     <strong>Copyright &copy; 2015 Moreth e Lopes</strong> Todos os direitos reservados.
                 </footer>
