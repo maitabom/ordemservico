@@ -77,7 +77,8 @@
                     <ul class="treeview-menu">
                         <?php if ($this->Membership->handleMenu("EQUIPAMENTOS")): ?>
                             <li><a href="<?= $this->Url->make('equipamento') ?>"><i class="fa fa-print"></i> Equipamentos</a></li>
-                            <?php endif; ?>
+                        <?php endif; ?>
+                        <li><a href="<?= $this->Url->make('material') ?>"><i class="fa fa-puzzle-piece"></i> Materiais</a></li>
                     </ul>
                 </li>
             <?php endif; ?>
