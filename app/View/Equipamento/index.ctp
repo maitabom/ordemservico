@@ -46,7 +46,7 @@ $this->element("question", array(
                             </div>
                             <?php if ($qtd_equipamentos == 0): ?>
                                 <div>
-                                    <h2>Nenhum cliente cadastrado encontrado. Para cadastrar seu primeiro cliente, <?= $this->Html->link("clique aqui", array("controller" => "cliente", "action" => "add")) ?>.</h2>
+                                    <h2>Nenhum equipamento cadastrado encontrado. Para cadastrar seu primeiro equipamento, <?= $this->Html->link("clique aqui", array("controller" => "equipamento", "action" => "add")) ?>.</h2>
                                 </div>
                             <?php else: ?>
                                 <table id="example1" class="table table-bordered table-hover">
