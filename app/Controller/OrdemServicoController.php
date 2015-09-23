@@ -237,11 +237,24 @@ class OrdemServicoController extends AppController {
 
         $this->request->data = $modelo;
 
-        $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
+        $equipamentos = $this->Equipamento->find("list", array(
+            "fields" => ["id", "nome"],
+            "conditions" => array(
+                "Equipamento.ativo" => true
+            )
+        ));
+
         $modo_entrega = $this->ModoEntrega->find("list", array(
             "fields" => [ "id", "nome"],
             "conditions" => array(
                 "ModoEntrega.ativo" => true
+            )
+        ));
+
+        $materiais = $this->Material->find("list", array(
+            "fields" => [ "id", "descricao"],
+            "conditions" => array(
+                "Material.ativo" => true
             )
         ));
 
@@ -251,6 +264,7 @@ class OrdemServicoController extends AppController {
         $this->set("title_for_layout", $title);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
+        $this->set("materiais", $materiais);
         $this->set("nome_cliente", $modelo["Cliente"]["razao_social"]);
     }
 

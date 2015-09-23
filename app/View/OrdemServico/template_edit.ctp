@@ -160,7 +160,7 @@ $this->element('message', array(
                         </div>
                         <div class="form-group col-xs-12">
                             <?= $this->Form->label("material", "Material") ?>
-                            <?= $this->Form->text("material", array("class" => "form-control", "maxlength" => 100)) ?>
+                            <?= $this->Form->select("material", $materiais, array("class" => "form-control")) ?>
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("formato", "Formato") ?>

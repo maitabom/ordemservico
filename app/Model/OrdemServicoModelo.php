@@ -22,6 +22,10 @@ class OrdemServicoModelo extends AppModel {
         "ModoEntrega" => array(
             "className" => "ModoEntrega",
             "foreignKey" => "modo_entrega"
+        ),
+        "Material" => array(
+            "className" => "Material",
+            "foreignKey" => "material"
         )
     );
 
