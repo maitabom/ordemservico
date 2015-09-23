@@ -78,7 +78,9 @@
                         <?php if ($this->Membership->handleMenu("EQUIPAMENTOS")): ?>
                             <li><a href="<?= $this->Url->make('equipamento') ?>"><i class="fa fa-print"></i> Equipamentos</a></li>
                         <?php endif; ?>
-                        <li><a href="<?= $this->Url->make('material') ?>"><i class="fa fa-puzzle-piece"></i> Materiais</a></li>
+                        <?php if ($this->Membership->handleMenu("MATERIAIS")): ?>
+                            <li><a href="<?= $this->Url->make('material') ?>"><i class="fa fa-puzzle-piece"></i> Materiais</a></li>
+                            <?php endif; ?>
                     </ul>
                 </li>
             <?php endif; ?>

@@ -236,7 +236,11 @@ class MembershipHelper extends AppHelper {
             "LISTA_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "index"],
             "CADASTRAR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "add"],
             "EDITAR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "edit"],
-            "EXCLUIR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "delete"]
+            "EXCLUIR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "delete"],
+            "LISTAR_MATERIAIS" => ["controller" => "material", "action" => "index"],
+            "CADASTRAR_MATERIAIS" => ["controller" => "material", "action" => "add"],
+            "EDITAR_MATERIAIS" => ["controller" => "material", "action" => "edit"],
+            "EXCLUIR_MATERIAIS" => ["controller" => "material", "action" => "delete"]
         ];
 
         return $roles;
@@ -323,6 +327,11 @@ class MembershipHelper extends AppHelper {
                         "chave" => "EQUIPAMENTOS",
                         "active" => $this->handleRole("LISTA_EQUIPAMENTOS"),
                         "function" => "LISTA_EQUIPAMENTOS"
+                    ],
+                    [
+                        "chave" => "MATERIAIS",
+                        "active" => $this->handleRole("LISTAR_MATERIAIS"),
+                        "function" => "LISTAR_MATERIAIS"
                     ]
                 ]
             ]

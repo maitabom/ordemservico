@@ -118,7 +118,11 @@ class MembershipComponent extends Component {
             "LISTA_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "index"],
             "CADASTRAR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "add"],
             "EDITAR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "edit"],
-            "EXCLUIR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "delete"]
+            "EXCLUIR_EQUIPAMENTOS" => ["controller" => "equipamento", "action" => "delete"],
+            "LISTAR_MATERIAIS" => ["controller" => "material", "action" => "index"],
+            "CADASTRAR_MATERIAIS" => ["controller" => "material", "action" => "add"],
+            "EDITAR_MATERIAIS" => ["controller" => "material", "action" => "edit"],
+            "EXCLUIR_MATERIAIS" => ["controller" => "material", "action" => "delete"]
         ];
 
         return $roles;
