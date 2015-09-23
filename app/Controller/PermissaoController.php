@@ -113,6 +113,7 @@ class PermissaoController extends AppController {
                     }
                 }
 
+                $this->Session->delete("USER_FUNCTIONS");
                 $this->Dialog->alert("A permissão foi salva com sucesso.");
                 $this->redirect(array("action" => "cadastro", $id_permissao));
             } catch (Exception $ex) {
