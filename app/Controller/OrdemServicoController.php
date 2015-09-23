@@ -14,6 +14,7 @@ class OrdemServicoController extends AppController {
         $this->loadModel('OrdemServico');
         $this->loadModel('OrdemServicoModelo');
         $this->loadModel('Equipamento');
+        $this->loadModel('Material');
         $this->loadModel('ModoEntrega');
         $this->controlAuth();
         parent::beforeFilter();
@@ -92,11 +93,24 @@ class OrdemServicoController extends AppController {
 
     public function add($id = null) {
         $prioridades = [0 => "Baixa", 1 => "Média", 2 => "Alta"];
-        $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
+
+        $equipamentos = $this->Equipamento->find("list", array(
+            "fields" => ["id", "nome"],
+            "conditions" => array(
+                "Equipamento.ativo" => true)
+        ));
+
         $modo_entrega = $this->ModoEntrega->find("list", array(
             "fields" => [ "id", "nome"],
             "conditions" => array(
                 "ModoEntrega.ativo" => true
+            )
+        ));
+
+        $materiais = $this->Material->find("list", array(
+            "fields" => [ "id", "descricao"],
+            "conditions" => array(
+                "Material.ativo" => true
             )
         ));
 
@@ -105,6 +119,7 @@ class OrdemServicoController extends AppController {
         $this->set("title_for_layout", $title);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
+        $this->set("materiais", $materiais);
         $this->set("prioridades", $prioridades);
 
         if ($id != null) {
@@ -143,11 +158,25 @@ class OrdemServicoController extends AppController {
         $this->request->data = $ordem_servico;
 
         $prioridades = [0 => "Baixa", 1 => "Média", 2 => "Alta"];
-        $equipamentos = $this->Equipamento->find("list", array("fields" => ["id", "nome"]));
+
+        $equipamentos = $this->Equipamento->find("list", array(
+            "fields" => ["id", "nome"],
+            "conditions" => array(
+                "Equipamento.ativo" => true
+            )
+        ));
+
         $modo_entrega = $this->ModoEntrega->find("list", array(
             "fields" => [ "id", "nome"],
             "conditions" => array(
                 "ModoEntrega.ativo" => true
+            )
+        ));
+
+        $materiais = $this->Material->find("list", array(
+            "fields" => [ "id", "descricao"],
+            "conditions" => array(
+                "Material.ativo" => true
             )
         ));
 
@@ -158,6 +187,7 @@ class OrdemServicoController extends AppController {
         $this->set("nome_cliente", $ordem_servico["Cliente"]["razao_social"]);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
+        $this->set("materiais", $materiais);
         $this->set("prioridades", $prioridades);
         $this->set("cancelado", $ordem_servico["OrdemServico"]["cancelado"]);
         $this->set("concluido", $ordem_servico["OrdemServico"]["concluido"]);

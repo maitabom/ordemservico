@@ -51,7 +51,7 @@
                             </td>
                             <td>
                                 <b>Material</b><br/>
-                                <span><?= $ordem_servico["OrdemServico"]["material"] ?></span>
+                                <span><?= $ordem_servico["Material"]["descricao"] ?></span>
                             </td>
                             <td>
                                 <b>Acabamento</b><br/>
