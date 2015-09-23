@@ -1,5 +1,25 @@
+<script type="text/javascript">
+    function excluir(id) {
+        $("#material_excluir").dialog("open");
+        $("#questionParameter").val(id);
+    }
+</script>
 <?= $this->Session->flash() ?>
 <?= $this->element('menu'); ?>
+<?=
+$this->element("question", array(
+    "name" => "material_excluir",
+    "form_name" => "frm_material_excluir",
+    "message" => "Deseja excluir o material? Certifique que não haja nenhum serviço associado a este material. Você pode deixar inativo, se desejar.",
+    "action" => array(
+        "controller" => "material",
+        "action" => "delete"),
+    "buttons" => array(
+        "ok" => "Sim",
+        "cancel" => "Não"
+    )
+))
+?>
 <div class="content-wrapper">
     <section class="content-header">
         <h1>Lista de Materiais</h1>
@@ -32,6 +52,7 @@
                                         <tr>
                                             <th>Descrição</th>
                                             <th>Fabricante</th>
+                                            <th>Ativo</th>
                                             <th style="width: 9%"></th>
                                         </tr>
                                     </thead>
@@ -40,12 +61,13 @@
                                             <tr>
                                                 <td><?= $material["Material"]["descricao"] ?></td>
                                                 <td><?= $material["Material"]["fabricante"] ?></td>
+                                                <td><?= $material["Material"]["ativo"] ? "Sim" : "Não" ?></td>
                                                 <td>
                                                     <a href="<?= $this->Url->makeParams('material', 'edit', $material["Material"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
                                                         <i class="fa fa-edit">
                                                         </i>
                                                     </a>
-                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $equipamento["Material"]["id"] ?>)" title="Excluir">
+                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $material["Material"]["id"] ?>)" title="Excluir">
                                                         <i class="fa fa-trash">
                                                         </i>
                                                     </a>
