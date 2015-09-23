@@ -36,9 +36,11 @@ $this->element("question", array(
                 <div class="box">
                     <div class="box-body">
                         <div id="wrapper" class="dataTables_wrapper form-inline" role="grid">
-                            <div style="text-align: right;">
-                                <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('material', 'add') . '\'' ?>">Novo</button>
-                            </div>
+                            <?php if ($this->Membership->handleRole("CADASTRAR_MATERIAIS")): ?>
+                                <div style="text-align: right;">
+                                    <button id="btnNovo" class="btn btn-success" onclick="<?= 'window.location = \'' . $this->Url->make('material', 'add') . '\'' ?>">Novo</button>
+                                </div>
+                            <?php endif; ?>
                             <div style="min-height: 30px">
 
                             </div>
@@ -63,14 +65,18 @@ $this->element("question", array(
                                                 <td><?= $material["Material"]["fabricante"] ?></td>
                                                 <td><?= $material["Material"]["ativo"] ? "Sim" : "Não" ?></td>
                                                 <td>
-                                                    <a href="<?= $this->Url->makeParams('material', 'edit', $material["Material"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
-                                                        <i class="fa fa-edit">
-                                                        </i>
-                                                    </a>
-                                                    <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $material["Material"]["id"] ?>)" title="Excluir">
-                                                        <i class="fa fa-trash">
-                                                        </i>
-                                                    </a>
+                                                    <?php if ($this->Membership->handleRole("EDITAR_MATERIAIS")): ?>
+                                                        <a href="<?= $this->Url->makeParams('material', 'edit', $material["Material"]["id"]) ?>" class="btn btn-bitbucket" title="Editar">
+                                                            <i class="fa fa-edit">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
+                                                    <?php if ($this->Membership->handleRole("EXCLUIR_MATERIAIS")): ?>
+                                                        <a class="btn btn-google-plus" href="#" onclick="excluir(<?= $material["Material"]["id"] ?>)" title="Excluir">
+                                                            <i class="fa fa-trash">
+                                                            </i>
+                                                        </a>
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
