@@ -23,13 +23,6 @@
             $("#EquipamentoModelo").css("border-color", "#D2D6DE");
         }
 
-        if ($("#EquipamentoDataAquisicao").val() === "") {
-            mensagem += "- A data de aquisição do equipamento é obrigatório.\n";
-            $("#EquipamentoDataAquisicao").css("border-color", "red");
-        } else {
-            $("#EquipamentoDataAquisicao").css("border-color", "#D2D6DE");
-        }
-
         if (mensagem == "") {
             return true;
         } else {
