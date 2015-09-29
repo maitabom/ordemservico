@@ -19,10 +19,15 @@ class DateHelper extends AppHelper {
     public function format($data, $complete = false) {
         $data;
 
-        if ($complete) {
-            $data = date("d/m/Y H:i:s", strtotime($data));
+        if ($data == null) {
+            $data = "";
         } else {
-            $data = date("d/m/Y", strtotime($data));
+
+            if ($complete) {
+                $data = date("d/m/Y H:i:s", strtotime($data));
+            } else {
+                $data = date("d/m/Y", strtotime($data));
+            }
         }
 
         return $data;

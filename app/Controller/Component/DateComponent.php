@@ -14,7 +14,13 @@ class DateComponent extends Component {
      * @return string A data no formato reconhecido pelo banco de dados.
      */
     public function formatDateDB($data) {
-        return date("Y-m-d", strtotime(str_replace('/', '-', $data)));
+        $result = null;
+
+        if ($data != "") {
+            $result = date("Y-m-d", strtotime(str_replace('/', '-', $data)));
+        }
+
+        return $result;
     }
 
     /**
@@ -23,7 +29,15 @@ class DateComponent extends Component {
      * @return string A data no formato do usuário.
      */
     public function formatDateView($data) {
-        return date("d/m/Y", strtotime($data));
+        $result = null;
+
+        if ($data == null) {
+            $result = "";
+        } else {
+            $result = date("d/m/Y", strtotime($data));
+        }
+
+        return $result;
     }
 
 }
