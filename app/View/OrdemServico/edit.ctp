@@ -1,5 +1,32 @@
 <script type="text/javascript">
     $(function () {
+        $("#OrdemServicoNomeMaterial").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "<?= $this->Url->relative('/material/listar') ?>",
+                    dataType: "json",
+                    data: {
+                        nome: request.term
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $("#OrdemServicoNomeMaterial").val(ui.item.Material.descricao);
+                $("#OrdemServicoMaterial").val(ui.item.Material.id);
+
+                return false;
+            },
+            minLength: 3
+
+        }).autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li>")
+                    .append("<a><b><big>" + item.Material.descricao + "</big></b><br><i>" + item.Material.fabricante + "</i></a>")
+                    .appendTo(ul);
+        };
+
         VMasker(document.querySelector("#OrdemServicoPrazo")).maskPattern("99/99/9999");
 
         $("#OrdemServicoPrazo").datepicker({
@@ -189,8 +216,9 @@ $this->element("question", array(
                                 <?= $this->Form->text("servico", array("class" => "form-control", "maxlength" => 300)) ?>
                             </div>
                             <div class="form-group col-xs-3">
+                                <?= $this->Form->hidden("material") ?>
                                 <?= $this->Form->label("material", "Material") ?>
-                                <?= $this->Form->select("material", $materiais, array("class" => "form-control")) ?>
+                                <?= $this->Form->text("nome_material", array("class" => "form-control", "value" => $descricao_material, "maxlength" => 100)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("formato", "Formato") ?>
@@ -243,7 +271,7 @@ $this->element("question", array(
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("material", "Material") ?>
-                                <?= $this->Form->text("material", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("material", array("class" => "form-control", "disabled" => true, "value" => $descricao_material)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("formato", "Formato") ?>
