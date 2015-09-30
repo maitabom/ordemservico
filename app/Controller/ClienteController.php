@@ -119,14 +119,16 @@ class ClienteController extends AppController {
 
             try {
 
-                $cd = $this->Cliente->find("count", array(
-                    "conditions" => array(
-                        "Cliente.documento_fiscal" => $data["Cliente"]["documento_fiscal"]
-                    )
-                ));
+                if ($this->request->is('post')) {
+                    $cd = $this->Cliente->find("count", array(
+                        "conditions" => array(
+                            "Cliente.documento_fiscal" => $data["Cliente"]["documento_fiscal"]
+                        )
+                    ));
 
-                if ($cd > 0) {
-                    throw new Exception("Não é permitido cadastrar dois clientes com mesmo documento fiscal.");
+                    if ($cd > 0) {
+                        throw new Exception("Não é permitido cadastrar dois clientes com mesmo documento fiscal.");
+                    }
                 }
 
                 $this->Cliente->save($data);
