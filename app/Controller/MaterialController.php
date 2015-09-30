@@ -108,4 +108,31 @@ class MaterialController extends AppController {
         }
     }
 
+    public function listar() {
+        $this->layout = "ajax";
+        $this->autoRender = false;
+        $this->Material->recursive = -1;
+
+        if ($this->request->is("ajax")) {
+            $nome = $this->request->query("nome");
+
+            $materiais = $this->Material->find("all", array(
+                "fields" => ["id", "descricao", "fabricante"],
+                "conditions" => array(
+                    "OR" => array(
+                        "Material.descricao LIKE" => "%" . $nome . "%",
+                        "Material.fabricante LIKE" => "%" . $nome . "%"
+                    ),
+                    "Material.ativo" => true
+                ),
+                "order" => array(
+                    "Material.descricao" => "ASC",
+                    "Material.fabricante" => "ASC"
+                )
+            ));
+
+            echo json_encode($materiais);
+        }
+    }
+
 }
