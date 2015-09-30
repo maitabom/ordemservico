@@ -107,19 +107,11 @@ class OrdemServicoController extends AppController {
             )
         ));
 
-        $materiais = $this->Material->find("list", array(
-            "fields" => [ "id", "descricao"],
-            "conditions" => array(
-                "Material.ativo" => true
-            )
-        ));
-
         $title = "Gerar Ordem de Serviço";
 
         $this->set("title_for_layout", $title);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
-        $this->set("materiais", $materiais);
         $this->set("prioridades", $prioridades);
 
         if ($id != null) {
@@ -143,11 +135,15 @@ class OrdemServicoController extends AppController {
             );
 
             $cliente = $this->Cliente->read(null, $modelo["OrdemServicoModelo"]["id_cliente"]);
+            $material = $this->Material->read(null, $modelo["OrdemServicoModelo"]["material"]);
 
             $this->request->data = $ordem_servico;
+
             $this->set("nome_cliente", $cliente["Cliente"]["razao_social"]);
+            $this->set("descricao_material", $material["Material"]["descricao"]);
         } else {
             $this->set("nome_cliente", "");
+            $this->set("descricao_material", "");
         }
     }
 
@@ -173,12 +169,7 @@ class OrdemServicoController extends AppController {
             )
         ));
 
-        $materiais = $this->Material->find("list", array(
-            "fields" => [ "id", "descricao"],
-            "conditions" => array(
-                "Material.ativo" => true
-            )
-        ));
+        $material = $this->Material->read(null, $ordem_servico["OrdemServico"]["material"]);
 
         $title = "Editar Ordem de Serviço";
 
@@ -187,8 +178,8 @@ class OrdemServicoController extends AppController {
         $this->set("nome_cliente", $ordem_servico["Cliente"]["razao_social"]);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
-        $this->set("materiais", $materiais);
         $this->set("prioridades", $prioridades);
+        $this->set("descricao_material", $material["Material"]["descricao"]);
         $this->set("cancelado", $ordem_servico["OrdemServico"]["cancelado"]);
         $this->set("concluido", $ordem_servico["OrdemServico"]["concluido"]);
     }
@@ -251,12 +242,7 @@ class OrdemServicoController extends AppController {
             )
         ));
 
-        $materiais = $this->Material->find("list", array(
-            "fields" => [ "id", "descricao"],
-            "conditions" => array(
-                "Material.ativo" => true
-            )
-        ));
+        $material = $this->Material->read(null, $modelo["OrdemServicoModelo"]["material"]);
 
         $title = "Editar Modelo de Ordem de Serviço";
 
@@ -264,7 +250,7 @@ class OrdemServicoController extends AppController {
         $this->set("title_for_layout", $title);
         $this->set("equipamentos", $equipamentos);
         $this->set("modos_entregas", $modo_entrega);
-        $this->set("materiais", $materiais);
+        $this->set("descricao_material", $material["Material"]["descricao"]);
         $this->set("nome_cliente", $modelo["Cliente"]["razao_social"]);
     }
 
