@@ -192,7 +192,8 @@ class ClienteController extends AppController {
                     "OR" => array(
                         "Cliente.razao_social LIKE" => "%" . $nome . "%",
                         "Cliente.nome_fantasia LIKE" => "%" . $nome . "%"
-                    )
+                    ),
+                    "Cliente.ativo" => true
                 ),
                 "order" => array(
                     "Cliente.razao_social" => "ASC",
