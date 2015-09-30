@@ -37,13 +37,6 @@
             $("#ClienteCep").css("border-color", "#D2D6DE");
         }
 
-        if ($("#ClienteCelular").val() === "") {
-            mensagem += "- O celular do cliente é obrigatório.\n";
-            $("#ClienteCelular").css("border-color", "red");
-        } else {
-            $("#ClienteCelular").css("border-color", "#D2D6DE");
-        }
-
         if ($("#ClienteDocumentoFiscal").val() === "") {
             mensagem += "- O CPF ou o CNPJ do cliente é obrigatório.\n";
             $("#ClienteDocumentoFiscal").css("border-color", "red");
