@@ -7,12 +7,12 @@
             </h2>
         </div><!-- /.col -->
     </div>
-    <div class="row invoice-info">
+    <div class="row invoice-info border-row">
         <div class="col-sm-6 invoice-col">
             <address>
                 <strong><?= $ordem_servico["Cliente"]["razao_social"] ?></strong><br>
-                <?= $ordem_servico["Cliente"]["endereco"] ?> - <?= $ordem_servico["Cliente"]["bairro"] ?><br>
-                <?= $ordem_servico["Cliente"]["cidade"] ?> - <?= $ordem_servico["Cliente"]["uf"] ?><br>
+                <?= $ordem_servico["Cliente"]["endereco"] ?><br>
+                <?= $ordem_servico["Cliente"]["bairro"] ?> - <?= $ordem_servico["Cliente"]["cidade"] ?> - <?= $ordem_servico["Cliente"]["uf"] ?><br>
                 Telefone: <?= $this->Format->phone($ordem_servico["Cliente"]["telefone"]) ?><br/>
                 Email: <?= $ordem_servico["Cliente"]["email"] ?>
             </address>
@@ -25,7 +25,8 @@
             <b>Prioridade:</b> <?= $this->Business->priorityText($ordem_servico["OrdemServico"]["prioridade"]) ?><br/>
         </div><!-- /.col -->
     </div><!-- /.row  -->
-    <div class="row">
+
+    <div class="row border-row">
         <div class="col-xs-12 table-responsive">
             <table class="table table-striped">
                 <tbody>
@@ -69,7 +70,7 @@
             </table>
         </div>
     </div>
-    <div class="row">
+    <div class="row border-row">
         <div class="col-sm-6 invoice-col">
             <b>Observações</b><br/>
             <span><?= $ordem_servico["OrdemServico"]["observacoes"] ?></span>
