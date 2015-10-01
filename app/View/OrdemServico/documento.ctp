@@ -22,8 +22,8 @@
                     <big>Cliente</big>
                     <address>
                         <strong><?= $ordem_servico["Cliente"]["razao_social"] ?></strong><br>
-                        <?= $ordem_servico["Cliente"]["endereco"] ?> - <?= $ordem_servico["Cliente"]["bairro"] ?><br>
-                        <?= $ordem_servico["Cliente"]["cidade"] ?> - <?= $ordem_servico["Cliente"]["uf"] ?><br>
+                        <?= $ordem_servico["Cliente"]["endereco"] ?><br>
+                        <?= $ordem_servico["Cliente"]["bairro"] ?> - <?= $ordem_servico["Cliente"]["cidade"] ?> - <?= $ordem_servico["Cliente"]["uf"] ?><br>
                         Telefone: <?= $this->Format->phone($ordem_servico["Cliente"]["telefone"]) ?><br/>
                         Email: <?= $ordem_servico["Cliente"]["email"] ?>
                     </address>
