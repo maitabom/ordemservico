@@ -23,6 +23,10 @@ class MembershipHelper extends AppHelper {
 
         if (!isset($userID)) {
             $userID = $this->getUser();
+
+            if ($userID == null) {
+                return false;
+            }
         }
 
         if (!$this->isFunction($function)) {
