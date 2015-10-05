@@ -74,34 +74,42 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                     <?= $this->Html->link("Moreth e Lopes", array("controller" => "system", "action" => "board"), array("class" => "logo")) ?>
 
                     <nav class="navbar navbar-static-top" role="navigation">
-                        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle navigation</span>
-                        </a>
+                        <?php if ($this->Session->check("Usuario")): ?>
+                            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                                <span class="sr-only">Toggle navigation</span>
+                            </a>
+                        <?php endif; ?> 
                         <div class="navbar-custom-menu">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown user user-menu">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="<?= $this->Url->relative('img/avatar6.png') ?>" class="user-image" alt="User Image"/>
-                                        <span class="hidden-xs"><?= $this->Format->firstName($this->Session->read("UsuarioNome")) ?></span>
+                                        <span class="hidden-xs"><?= $this->Session->check("Usuario") ? $this->Format->firstName($this->Session->read("UsuarioNome")) : "Visitante" ?></span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <!-- User image -->
                                         <li class="user-header">
                                             <img src="<?= $this->Url->relative('img/avatar6.png') ?>" class="img-circle" alt="User Image" />
                                             <p>
-                                                <b><?= $this->Session->read("UsuarioNome") ?></b><br/>
+                                                <b><?= $this->Session->check("Usuario") ? $this->Session->read("UsuarioNome") : "Visitante" ?></b><br/>
                                                 <small> <?= $this->Session->read("UsuarioCargo") ?></small>
                                             </p>
                                             <div style="width: 10px"></div>
                                         </li>
                                         <!-- Menu Footer-->
                                         <li class="user-footer">
-                                            <div class="pull-left">
-                                                <?= $this->Html->link("Perfil", array("controller" => "usuario", "action" => "perfil", $this->Session->read("UsuarioUsuario")), array("class" => "btn btn-default btn-flat")) ?>
-                                            </div>
-                                            <div class="pull-right">
-                                                <?= $this->Html->link("Sair", array("controller" => "system", "action" => "logoff"), array("class" => "btn btn-default btn-flat")) ?>
-                                            </div>
+                                            <?php if ($this->Session->check("Usuario")): ?>
+                                                <div class="pull-left">
+                                                    <?= $this->Html->link("Perfil", array("controller" => "usuario", "action" => "perfil", $this->Session->read("UsuarioUsuario")), array("class" => "btn btn-default btn-flat")) ?>
+                                                </div>
+                                                <div class="pull-right">
+                                                    <?= $this->Html->link("Sair", array("controller" => "system", "action" => "logoff"), array("class" => "btn btn-default btn-flat")) ?>
+                                                </div>
+                                            <?php else: ?>
+                                                <div>
+                                                    <?= $this->Html->link("Efetuar Login", array("controller" => "system", "action" => "login", $this->Session->read("UsuarioUsuario")), array("class" => "btn btn-block btn-default btn-flat")) ?>
+                                                </div>
+                                            <?php endif; ?>
                                         </li>
                                     </ul>
                                 </li>
