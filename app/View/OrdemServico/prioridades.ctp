@@ -6,11 +6,6 @@
 
         $("#prioridades").disableSelection();
 
-        /*
-         * TODO: Colocar a mensagem de confirmação e de alerta ao cancelar e concluir a ordem de serviço, para que seja ajustada ao padrão.
-         *       Verificar a forma de utilizar esta forma por meio de client, sem fazer chamada no servidor.
-         */
-
         $(".btn-danger").click(function () {
             if (confirm("Deseja cancelar esta ordem de serviço?")) {
                 var id = $(this).val();
@@ -85,9 +80,9 @@
                         <?php foreach ($ordens_servico as $ordem_servico): ?>
                             <li id="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="<?= $this->Business->priorityColor($ordem_servico["OrdemServico"]["prioridade"]) . " row" ?>  bg-black row">
                                 <div class="col-md-10">
-                                    <h3 style="color: whitesmoke;"><?= $this->Format->zeroPad($ordem_servico["OrdemServico"]["id"]) ?> : <?= $ordem_servico["OrdemServico"]["servico"] ?></h3>
-                                    <p><b>Cliente:</b> <abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></abbr></p>
-                                    <p><b>Prazo:</b> <?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></p>
+                                    <h1 style="color: whitesmoke; font-weight: bold"><?= $this->Format->zeroPad($ordem_servico["OrdemServico"]["id"]) ?> : <?= $ordem_servico["OrdemServico"]["servico"] ?></h1>
+                                    <p style="font-size: x-large"><b>Cliente:</b> <abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></abbr></p>
+                                    <p style="font-size: x-large"><b>Prazo:</b> <?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></p>
                                 </div>
                                 <div class="col-md-2" style="text-align: right">
                                     <?php if ($this->Membership->handleRole("VISUALIZAR_ORDEM_SERVICO")): ?>
