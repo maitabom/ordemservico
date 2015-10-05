@@ -65,9 +65,14 @@ class AppController extends Controller {
      * Controle simplificado de autenticação do usuário
      */
     protected function controlAuth() {
-        if (!$this->isAuthorized()) {
-            $this->Session->setFlash("A sessão foi expirada.");
-            $this->redirect(array("controller" => "system", "action" => "login"));
+        $controller = $this->request->controller;
+        $action = $this->request->action;
+        $url = ["controller" => $controller, "action" => $action];
+
+        if (!$this->Membership->handlePublicRole($url)) {
+            if (!$this->isAuthorized()) {
+                $this->redirectLogin("A sessão foi expirada!");
+            }
         }
     }
 
