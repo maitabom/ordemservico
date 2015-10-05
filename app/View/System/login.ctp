@@ -32,7 +32,8 @@
             </div><!-- /.col -->
         </div>
         <?php echo $this->Form->end(); ?>
-        <?= $this->Html->link("Esqueci minha senha", array("controller" => "system", "action" => "forget")) ?>
+        <?= $this->Html->link("Esqueci minha senha", array("controller" => "system", "action" => "forget")) ?> | 
+        <?= $this->Html->link("Lista de Tarefas", array("controller" => "ordem_servico", "action" => "prioridades")) ?>
 
     </div><!-- /.login-box-body -->
 </div><!-- /.login-box -->
