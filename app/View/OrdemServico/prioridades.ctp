@@ -1,62 +1,110 @@
 <script type="text/javascript">
     $(function () {
-        $("#prioridades").sortable({
-            revert: true
-        });
-
-        $("#prioridades").disableSelection();
-
-        $(".btn-danger").click(function () {
-            if (confirm("Deseja cancelar esta ordem de serviço?")) {
-                var id = $(this).val();
-                var retorno = '<?= serialize(["controller" => "ordem_servico", "action" => "prioridades"]) ?>';
-
-                $.ajax({
-                    type: "POST",
-                    data: {
-                        param: id,
-                        callback: retorno
-                    },
-                    url: "<?= $this->Url->relative('/ordem_servico/cancelar/') ?>" + id,
-                    dataType: "html",
-                    beforeSend: function () {
-                        $("#loading").dialog("open");
-                    },
-                    complete: function (msg) {
-                        $("#loading").dialog("close");
-                        alert("Ordem de serviço cancelada com sucesso.");
-                        $("li#" + id).hide();
-                    }
-                });
-            }
-        });
-
-        $(".btn-success").click(function () {
-            if (confirm("Deseja marcar esta ordem de serviço como concluído?")) {
-                var id = $(this).val();
-                var retorno = '<?= serialize(["controller" => "ordem_servico", "action" => "prioridades"]) ?>';
-
-                $.ajax({
-                    type: "POST",
-                    data: {
-                        param: id,
-                        callback: retorno
-                    },
-                    url: "<?= $this->Url->relative('/ordem_servico/concluir/') ?>" + id,
-                    dataType: "html",
-                    beforeSend: function () {
-                        $("#loading").dialog("open");
-                    },
-                    complete: function (msg) {
-                        $("#loading").dialog("close");
-                        alert("Ordem de serviço concluida com sucesso.");
-                        $("li#" + id).hide();
-                    }
-                });
-            }
-        });
+        setTimeout(function () {
+            window.location.reload(1);
+        }, 30000);
     });
 </script>
+
+<?php if ($this->Session->check("Usuario")): ?>
+    <script type = "text/javascript">
+        $(function () {
+            $("#prioridades").sortable({
+                revert: true,
+                stop: function (event, ui) {
+                    ordenar();
+                }
+            });
+
+            $("#prioridades").disableSelection();
+
+            $("li #num_ordem").each(function (i) {
+                $(this).val(i);
+
+                var id = $(this).parent().attr("id");
+                var param = id + "/" + i;
+
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        param: param
+                    },
+                    url: "<?= $this->Url->relative('/ordem_servico/sort/') ?>" + param,
+                    dataType: "html"
+                });
+            });
+
+
+            $(".btn-danger").click(function () {
+                if (confirm("Deseja cancelar esta ordem de serviço?")) {
+                    var id = $(this).val();
+                    var retorno = '<?= serialize(["controller" => "ordem_servico", "action" => "prioridades"]) ?>';
+
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            param: id,
+                            callback: retorno
+                        },
+                        url: "<?= $this->Url->relative('/ordem_servico/cancelar/') ?>" + id,
+                        dataType: "html",
+                        beforeSend: function () {
+                            $("#loading").dialog("open");
+                        },
+                        complete: function (msg) {
+                            $("#loading").dialog("close");
+                            alert("Ordem de serviço cancelada com sucesso.");
+                            $("li#" + id).hide();
+                        }
+                    });
+                }
+            });
+
+            $(".btn-success").click(function () {
+                if (confirm("Deseja marcar esta ordem de serviço como concluído?")) {
+                    var id = $(this).val();
+                    var retorno = '<?= serialize(["controller" => "ordem_servico", "action" => "prioridades"]) ?>';
+
+                    $.ajax({
+                        type: "POST",
+                        data: {
+                            param: id,
+                            callback: retorno
+                        },
+                        url: "<?= $this->Url->relative('/ordem_servico/concluir/') ?>" + id,
+                        dataType: "html",
+                        beforeSend: function () {
+                            $("#loading").dialog("open");
+                        },
+                        complete: function (msg) {
+                            $("#loading").dialog("close");
+                            alert("Ordem de serviço concluida com sucesso.");
+                            $("li#" + id).hide();
+                        }
+                    });
+                }
+            });
+        });
+
+        function ordenar() {
+            $("li #num_ordem").each(function (i) {
+                $(this).val(i);
+
+                var id = $(this).parent().attr("id");
+                var param = id + "/" + i;
+
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        param: param
+                    },
+                    url: "<?= $this->Url->relative('/ordem_servico/sort/') ?>" + param,
+                    dataType: "html"
+                });
+            });
+        }
+    </script>
+<?php endif; ?>
 <?= $this->element('menu'); ?>
 <?= $this->element('loading') ?>
 <div class="content-wrapper">
@@ -77,26 +125,30 @@
                     </div>
                 <?php else: ?>
                     <ul id="prioridades" class="todo-list">
-                        <?php foreach ($ordens_servico as $ordem_servico): ?>
-                            <li id="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="<?= $this->Business->priorityColor($ordem_servico["OrdemServico"]["prioridade"]) . " row" ?>  bg-black row">
+                        <?php
+                        for ($i = 0; $i < count($ordens_servico); $i++):
+                            ?>
+                            <li id="<?= $ordens_servico[$i]["OrdemServico"]["id"] ?>" class="<?= $this->Business->priorityColor($ordens_servico[$i]["OrdemServico"]["prioridade"]) . " row" ?>  bg-black row">
+                                <input type="hidden" id="num_ordem" value="<?= $ordens_servico[$i]["OrdemServico"]["ordem"] ?>"/>
                                 <div class="col-md-10">
-                                    <h1 style="color: whitesmoke; font-weight: bold"><?= $this->Format->zeroPad($ordem_servico["OrdemServico"]["id"]) ?> : <?= $ordem_servico["OrdemServico"]["servico"] ?></h1>
-                                    <p style="font-size: x-large"><b>Cliente:</b> <abbr title="<?= $ordem_servico['Cliente']['nome_fantasia'] ?>"><?= $ordem_servico["Cliente"]["razao_social"] ?></abbr></p>
-                                    <p style="font-size: x-large"><b>Prazo:</b> <?= $this->Date->format($ordem_servico["OrdemServico"]["prazo"]) ?></p>
+                                    <h1 style="color: whitesmoke;
+                                        font-weight: bold"><?= $this->Format->zeroPad($ordens_servico[$i]["OrdemServico"]["id"]) ?> : <?= $ordens_servico[$i]["OrdemServico"]["servico"] ?></h1>
+                                    <p style="font-size: x-large"><b>Cliente:</b> <abbr title="<? = $ordens_servico[$i]['Cliente']['nome_fantasia'] ?>"><?= $ordens_servico[$i]["Cliente"]["razao_social"] ?></abbr></p>
+                                    <p style="font-size: x-large"><b>Prazo:</b> <?= $this->Date->format($ordens_servico[$i]["OrdemServico"]["prazo"]) ?></p>
                                 </div>
                                 <div class="col-md-2" style="text-align: right">
                                     <?php if ($this->Membership->handleRole("VISUALIZAR_ORDEM_SERVICO")): ?>
-                                        <button id="btvisualizar" class="btn btn-info" onclick="<?= 'window.open(\'' . $this->Url->makeParams('ordem_servico', 'documento', $ordem_servico["OrdemServico"]["id"]) . '\')' ?>" title="Visualizar"><i class="fa fa-eye"></i></button>
+                                        <button id="btvisualizar" class="btn btn-info" onclick="<?= 'window.open(\'' . $this->Url->makeParams('ordem_servico', 'documento', $ordens_servico[$i]["OrdemServico"]["id"]) . '\')' ?>" title="Visualizar"><i class="fa fa-eye"></i></button>
                                     <?php endif; ?>
                                     <?php if ($this->Membership->handleRole("CANCELAR_ORDEM_SERVICO")): ?>
-                                        <button id="btcancelar" value="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="btn btn-danger" title="Cancelar"><i class="fa fa-times"></i></button>
+                                        <button id="btcancelar" value="<?= $ordens_servico[$i]["OrdemServico"]["id"] ?>" class="btn btn-danger" title="Cancelar"><i class="fa fa-times"></i></button>
                                     <?php endif; ?>
                                     <?php if ($this->Membership->handleRole("CONCLUIR_ORDEM_SERVICO")): ?>
-                                        <button id="btconcluido" value="<?= $ordem_servico["OrdemServico"]["id"] ?>" class="btn btn-success" title="Concluído"><i class="fa fa-check"></i></button>
+                                        <button id="btconcluido" value="<?= $ordens_servico[$i]["OrdemServico"]["id"] ?>" class="btn btn-success" title="Concluído"><i class="fa fa-check"></i></button>
                                         <?php endif; ?>
                                 </div>
                             </li>
-                        <?php endforeach; ?>
+                        <?php endfor; ?>
                     </ul>
                 <?php endif; ?>
             </div>
