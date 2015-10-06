@@ -316,6 +316,7 @@ class OrdemServicoController extends AppController {
                 "OrdemServico.cancelado" => false,
                 "OrdemServico.concluido" => false,
             ), "order" => array(
+                "OrdemServico.ordem" => "ASC",
                 "OrdemServico.prioridade" => "DESC",
                 "OrdemServico.id" => "DESC"
             )
@@ -432,6 +433,12 @@ class OrdemServicoController extends AppController {
             $this->Dialog->error($mensagem, $ex->getMessage());
             $this->redirect(array("action" => "index"));
         }
+    }
+
+    public function sort($id, $ordem) {
+
+        $this->OrdemServico->id = $id;
+        $this->OrdemServico->saveField("ordem", $ordem);
     }
 
     public function teste() {
