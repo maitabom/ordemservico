@@ -150,6 +150,7 @@ class MembershipComponent extends Component {
             "VISUALIZAR_ORDEM_SERVICO" => ["controller" => "ordem_servico", "action" => "documento", "public" => false],
             "CANCELAR_ORDEM_SERVICO" => ["controller" => "ordem_servico", "action" => "cancelar", "public" => false],
             "CONCLUIR_ORDEM_SERVICO" => ["controller" => "ordem_servico", "action" => "concluir", "public" => false],
+            "ORDENAR_ORDEM_SERVICO" => ["controller" => "ordem_servico", "action" => "concluir", "public" => true],
             "LISTA_TAREFAS" => ["controller" => "ordem_servico", "action" => "prioridades", "public" => true],
             "LISTA_MODELO_ORDEM_SERVICO" => ["controller" => "ordem_servico", "action" => "templates", "public" => false],
             "CADASTRAR_MODELO_ORDEM_SERVICO" => ["controller" => "ordem_servico", "action" => "template_create", "public" => false],
