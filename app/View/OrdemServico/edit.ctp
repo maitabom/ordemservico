@@ -238,7 +238,7 @@ $this->element("question", array(
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("acabamento", "Acabamento") ?>
-                                <?= $this->Form->text("acabamento", array("class" => "form-control", "maxlength" => 50)) ?>
+                                <?= $this->Form->text("acabamento", array("class" => "form-control", "maxlength" => 300)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("prazo", "Prazo") ?>
