@@ -30,13 +30,53 @@
                 margin: 0px;
                 padding: 0px;
             }
+
+            h5{
+                float: right;
+            }
         </style>
     </head>
     <body>
         <div class="wrapper">
-            <?= $this->fetch('content'); ?>
+            <section class="invoice">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="invoice-header">
+                            Moreth e Lopes
+                            <small class="pull-right">Data: <?= $this->Date->format($ordem_servico["OrdemServico"]["data_criacao"], true) ?></small>
+                        </h2>
+                    </div><!-- /.col -->
+                </div>
+                <div class="row invoice-info">
+                    <div class="col-sm-6 invoice-col">
+                        <h4>Ordem de Produção</h4>
+                    </div>
+                    <div class="col-sm-6 invoice-col">
+                        <h5>Produção</h5>
+                    </div>
+                </div>
+                <?= $this->fetch('content'); ?>
+            </section>
             <hr id="cut">
-            <?= $this->fetch('content'); ?>
+            <section class="invoice">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h2 class="invoice-header">
+                            Moreth e Lopes
+                            <small class="pull-right">Data: <?= $this->Date->format($ordem_servico["OrdemServico"]["data_criacao"], true) ?></small>
+                        </h2>
+                    </div><!-- /.col -->
+                </div>
+                <div class="row invoice-info">
+                    <div class="col-sm-6 invoice-col">
+                        <h4>Ordem de Produção</h4>
+                    </div>
+                    <div class="col-sm-6 invoice-col">
+                        <h5>Impressão Digital</h5>
+                    </div>
+                </div>
+                <?= $this->fetch('content'); ?>
+            </section>
         </div>
         <script src="<?= $this->Url->relative('js/app.min.js') ?>" type="text/javascript"></script>
     </body>
