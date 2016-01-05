@@ -2,7 +2,7 @@
 <div class="row invoice-info border-row">
     <div class="col-sm-8 invoice-col">
         <address>
-            <strong><?= $ordem_servico["Cliente"]["razao_social"] ?></strong><br>
+            <strong><?= $ordem_servico["Cliente"]["nome_fantasia"] ?></strong><br>
             <?= $ordem_servico["Cliente"]["endereco"] ?><br>
             <?= $ordem_servico["Cliente"]["bairro"] ?> - <?= $ordem_servico["Cliente"]["cidade"] ?> - <?= $ordem_servico["Cliente"]["uf"] ?><br>
             Telefone: <?= $this->Format->phone($ordem_servico["Cliente"]["telefone"]) ?><br/>
