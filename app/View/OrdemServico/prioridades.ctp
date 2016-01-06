@@ -131,9 +131,8 @@
                             <li id="<?= $ordens_servico[$i]["OrdemServico"]["id"] ?>" class="<?= $this->Business->priorityColor($ordens_servico[$i]["OrdemServico"]["prioridade"]) . " row" ?>  bg-black row">
                                 <input type="hidden" id="num_ordem" value="<?= $ordens_servico[$i]["OrdemServico"]["ordem"] ?>"/>
                                 <div class="col-md-10">
-                                    <h1 style="color: whitesmoke;
-                                        font-weight: bold"><?= $this->Format->zeroPad($ordens_servico[$i]["OrdemServico"]["id"]) ?> : <?= $ordens_servico[$i]["OrdemServico"]["servico"] ?></h1>
-                                    <p style="font-size: x-large"><b>Cliente:</b> <abbr title="<? = $ordens_servico[$i]['Cliente']['nome_fantasia'] ?>"><?= $ordens_servico[$i]["Cliente"]["razao_social"] ?></abbr></p>
+                                    <h1 style="color: whitesmoke; font-weight: bold"><?= $this->Format->zeroPad($ordens_servico[$i]["OrdemServico"]["id"]) ?> : <?= $ordens_servico[$i]["OrdemServico"]["servico"] ?></h1>
+                                    <p style="font-size: x-large"><b>Cliente:</b> <?= $ordens_servico[$i]['Cliente']['nome_fantasia'] ?></p>
                                     <p style="font-size: x-large"><b>Prazo:</b> <?= $this->Date->format($ordens_servico[$i]["OrdemServico"]["prazo"]) ?></p>
                                 </div>
                                 <div class="col-md-2" style="text-align: right">
