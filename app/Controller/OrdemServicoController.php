@@ -205,6 +205,10 @@ class OrdemServicoController extends AppController {
             );
 
             $conditions["OrdemServicoModelo.servico LIKE"] = "%" . $data["OrdemServicoModelo"]["servico"] . "%";
+
+            $this->Session->write("BUSCA_ORDEM_SERVICO_MODELO", $conditions);
+        } else {
+            $conditions = $this->Session->read("BUSCA_ORDEM_SERVICO_MODELO");
         }
 
         $options = array(
