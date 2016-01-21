@@ -66,9 +66,16 @@ class OrdemServicoController extends AppController {
                     $conditions["OrdemServico.concluido"] = true;
                     break;
             }
+
+            $this->Session->write("BUSCA_ORDEM_SERVICO", $conditions);
         } else {
-            $conditions["OrdemServico.cancelado"] = false;
-            $conditions["OrdemServico.concluido"] = false;
+
+            if ($this->Session->check("BUSCA_ORDEM_SERVICO")) {
+                $conditions = $this->Session->read("BUSCA_ORDEM_SERVICO");
+            } else {
+                $conditions["OrdemServico.cancelado"] = false;
+                $conditions["OrdemServico.concluido"] = false;
+            }
         }
 
         $options = array(
