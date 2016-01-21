@@ -30,6 +30,10 @@ class UsuarioController extends AppController {
             if ($mostrar != "T") {
                 $conditions["Usuario.ativo"] = ($mostrar == "A") ? "1" : "0";
             }
+
+            $this->Session->write("BUSCA_USUARIOS", $conditions);
+        } else {
+            $conditions = $this->Session->read("BUSCA_USUARIOS");
         }
 
         $options = array(
