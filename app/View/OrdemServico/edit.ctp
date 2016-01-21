@@ -49,7 +49,7 @@
         }
 
         if ($("#OrdemServicoMaterial").val() === "") {
-            mensagem += "- É obrigatório informar o materal a ser utilizado no serviço.\n";
+            mensagem += "- É obrigatório informar o materal válido a ser utilizado no serviço.\n";
             $("#OrdemServicoMaterial").css("border-color", "red");
         } else {
             $("#OrdemServicoMaterial").css("border-color", "#D2D6DE");
@@ -230,11 +230,11 @@ $this->element("question", array(
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("quantidade_producao", "Quantidade Produção") ?>
-                                <?= $this->Form->text("quantidade_producao", array("class" => "form-control")) ?>
+                                <?= $this->Form->text("quantidade_producao", array("class" => "form-control", "maxlength" => 50)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("quantidade_cliente", "Quantidade Cliente") ?>
-                                <?= $this->Form->text("quantidade_cliente", array("class" => "form-control")) ?>
+                                <?= $this->Form->text("quantidade_cliente", array("class" => "form-control", "maxlength" => 50)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("acabamento", "Acabamento") ?>
