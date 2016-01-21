@@ -49,6 +49,10 @@ class ClienteController extends AppController {
             if ($mostrar != "T") {
                 $conditions["Cliente.ativo"] = ($mostrar == "A") ? 1 : 0;
             }
+
+            $this->Session->write("BUSCA_CLIENTE", $conditions);
+        } else {
+            $conditions = $this->Session->read("BUSCA_CLIENTE");
         }
 
         $options = array(
