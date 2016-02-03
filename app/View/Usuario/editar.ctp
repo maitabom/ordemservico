@@ -154,11 +154,11 @@ $this->element('message', array(
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("email", "E-mail") ?>
-                            <?= $this->Form->text("email", array("class" => "form-control", "disabled" => true, "maxlength" => 50)) ?>
+                            <?= $this->Form->text("email", array("class" => "form-control", "readonly" => true, "maxlength" => 50)) ?>
                         </div>
                         <div class="form-group col-xs-3">
                             <?= $this->Form->label("nickname", "Usuário") ?>
-                            <?= $this->Form->text("nickname", array("class" => "form-control", "disabled" => true, "maxlength" => 32)) ?>
+                            <?= $this->Form->text("nickname", array("class" => "form-control", "readonly" => true, "maxlength" => 32)) ?>
                         </div>
 
                         <div style="text-align: right;">

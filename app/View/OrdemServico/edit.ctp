@@ -208,7 +208,7 @@ $this->element("question", array(
                         <div class="form-group col-xs-12">
                             <?= $this->Form->label("cliente", "Cliente") ?>
                             <?= $this->Form->hidden("id_cliente") ?>
-                            <?= $this->Form->text("cliente", array("class" => "form-control", "disabled" => true, "value" => $nome_cliente)) ?>
+                            <?= $this->Form->text("cliente", array("class" => "form-control", "readonly" => true, "value" => $nome_cliente)) ?>
                         </div>
                         <?php if ($cancelado == false && $concluido == false): ?>
                             <div class="form-group col-xs-12">
@@ -267,55 +267,56 @@ $this->element("question", array(
                         <?php else: ?>
                             <div class="form-group col-xs-12">
                                 <?= $this->Form->label("servico", "Servico") ?>
-                                <?= $this->Form->text("servico", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("servico", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
+                                <?= $this->Form->hidden("material") ?>
                                 <?= $this->Form->label("material", "Material") ?>
-                                <?= $this->Form->text("material", array("class" => "form-control", "disabled" => true, "value" => $descricao_material)) ?>
+                                <?= $this->Form->text("nome_material", array("class" => "form-control", "readonly" => true, "value" => $descricao_material)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("formato", "Formato") ?>
-                                <?= $this->Form->text("formato", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("formato", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("formato_final", "Formato Final") ?>
-                                <?= $this->Form->text("formato_final", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("formato_final", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("quantidade_producao", "Quantidade Produção") ?>
-                                <?= $this->Form->text("quantidade_producao", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("quantidade_producao", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("quantidade_cliente", "Quantidade Cliente") ?>
-                                <?= $this->Form->text("quantidade_cliente", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("quantidade_cliente", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("acabamento", "Acabamento") ?>
-                                <?= $this->Form->text("acabamento", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("acabamento", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("prazo", "Prazo") ?>
-                                <?= $this->Form->text("prazo", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("prazo", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("arquivo", "Arquivo") ?>
-                                <?= $this->Form->text("arquivo", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("arquivo", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("equipamento", "Equipamento Par Saída") ?>
-                                <?= $this->Form->select("equipamento", $equipamentos, array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->select("equipamento", $equipamentos, array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("modo_entrega", "Modo de Entrega") ?>
-                                <?= $this->Form->select("modo_entrega", $modos_entregas, array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->select("modo_entrega", $modos_entregas, array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("contato_cliente", "Contato do Cliente") ?>
-                                <?= $this->Form->text("contato_cliente", array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->text("contato_cliente", array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("prioridade", "Prioridade") ?>
-                                <?= $this->Form->select("prioridade", $prioridades, array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->select("prioridade", $prioridades, array("class" => "form-control", "readonly" => true)) ?>
                             </div>
                         <?php endif; ?>
                         <div class="form-group col-xs-12">
