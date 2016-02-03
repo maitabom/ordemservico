@@ -75,6 +75,8 @@ class OrdemServicoController extends AppController {
             } else {
                 $conditions["OrdemServico.cancelado"] = false;
                 $conditions["OrdemServico.concluido"] = false;
+
+                $this->Session->delete("BUSCA_ORDEM_SERVICO");
             }
         }
 
