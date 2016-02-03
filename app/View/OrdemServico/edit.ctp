@@ -29,13 +29,15 @@
 
         VMasker(document.querySelector("#OrdemServicoPrazo")).maskPattern("99/99/9999");
 
-        $("#OrdemServicoPrazo").datepicker({
-            format: "dd/mm/yyyy",
-            todayBtn: "linked",
-            language: "pt-BR",
-            autoclose: true,
-            todayHighlight: true
-        });
+        if (!$("#OrdemServicoPrazo").prop("readonly"))
+            $("#OrdemServicoPrazo").datepicker({
+                format: "dd/mm/yyyy",
+                todayBtn: "linked",
+                language: "pt-BR",
+                autoclose: true,
+                todayHighlight: true
+            });
+
     });
 
     function validar() {
@@ -304,11 +306,11 @@ $this->element("question", array(
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("equipamento", "Equipamento Par Saída") ?>
-                                <?= $this->Form->select("equipamento", $equipamentos, array("class" => "form-control", "readonly" => true)) ?>
+                                <?= $this->Form->select("equipamento", $equipamentos, array("class" => "form-control", "disabled" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("modo_entrega", "Modo de Entrega") ?>
-                                <?= $this->Form->select("modo_entrega", $modos_entregas, array("class" => "form-control", "readonly" => true)) ?>
+                                <?= $this->Form->select("modo_entrega", $modos_entregas, array("class" => "form-control", "disabled" => true)) ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("contato_cliente", "Contato do Cliente") ?>
