@@ -70,6 +70,8 @@ class SystemController extends AppController {
                     $this->Session->write("UsuarioCargo", $retorno["Usuario"]["cargo"]);
                     $this->Session->write("Usuario", $retorno);
 
+                    $this->limparSessoesBusca();
+
                     if ($lembrar) {
                         $this->Cookie->write("Usuario.nickname", $retorno["Usuario"]["nickname"], false, "5 days");
                     }
@@ -257,6 +259,13 @@ class SystemController extends AppController {
             $this->Session->setFlash("A sessão do usuário foi expirada.");
             $this->redirect(array("action" => "login"));
         }
+    }
+
+    private function limparSessoesBusca() {
+        $this->Session->delete("BUSCA_ORDEM_SERVICO");
+        $this->Session->delete("BUSCA_CLIENTE");
+        $this->Session->delete("BUSCA_USUARIOS");
+        $this->Session->delete("BUSCA_ORDEM_SERVICO_MODELO");
     }
 
 }
