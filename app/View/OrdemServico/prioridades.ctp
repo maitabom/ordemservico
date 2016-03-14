@@ -2,7 +2,7 @@
     $(function () {
         setTimeout(function () {
             window.location.reload(1);
-        }, 30000);
+        }, 60000);
     });
 </script>
 
