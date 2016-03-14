@@ -307,10 +307,12 @@ $this->element("question", array(
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("equipamento", "Equipamento Par Saída") ?>
                                 <?= $this->Form->select("equipamento", $equipamentos, array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->hidden("equipamento"); ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("modo_entrega", "Modo de Entrega") ?>
                                 <?= $this->Form->select("modo_entrega", $modos_entregas, array("class" => "form-control", "disabled" => true)) ?>
+                                <?= $this->Form->hidden("modo_entrega"); ?>
                             </div>
                             <div class="form-group col-xs-3">
                                 <?= $this->Form->label("contato_cliente", "Contato do Cliente") ?>
