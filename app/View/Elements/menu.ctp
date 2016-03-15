@@ -19,7 +19,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <?php if ($this->Membership->handleMenu("CADASTRO_USUARIO")): ?>
-                            <li><a href="<?= $this->Url->make('usuario') ?>"><i class="fa fa-user"></i>Cadastro de Usuários</a></li>
+                            <li><a href="<?= $this->Url->make('usuario', 'busca') ?>"><i class="fa fa-user"></i>Cadastro de Usuários</a></li>
                         <?php endif; ?>
                         <?php if ($this->Membership->handleMenu("CADASTRO_PERMISSAO")): ?>
                             <li><a href="<?= $this->Url->make('permissao') ?>"><i class="fa fa-shield"></i>Permissões</a></li>
@@ -36,7 +36,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <?php if ($this->Membership->handleMenu("CADASTRO_CLIENTE")): ?>
-                            <li><a href="<?= $this->Url->make('cliente') ?>"><i class="fa fa-circle-o"></i> Cadastro de Clientes</a></li>
+                            <li><a href="<?= $this->Url->make('cliente', 'busca') ?>"><i class="fa fa-circle-o"></i> Cadastro de Clientes</a></li>
                         <?php endif; ?>
                         <?php if ($this->Membership->handleMenu("ADICIONAR_CLIENTE")): ?>
                             <li><a href="<?= $this->Url->make('cliente', 'add') ?>"><i class="fa fa-plus-circle"></i> Novo Cliente</a></li>
@@ -56,7 +56,7 @@
                             <li><a href="<?= $this->Url->make('ordem_servico', 'add') ?>"><i class="fa fa-plus-circle"></i> Gerar Ordem de Serviço</a></li>
                         <?php endif; ?>
                         <?php if ($this->Membership->handleMenu("BUSCAR_ORDEM_SERVICO")): ?>
-                            <li><a href="<?= $this->Url->make('ordem_servico') ?>"><i class="fa fa-search"></i> Buscar</a></li>
+                            <li><a href="<?= $this->Url->make('ordem_servico', 'busca') ?>"><i class="fa fa-search"></i> Buscar</a></li>
                         <?php endif; ?>
                         <?php if ($this->Membership->handleMenu("TEMPLATES_ORDEM_SERVICO")): ?>
                             <li><a href="<?= $this->Url->make('ordem_servico', 'templates') ?>"><i class="fa fa-bookmark"></i> Templates</a></li>
