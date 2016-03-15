@@ -80,6 +80,11 @@ class ClienteController extends AppController {
         $this->set("tipos_cliente", $tipos_pessoas);
     }
 
+    public function busca() {
+        $this->Session->delete("BUSCA_CLIENTE");
+        $this->redirect(array("action" => "index"));
+    }
+
     public function add() {
         $this->redirect(array("action" => "cadastro", 0));
     }
