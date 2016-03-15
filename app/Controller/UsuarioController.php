@@ -57,6 +57,11 @@ class UsuarioController extends AppController {
         $this->set("qtd_usuarios", $qtd_usuarios);
     }
 
+    public function busca() {
+        $this->Session->delete("BUSCA_USUARIOS");
+        $this->redirect(array("action" => "index"));
+    }
+
     public function perfil($user) {
 
         $usuario = $this->Usuario->find("first", array(
