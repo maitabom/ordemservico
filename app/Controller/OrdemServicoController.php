@@ -100,6 +100,11 @@ class OrdemServicoController extends AppController {
         $this->set("status_ordens", $status_ordens);
     }
 
+    public function busca() {
+        $this->Session->delete("BUSCA_ORDEM_SERVICO");
+        $this->redirect(array("action" => "index"));
+    }
+
     public function add($id = null) {
         $prioridades = [0 => "Baixa", 1 => "Média", 2 => "Alta"];
 
