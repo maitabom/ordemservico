@@ -151,14 +151,19 @@ class UsuarioController extends AppController {
             $destino = unserialize($data["Usuario"]["destino"]);
 
             try {
-                $un = $this->Usuario->find("count", array(
-                    "conditions" => array(
-                        "Usuario.nickname" => $data["Usuario"]["nickname"]
-                    )
-                ));
 
-                if ($un > 0) {
-                    throw new Exception("Existe um usuário com o nick escolhido.");
+                $pivot = $this->Usuario->findById($data["Usuario"]["id"]);
+
+                if ($this->request->is('put') && ($pivot["Usuario"]["nickname"] != $data["Usuario"]["nickname"])) {
+                    $un = $this->Usuario->find("count", array(
+                        "conditions" => array(
+                            "Usuario.nickname" => $data["Usuario"]["nickname"]
+                        )
+                    ));
+
+                    if ($un > 0) {
+                        throw new Exception("Existe um usuário com o nick escolhido.");
+                    }
                 }
 
                 $this->Usuario->save($data);
