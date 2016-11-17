@@ -9,6 +9,7 @@
 <?php if ($this->Session->check("Usuario")): ?>
     <script type = "text/javascript">
         $(function () {
+            /*
             $("#prioridades").sortable({
                 revert: true,
                 stop: function (event, ui) {
@@ -33,7 +34,7 @@
                     dataType: "html"
                 });
             });
-
+            */
 
             $(".btn-danger").click(function () {
                 if (confirm("Deseja cancelar esta ordem de serviço?")) {
