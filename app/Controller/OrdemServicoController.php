@@ -334,8 +334,8 @@ class OrdemServicoController extends AppController {
                 "OrdemServico.cancelado" => false,
                 "OrdemServico.concluido" => false,
             ), "order" => array(
-                "OrdemServico.ordem" => "ASC",
                 "OrdemServico.prioridade" => "DESC",
+                "OrdemServico.prazo" => "ASC",
                 "OrdemServico.id" => "DESC"
             )
         ));
