@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="059ad801-10c5-4bad-832c-b431c5c72423" name="OrdemServico" url="http://localhost">
+        <fileTransfer mountedRoot="/var/www/html" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
