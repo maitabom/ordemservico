@@ -50,8 +50,8 @@ class OrdemServicoController extends AppController {
             }
 
             if ($prazo_inicio != "" && $prazo_fim != "") {
-                $conditions["OrdemServico.prazo <="] = $this->Date->formatDateDB($data["OrdemServico"]["prazo_inicio"]);
-                $conditions["OrdemServico.prazo >="] = $this->Date->formatDateDB($data["OrdemServico"]["prazo_fim"]);
+                $conditions["OrdemServico.prazo >="] = $this->Date->formatDateDB($data["OrdemServico"]["prazo_inicio"]);
+                $conditions["OrdemServico.prazo <="] = $this->Date->formatDateDB($data["OrdemServico"]["prazo_fim"]);
             }
 
             switch ($mostrar) {
