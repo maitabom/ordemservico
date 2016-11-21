@@ -127,8 +127,8 @@
 
     function criarModelo() {
         if (validar()) {
-            $("#OrdemServicoEditForm").attr("action", "<?= $this->Url->relative('/ordem_servico/template_create') ?>");
-            $("#OrdemServicoEditForm").submit();
+            $("#OrdemServicoSaveForm").attr("action", "<?= $this->Url->relative('/ordem_servico/template_create') ?>");
+            $("#OrdemServicoSaveForm").submit();
         }
     }
 </script>
