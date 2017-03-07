@@ -1,5 +1,9 @@
-
-<div class="row invoice-info border-row">
+<script type="text/javascript">
+    $(function () {
+        window.print();
+    });
+</script>
+<div class="row invoice-info border-row">Oi
     <div class="col-sm-8 invoice-col">
         <address>
             <strong><?= $ordem_servico["Cliente"]["nome_fantasia"] ?></strong><br>
