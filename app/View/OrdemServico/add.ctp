@@ -123,6 +123,13 @@
             $("#OrdemServicoAcabamento").css("border-color", "#D2D6DE");
         }
 
+        if ($("#OrdemServicoPrazo").val() === "") {
+            mensagem += "- É obrigatório informar o prazo de execução da ordem de serviço.\n";
+            $("#OrdemServicoPrazo").css("border-color", "red");
+        } else {
+            $("#OrdemServicoPrazo").css("border-color", "#D2D6DE");
+        }
+
         if ($("#OrdemServicoEquipamento").val() === "") {
             mensagem += "- É obrigatório informar o equipamento relacionado à ordem de serviço.\n";
             $("#OrdemServicoEquipamento").css("border-color", "red");
